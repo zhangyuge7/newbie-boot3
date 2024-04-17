@@ -1,0 +1,41 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  main:
+    # # 相同的bean是否覆盖
+    allow-bean-definition-overriding: true
+  jackson:
+    # 日期格式统一配置
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 时区配置
+    time-zone: Asia/Shanghai
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/newbie3?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8&allowMultiQueries=true
+    username: root
+    password: root
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+      timeout: 10s
+      lettuce:
+        pool:
+          max-active: 200
+          max-wait: -1ms
+          max-idle: 10
+          min-idle: 1
+
+sa-token:
+  # jwt秘钥
+  jwt-secret-key: bsdasdasifhueuiwyurfewbfjsdafjg
+  is-log: true
+
+newbie:
+  security:
+    auth-scheme: jwt
+    jwt-token-timeout: 604800000

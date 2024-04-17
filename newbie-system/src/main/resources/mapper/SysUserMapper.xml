@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbie.system.mapper.SysUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysUser">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="deptId" column="dept_id" jdbcType="BIGINT"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="homePath" column="home_path" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="CHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="CHAR"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        u.id,u.dept_id,u.username,
+        u.password,u.nick_name,u.avatar,
+        u.home_path,u.phone,u.email,
+        u.gender,u.status,u.remark,
+        u.sort,u.create_by,u.create_time,
+        u.update_by,u.update_time
+    </sql>
+    <select id="queryUserByRoleId" resultType="com.newbie.common.entity.SysUser">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sys_user u
+        JOIN sys_user_role sur
+        ON sur.user_id = u.id
+        WHERE
+        sur.role_id = #{roleId}
+        AND u.username != 'admin'
+        <if test="sysUser.username!=null and sysUser.username!=''">
+            AND u.username LIKE CONCAT('%',#{sysUser.username},'%')
+        </if>
+        <if test="sysUser.nickName!=null and sysUser.nickName!=''">
+            AND u.nick_name LIKE CONCAT('%',#{sysUser.nickName},'%')
+        </if>
+        <if test="sysUser.mobile!=null and sysUser.mobile!=''">
+            AND u.mobile LIKE CONCAT('%',#{sysUser.mobile},'%')
+        </if>
+        <if test="sysUser.email!=null and sysUser.email!=''">
+            AND u.email LIKE CONCAT('%',#{sysUser.email},'%')
+        </if>
+        order by u.sort
+    </select>
+    <select id="queryUnUserByRoleId" resultType="com.newbie.common.entity.SysUser">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from sys_user u
+        where u.id not in(
+        select user_id
+        from sys_user_role
+        where role_id=#{roleId}
+        )
+        AND u.username != 'admin'
+        <if test="sysUser.username!=null and sysUser.username!=''">
+            AND u.username LIKE CONCAT('%',#{sysUser.username},'%')
+        </if>
+        <if test="sysUser.nickName!=null and sysUser.nickName!=''">
+            AND u.nick_name LIKE CONCAT('%',#{sysUser.nickName},'%')
+        </if>
+        <if test="sysUser.mobile!=null and sysUser.mobile!=''">
+            AND u.mobile LIKE CONCAT('%',#{sysUser.mobile},'%')
+        </if>
+        <if test="sysUser.email!=null and sysUser.email!=''">
+            AND u.email LIKE CONCAT('%',#{sysUser.email},'%')
+        </if>
+        order by u.sort
+    </select>
+</mapper>

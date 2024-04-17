@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbie.system.mapper.SysDeptMapper">
+
+    <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysDept">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="deptName" column="dept_name" jdbcType="VARCHAR"/>
+            <result property="deptCode" column="dept_code" jdbcType="VARCHAR"/>
+            <result property="parentId" column="parent_id" jdbcType="BIGINT"/>
+            <result property="ancestors" column="ancestors" jdbcType="VARCHAR"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
+            <result property="leader" column="leader" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="CHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="tier" column="tier" jdbcType="INTEGER"/>
+            <result property="homePath" column="home_path" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,dept_name,dept_code,
+        parent_id,ancestors,sort,
+        leader,phone,email,
+        status,tier,home_path,
+        remark,create_by,create_time,
+        update_by,update_time
+    </sql>
+    <sql id="T1_Column_List">
+        t1.id,t1.dept_name,t1.dept_code,
+        t1.parent_id,t1.ancestors,t1.sort,
+        t1.leader,t1.phone,t1.email,
+        t1.status,t1.tier,t1.home_path,
+        t1.remark,t1.create_by,t1.create_time,
+        t1.update_by,t1.update_time
+    </sql>
+
+    <select id="selectDeptList" resultMap="BaseResultMap">
+        WITH RECURSIVE temp_t (<include refid="Base_Column_List" />) AS (
+        SELECT <include refid="Base_Column_List" />  FROM sys_dept
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="id == null">
+                parent_id  = 0
+            </if>
+        </where>
+        UNION
+        SELECT <include refid="T1_Column_List" /> FROM sys_dept t1
+        INNER JOIN temp_t t2 ON t1.parent_id = t2.id
+        )
+        SELECT * FROM temp_t
+        <where>
+            <if test="deptName != null and deptName != ''">
+                dept_name LIKE CONCAT('%',#{deptName},'%')
+            </if>
+            <if test="leader != null and leader != ''">
+                AND leader LIKE CONCAT('%',#{leader},'%')
+            </if>
+            <if test="phone != null and phone != ''">
+                AND phone LIKE CONCAT('%',#{phone},'%')
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY sort
+    </select>
+</mapper>

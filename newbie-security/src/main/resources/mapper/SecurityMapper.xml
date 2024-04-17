@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbie.security.mapper.SecurityMapper">
+    <sql id="Menu_Column_List">
+        m.id,m.title,m.parent_id,
+        m.sort,m.status,m.route_path,
+        m.route_name,m.component,m.remark,
+        m.create_by,m.create_time,m.update_by,
+        m.update_time,m.keep,m.type,
+        m.hide,m.perm,m.icon,
+        m.hide_children,m.iframe_link,m.outer,
+        m.transition,m.fixed_tab
+    </sql>
+    <sql id="Role_Column_List">
+        r.id,r.role_name,r.role_code,
+        r.sort,r.status,r.home_path,
+        r.remark,r.create_by,r.create_time,
+        r.update_by,r.update_time
+    </sql>
+    <sql id="User_Column_List">
+        u.id,u.dept_id,u.username,
+        u.password,u.nick_name,u.avatar,
+        u.home_path,u.phone,u.email,
+        u.gender,u.status,u.remark,
+        u.sort,u.create_by,u.create_time,
+        u.update_by,u.update_time
+    </sql>
+    <insert id="insertAdminUser">
+        insert into sys_user
+            (username, password, nick_name, status, create_time)
+        values (#{username}, #{password}, #{nickName}, '1', #{createTime})
+    </insert>
+    <update id="updateUserPasswordByUserId">
+        update sys_user
+        set password = #{password}
+        where id = #{id}
+    </update>
+    <select id="selectUserByUsername" resultType="com.newbie.common.entity.SysUser">
+        select
+        <include refid="User_Column_List"/>
+        from sys_user u
+        where username = #{username}
+    </select>
+    <select id="selectMenuListByUserId" resultType="com.newbie.common.entity.SysMenu">
+        select
+        <include refid="Menu_Column_List"/>
+        from sys_menu m
+        join sys_role_menu rm on m.id = rm.menu_id
+        join sys_user_role ur on rm.role_id = ur.role_id
+        where ur.user_id = #{userId}
+        and status = '1'
+    </select>
+    <select id="selectRoleListByUserId" resultType="com.newbie.common.entity.SysRole">
+        select
+        <include refid="Role_Column_List"/>
+        from sys_role r
+        join sys_user_role ur on r.id = ur.role_id
+        where ur.user_id = #{userId}
+        and r.status = '1'
+    </select>
+    <select id="selectMenuAll" resultType="com.newbie.common.entity.SysMenu">
+        SELECT
+        <include refid="Menu_Column_List" />
+        FROM sys_menu m
+        WHERE type = '1'
+        AND status = '1'
+        order by sort
+    </select>
+    <select id="selectMenuByUserId" resultType="com.newbie.common.entity.SysMenu">
+        SELECT
+        <include refid="Menu_Column_List"/>
+        FROM sys_menu m
+        JOIN sys_role_menu rm
+        ON m.id = rm.menu_id AND m.type = '1' AND m.status = '1'
+        JOIN sys_user_role ur
+        ON ur.role_id = rm.role_id AND ur.user_id = #{userId}
+        ORDER BY m.sort
+    </select>
+    <select id="selectUserByUserId" resultType="com.newbie.common.entity.SysUser">
+        select
+        <include refid="User_Column_List"/>
+        from sys_user u
+        where id = #{userId}
+    </select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbie.system.mapper.SysRoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysRole">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        <result property="roleCode" column="role_code" jdbcType="VARCHAR"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="CHAR"/>
+        <result property="homePath" column="home_path" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        r.id,r.role_name,r.role_code,
+        r.sort,r.status,r.home_path,
+        r.remark,r.create_by,r.create_time,
+        r.update_by,r.update_time
+    </sql>
+    <select id="selectListByUserId" resultType="com.newbie.common.entity.SysRole">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role r
+        join sys_user_role ur on r.id = ur.role_id
+        where ur.user_id = #{userId}
+        and r.status = '1'
+    </select>
+</mapper>

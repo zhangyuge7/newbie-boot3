@@ -1,0 +1,18 @@
+package com.newbie.security.domain.body;
+
+import lombok.Data;
+
+/**
+ * Created by IntelliJ IDEA.
+ *
+ * @Author: ZhangYuGe
+ * @Date: 2024/4/16 16:13
+ * @Descriptions: unknown
+ */
+@Data
+public class PasswordBody {
+    private Long userId; // 用户ID
+    private String oldPassword; // 原密码
+    private String newPassword; // 新密码
+    private String confirmPassword; // 确认密码
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbie.system.mapper.SysLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysLog">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="operator" column="operator" jdbcType="VARCHAR"/>
+            <result property="resStatus" column="res_status" jdbcType="CHAR"/>
+            <result property="errMsg" column="err_msg" jdbcType="VARCHAR"/>
+            <result property="fromIp" column="from_ip" jdbcType="VARCHAR"/>
+            <result property="targetUri" column="target_uri" jdbcType="VARCHAR"/>
+            <result property="targetFun" column="target_fun" jdbcType="VARCHAR"/>
+            <result property="method" column="method" jdbcType="VARCHAR"/>
+            <result property="costTime" column="cost_time" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,operator,res_status,
+        err_msg,from_ip,target_uri,
+        target_fun,method,cost_time
+    </sql>
+</mapper>
