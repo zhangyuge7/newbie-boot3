@@ -13,6 +13,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableCaching
 public class NewbieApplication {
     public static void main(String[] args) {
+        // 当前时间戳
+        long beginTime = System.currentTimeMillis();
         SpringApplication.run(NewbieApplication.class, args);
+        System.out.println("启动完成：: " + (System.currentTimeMillis() - beginTime) + "ms");
     }
 }
