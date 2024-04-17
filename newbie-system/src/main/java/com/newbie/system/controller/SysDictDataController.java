@@ -1,12 +1,8 @@
 package com.newbie.system.controller;
 
-import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.entity.SysDictData;
 import com.newbie.common.util.R;
-import com.newbie.security.domain.vo.LoginUserVO;
 import com.newbie.system.service.SysDictDataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;

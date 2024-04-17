@@ -1,9 +1,6 @@
 package com.newbie.common.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -16,6 +13,7 @@ import lombok.Data;
  */
 @TableName(value ="sys_menu")
 @Data
+
 public class SysMenu implements Serializable {
     /**
      * 菜单ID
@@ -66,27 +64,31 @@ public class SysMenu implements Serializable {
     /**
      * 创建者
      */
+    @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
     /**
      * 更新者
      */
+    @TableField(fill = FieldFill.UPDATE)
     private String updateBy;
 
     /**
      * 修改时间
      */
+    @TableField(fill = FieldFill.UPDATE)
     private Date updateTime;
 
     /**
      * 是否缓存组件（1缓存 0不缓存）
      */
-    private String keep;
+    private String isKeep;
 
     /**
      * 菜单类型（1菜单 0按钮）
@@ -96,7 +98,7 @@ public class SysMenu implements Serializable {
     /**
      * 是否隐藏菜单（1是 0否 ）
      */
-    private String hide;
+    private String isHide;
 
     /**
      * 权限标识
@@ -121,7 +123,7 @@ public class SysMenu implements Serializable {
     /**
      * 是否在layout外显示（1是 0否）
      */
-    private String outer;
+    private String isOuter;
 
     /**
      * 切换动画

@@ -18,14 +18,14 @@
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="keep" column="keep" jdbcType="CHAR"/>
+            <result property="isKeep" column="is_keep" jdbcType="CHAR"/>
             <result property="type" column="type" jdbcType="CHAR"/>
-            <result property="hide" column="hide" jdbcType="CHAR"/>
+            <result property="isHide" column="is_hide" jdbcType="CHAR"/>
             <result property="perm" column="perm" jdbcType="VARCHAR"/>
             <result property="icon" column="icon" jdbcType="VARCHAR"/>
             <result property="hideChildren" column="hide_children" jdbcType="CHAR"/>
             <result property="iframeLink" column="iframe_link" jdbcType="VARCHAR"/>
-            <result property="outer" column="outer" jdbcType="CHAR"/>
+            <result property="isOuter" column="is_outer" jdbcType="CHAR"/>
             <result property="transition" column="transition" jdbcType="VARCHAR"/>
             <result property="fixedTab" column="fixed_tab" jdbcType="CHAR"/>
     </resultMap>
@@ -35,9 +35,9 @@
         sort,status,route_path,
         route_name,component,remark,
         create_by,create_time,update_by,
-        update_time,keep,type,
-        hide,perm,icon,
-        hide_children,iframe_link,`outer`,
+        update_time,is_keep,type,
+        is_hide,perm,icon,
+        hide_children,iframe_link,is_outer,
         transition,fixed_tab
     </sql>
     <sql id="T1_Column_List">
@@ -45,9 +45,9 @@
         t1.sort,t1.status,t1.route_path,
         t1.route_name,t1.component,t1.remark,
         t1.create_by,t1.create_time,t1.update_by,
-        t1.update_time,t1.keep,t1.type,
-        t1.hide,t1.perm,t1.icon,
-        t1.hide_children,t1.iframe_link,t1.outer,
+        t1.update_time,t1.is_keep,t1.type,
+        t1.is_hide,t1.perm,t1.icon,
+        t1.hide_children,t1.iframe_link,t1.is_outer,
         t1.transition,t1.fixed_tab
     </sql>
     <select id="selectMenuList" resultMap="BaseResultMap">

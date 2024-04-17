@@ -6,8 +6,9 @@ import lombok.Getter;
  * Created by IntelliJ IDEA.
  *
  * @Author: ZhangYuGe
+ * @Email 398698424@qq.com
  * @Date: 2024/4/16 16:07
- * @Descriptions: unknown
+ * @Descriptions: 通用状态枚举
  */
 @Getter
 public enum CommonStatusEnum {

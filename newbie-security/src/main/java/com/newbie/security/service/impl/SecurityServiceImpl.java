@@ -33,6 +33,7 @@ import java.util.List;
  * Created by IntelliJ IDEA.
  *
  * @Author: ZhangYuGe
+ * @Email 398698424@qq.com
  * @Date: 2024/4/16 15:35
  * @Descriptions: unknown
  */
@@ -188,12 +189,12 @@ public class SecurityServiceImpl implements SecurityService {
                 .builder()
                 .title(m.getTitle())
                 .icon(m.getIcon())
-                .isHide("1".equals(m.getHide()))
+                .isHide("1".equals(m.getIsHide()))
                 .hideChildren("1".equals(m.getHideChildren()))
                 .iframeLink(m.getIframeLink())
-                .isOuter("1".equals(m.getOuter()))
+                .isOuter("1".equals(m.getIsOuter()))
                 .sortNo(m.getSort())
-                .isKeep("1".equals(m.getKeep()))
+                .isKeep("1".equals(m.getIsKeep()))
                 .transition(m.getTransition())
                 .fixedTab("1".equals(m.getFixedTab()))
                 .build();

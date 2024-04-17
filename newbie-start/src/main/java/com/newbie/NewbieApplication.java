@@ -5,11 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @Author: ZhangYuGe
- * @Date: 2024/4/15 22:07
- * @Descriptions: 响应数据封装
+ * 启动类
  */
 
 @SpringBootApplication

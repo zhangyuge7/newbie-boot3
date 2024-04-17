@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Created by IntelliJ IDEA.
  *
  * @Author: ZhangYuGe
+ * @Email 398698424@qq.com
  * @Date: 2024/4/16 11:21
  * @Descriptions: 认证鉴权异常处理
  */

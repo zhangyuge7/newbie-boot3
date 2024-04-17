@@ -18,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * Created by IntelliJ IDEA.
  *
  * @Author: ZhangYuGe
+ * @Email 398698424@qq.com
  * @Date: 2024/4/16 10:29
  * @Descriptions: SaToken配置
  */

@@ -5,8 +5,6 @@ import com.newbie.common.util.R;
 import com.newbie.system.domain.vo.SysMenuVO;
 import com.newbie.system.service.SysMenuService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;

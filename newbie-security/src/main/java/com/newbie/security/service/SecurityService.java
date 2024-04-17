@@ -11,8 +11,9 @@ import java.util.List;
  * Created by IntelliJ IDEA.
  *
  * @Author: ZhangYuGe
+ * @Email 398698424@qq.com
  * @Date: 2024/4/16 15:35
- * @Descriptions: 登录服务
+ * @Descriptions: unknown
  */
 public interface SecurityService {
     /**

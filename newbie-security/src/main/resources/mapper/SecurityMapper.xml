@@ -8,9 +8,9 @@
         m.sort,m.status,m.route_path,
         m.route_name,m.component,m.remark,
         m.create_by,m.create_time,m.update_by,
-        m.update_time,m.keep,m.type,
-        m.hide,m.perm,m.icon,
-        m.hide_children,m.iframe_link,m.outer,
+        m.update_time,m.is_keep,m.type,
+        m.is_hide,m.perm,m.icon,
+        m.hide_children,m.iframe_link,m.is_outer,
         m.transition,m.fixed_tab
     </sql>
     <sql id="Role_Column_List">

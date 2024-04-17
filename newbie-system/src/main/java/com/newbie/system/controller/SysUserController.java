@@ -2,7 +2,6 @@ package com.newbie.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-
 import com.newbie.common.entity.SysUser;
 import com.newbie.common.util.R;
 import com.newbie.security.domain.body.PasswordBody;

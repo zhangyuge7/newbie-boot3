@@ -7,8 +7,9 @@ import lombok.Data;
  * Created by IntelliJ IDEA.
  *
  * @Author: ZhangYuGe
+ * @Email 398698424@qq.com
  * @Date: 2024/4/16 19:25
- * @Descriptions: unknown
+ * @Descriptions: 路由元数据
  */
 @Data
 @Builder
