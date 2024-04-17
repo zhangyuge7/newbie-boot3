@@ -5,6 +5,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysDept;
+import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.TreeUtils;
 import com.newbie.security.domain.vo.LoginUserVO;
 import com.newbie.system.domain.vo.SysDeptVO;
@@ -89,7 +90,7 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept>
         // 检查是否修改节点位置
         SysDept rawDept = sysDeptMapper.selectById(sysDept.getId());
         if (!Objects.equals(rawDept.getParentId(),sysDept.getParentId())) {
-            throw new RuntimeException("不允许修改节点位置");
+            throw new NewbieException("不允许修改节点位置");
         }
 
         // 执行修改
@@ -108,8 +109,8 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept>
     }
 
     private void verifyDeptData(SysDept sysDept){
-        if (!StringUtils.hasLength(sysDept.getDeptName())) throw new RuntimeException("部门名称为空");
-        if (Objects.isNull(sysDept.getParentId())) throw new RuntimeException("父级部门ID为空");
+        if (!StringUtils.hasLength(sysDept.getDeptName())) throw new NewbieException("部门名称为空");
+        if (Objects.isNull(sysDept.getParentId())) throw new NewbieException("父级部门ID为空");
     }
 
 }

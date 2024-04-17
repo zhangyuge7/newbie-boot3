@@ -10,6 +10,7 @@ import com.newbie.common.entity.SysMenu;
 import com.newbie.common.entity.SysRole;
 import com.newbie.common.entity.SysUser;
 import com.newbie.common.enums.CommonStatusEnum;
+import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.TreeUtils;
 import com.newbie.security.domain.Route;
 import com.newbie.security.domain.RouteMeta;
@@ -49,15 +50,15 @@ public class SecurityServiceImpl implements SecurityService {
         // 根据username查询用户
         SysUser sysUser = securityMapper.selectUserByUsername(loginBody.getUsername());
 
-        if (sysUser == null) throw new RuntimeException("用户不存在");
+        if (sysUser == null) throw new NewbieException("用户不存在");
 
         // 验证密码
         if (!BCrypt.checkpw(loginBody.getPassword(), sysUser.getPassword()))
-            throw new RuntimeException("密码错误");
+            throw new NewbieException("密码错误");
 
         // 是否禁用
         if (CommonStatusEnum.isDisabled(sysUser.getStatus())) {
-            throw new RuntimeException("用户被禁用，请联系管理员");
+            throw new NewbieException("用户被禁用，请联系管理员");
         }
 
         // 密码隐藏
@@ -108,13 +109,13 @@ public class SecurityServiceImpl implements SecurityService {
         // 校验参数
         this.verifyPasswordBogy(passwordBody);
 
-        if (securityMapper.selectUserByUsername("admin") != null) throw new RuntimeException("系统管理员已存在");
+        if (securityMapper.selectUserByUsername("admin") != null) throw new NewbieException("系统管理员已存在");
 
         SysUser sysUser = new SysUser();
         sysUser.setUsername("admin");
         sysUser.setNickName("系统管理员");
         sysUser.setPassword(BCrypt.hashpw(passwordBody.getNewPassword()));
-        if (securityMapper.insertAdminUser(sysUser) != 1) throw new RuntimeException("初始化系统管理员失败");
+        if (securityMapper.insertAdminUser(sysUser) != 1) throw new NewbieException("初始化系统管理员失败");
     }
 
     @Override
@@ -138,16 +139,16 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     @Transactional
     public void updatePassword(PasswordBody passwordBody) {
-        if (!StringUtils.hasLength(passwordBody.getOldPassword())) throw new RuntimeException("原密码不能为空");
+        if (!StringUtils.hasLength(passwordBody.getOldPassword())) throw new NewbieException("原密码不能为空");
         this.verifyPasswordBogy(passwordBody);
         long userId = StpUtil.getLoginIdAsLong();
         SysUser sysUser = securityMapper.selectUserByUserId(userId);
         if (!BCrypt.checkpw(passwordBody.getOldPassword(), sysUser.getPassword()))
-            throw new RuntimeException("原密码错误");
+            throw new NewbieException("原密码错误");
         String newPassword = BCrypt.hashpw(passwordBody.getNewPassword());
         sysUser.setPassword(newPassword);
         int i = securityMapper.updateUserPasswordByUserId(sysUser);
-        if (i != 1) throw new RuntimeException("修改密码失败");
+        if (i != 1) throw new NewbieException("修改密码失败");
 
         // 强制下线
         StpUtil.logout();
@@ -207,9 +208,9 @@ public class SecurityServiceImpl implements SecurityService {
     private void verifyPasswordBogy(PasswordBody passwordBody) {
         String newPassword = passwordBody.getNewPassword();
         String confirmPassword = passwordBody.getConfirmPassword();
-        if (!StringUtils.hasLength(newPassword)) throw new RuntimeException("新密码不能为空");
-        if (!StringUtils.hasLength(confirmPassword)) throw new RuntimeException("确认密码不能为空");
-        if (!newPassword.equals(confirmPassword)) throw new RuntimeException("两次密码不一致");
+        if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码不能为空");
+        if (!StringUtils.hasLength(confirmPassword)) throw new NewbieException("确认密码不能为空");
+        if (!newPassword.equals(confirmPassword)) throw new NewbieException("两次密码不一致");
     }
 
     /**
@@ -220,7 +221,7 @@ public class SecurityServiceImpl implements SecurityService {
     private void verifyLoginBody(LoginBody loginBody) {
         String username = loginBody.getUsername();
         String password = loginBody.getPassword();
-        if (!StringUtils.hasLength(username)) throw new RuntimeException("用户名不能为空");
-        if (!StringUtils.hasLength(password)) throw new RuntimeException("密码不能为空");
+        if (!StringUtils.hasLength(username)) throw new NewbieException("用户名不能为空");
+        if (!StringUtils.hasLength(password)) throw new NewbieException("密码不能为空");
     }
 }

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysMenu;
 import com.newbie.common.entity.SysRoleMenu;
+import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.TreeUtils;
 import com.newbie.security.domain.vo.LoginUserVO;
 import com.newbie.system.constant.SysMenuConstant;
@@ -78,7 +79,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         // 判断列表中是否包含需要修改的菜单的父级菜单，如果有抛出异常
         List<SysMenu> ls = sysMenus.stream().filter(item -> item.getId().equals(sysMenu.getParentId())).collect(Collectors.toList());
         if (!ls.isEmpty()) {
-            throw new RuntimeException("上级不能为自己或自己的子级");
+            throw new NewbieException("上级不能为自己或自己的子级");
         }
 
         // 修改数据
@@ -106,17 +107,17 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      */
     private void verifyMenu(SysMenu menu) {
         if (!StringUtils.hasLength(menu.getTitle())) {
-            throw new RuntimeException("标题不可以为空");
+            throw new NewbieException("标题不可以为空");
         }
         if (SysMenuConstant.MENU_TYPE_MENU.equals(menu.getType())) {
             if (!StringUtils.hasLength(menu.getRoutePath())) {
-                throw new RuntimeException("路由地址不可以为空");
+                throw new NewbieException("路由地址不可以为空");
             }
             if (!menu.getRoutePath().startsWith("/") && !menu.getRoutePath().startsWith("http:") && !menu.getRoutePath().startsWith("https:")) {
-                throw new RuntimeException("路由地址必须以 / 开头，外链必须以 http[s]: 开头");
+                throw new NewbieException("路由地址必须以 / 开头，外链必须以 http[s]: 开头");
             }
             if(StringUtils.hasLength(menu.getComponent()) && menu.getComponent().startsWith("/")){
-                throw new RuntimeException("组件路径不需要以 / 开头");
+                throw new NewbieException("组件路径不需要以 / 开头");
             }
 
         }

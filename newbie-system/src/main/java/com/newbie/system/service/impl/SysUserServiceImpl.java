@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysDept;
 import com.newbie.common.entity.SysUser;
+import com.newbie.common.exception.NewbieException;
 import com.newbie.system.mapper.SysDeptMapper;
 import com.newbie.system.mapper.SysUserMapper;
 import com.newbie.system.service.SysUserRoleService;
@@ -61,10 +62,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     @Transactional
     @Override
     public void saveUser(SysUser sysUser) {
-        if (!StringUtils.hasLength(sysUser.getUsername())) throw new RuntimeException("用户名不能为空");
-        if (!StringUtils.hasLength(sysUser.getPassword())) throw new RuntimeException("登录密码不能为空");
-        if (!StringUtils.hasLength(sysUser.getNickName())) throw new RuntimeException("用户昵称不能为空");
-        if (!checkUniqueUsername(sysUser.getUsername())) throw new RuntimeException("用户名已存在，请勿重复添加");
+        if (!StringUtils.hasLength(sysUser.getUsername())) throw new NewbieException("用户名不能为空");
+        if (!StringUtils.hasLength(sysUser.getPassword())) throw new NewbieException("登录密码不能为空");
+        if (!StringUtils.hasLength(sysUser.getNickName())) throw new NewbieException("用户昵称不能为空");
+        if (!checkUniqueUsername(sysUser.getUsername())) throw new NewbieException("用户名已存在，请勿重复添加");
 
         sysUser.setPassword(BCrypt.hashpw(sysUser.getPassword()));
         save(sysUser);
@@ -74,9 +75,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     @Override
     public void updateUser(SysUser sysUser) {
         if ("admin".equals(sysUser.getUsername()))
-            throw new RuntimeException("管理员用户不允许修改");
-        if (sysUser.getId() == null) throw new RuntimeException("用户ID不能为空");
-        if (!StringUtils.hasLength(sysUser.getNickName())) throw new RuntimeException("用户昵称不能为空");
+            throw new NewbieException("管理员用户不允许修改");
+        if (sysUser.getId() == null) throw new NewbieException("用户ID不能为空");
+        if (!StringUtils.hasLength(sysUser.getNickName())) throw new NewbieException("用户昵称不能为空");
 
         sysUser.setPassword(null);
         updateById(sysUser);
@@ -97,9 +98,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
     @Override
     public boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword) {
-        if (userId == null) throw new RuntimeException("用户ID为空");
-        if (!StringUtils.hasLength(newPassword)) throw new RuntimeException("新密码为空");
-        if (!newPassword.equals(confirmNewPassword)) throw new RuntimeException("两次输入密码不一致");
+        if (userId == null) throw new NewbieException("用户ID为空");
+        if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码为空");
+        if (!newPassword.equals(confirmNewPassword)) throw new NewbieException("两次输入密码不一致");
         // 密码加密并修改
         SysUser sysUser = new SysUser();
         sysUser.setId(userId);

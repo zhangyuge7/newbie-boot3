@@ -1,5 +1,6 @@
 package com.newbie.common.handle;
 
+import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,6 +22,21 @@ import java.util.Optional;
 @Slf4j
 public class GlobalExceptionHandle {
 
+    /**
+     * 业务异常
+     *
+     * @param e 异常对象
+     * @return 返回结果
+     */
+    @ExceptionHandler(NewbieException.class)
+    public R<Object> NewbieExceptionHandler(NewbieException e) {
+        int code = Optional.ofNullable(e.getCode()).orElse(R.ERROR_CODE);
+        String message = Optional.ofNullable(e.getMessage()).orElse(R.ERROR_MSG);
+        if (e.getIsPrintLog()) {
+            log.error(message, e);
+        }
+        return R.error(code,message);
+    }
 
     /**
      * 运行时异常

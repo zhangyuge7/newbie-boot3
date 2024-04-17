@@ -2,6 +2,7 @@ package com.newbie.system.controller;
 
 
 import com.newbie.common.entity.SysUserRole;
+import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.R;
 import com.newbie.system.domain.body.SysUserRoleBody;
 import com.newbie.system.service.SysUserRoleService;
@@ -58,10 +59,10 @@ public class SysUserRoleController {
         List<Long> userIds = sysUserRoleBody.getUserIds();
         List<Long> roleIds = sysUserRoleBody.getRoleIds();
         if (CollectionUtils.isEmpty(roleIds) || CollectionUtils.isEmpty(userIds)) {
-            throw new RuntimeException("用户ID或角色ID不能为空");
+            throw new NewbieException("用户ID或角色ID不能为空");
         }
         if (userIds.size() > 1 && roleIds.size() > 1) {
-            throw new RuntimeException("用户ID或角色ID不能同时大于1");
+            throw new NewbieException("用户ID或角色ID不能同时大于1");
         }
 
         List<SysUserRole> list = new ArrayList<>();

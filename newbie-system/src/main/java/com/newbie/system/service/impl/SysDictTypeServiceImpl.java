@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysDictData;
 import com.newbie.common.entity.SysDictType;
+import com.newbie.common.exception.NewbieException;
 import com.newbie.system.mapper.SysDictDataMapper;
 import com.newbie.system.mapper.SysDictTypeMapper;
 import com.newbie.system.service.SysDictTypeService;
@@ -34,7 +35,7 @@ public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDi
                 .in(SysDictData::getTypeId, idList));
 
         if (!CollectionUtils.isEmpty(dictDataList)) {
-           throw new RuntimeException("请先删除数据后再删除类型");
+           throw new NewbieException("请先删除数据后再删除类型");
         }
         // 删除字典类型
         sysDictTypeMapper.deleteBatchIds(idList);
