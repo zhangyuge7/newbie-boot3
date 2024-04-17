@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -79,11 +80,11 @@ public class SysDictDataController {
         return R.ok();
     }
 
-    @PostMapping("/delete")
-    public R<Object> deleteDictData(Long id) {
-        if (Objects.isNull(id)) return R.error("字典数据ID不能为空");
-        sysDictDataService.removeById(id);
-        return R.ok();
+    @PostMapping("/deleteBatch")
+    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+        if (Objects.isNull(ids) || ids.length == 0) return R.error("字典数据ID不能为空");
+        sysDictDataService.removeBatchByIds(Arrays.asList(ids));
+        return R.ok().setMsg("删除成功");
     }
 
     /**
@@ -94,7 +95,7 @@ public class SysDictDataController {
     @PostMapping("/updateDictDataAsDefault/{id}")
     public R<Object> updateDictDataAsDefault(@PathVariable Long id) {
         sysDictDataService.updateDictDataAsDefault(id);
-        return R.ok();
+        return R.ok().setMsg("修改成功");
     }
 
     /**
@@ -103,7 +104,7 @@ public class SysDictDataController {
      * @param typeCode 字典类型编码
      * @return
      */
-    @Cacheable("typeCode")
+    @Cacheable("dict")
     @GetMapping("/getDictDataListByTypeCode/{typeCode}")
     public R<List<SysDictData>> getDictDataListByTypeCode(@PathVariable("typeCode") String typeCode) {
         return R.ok(sysDictDataService.getDictDataListByTypeCode(typeCode));

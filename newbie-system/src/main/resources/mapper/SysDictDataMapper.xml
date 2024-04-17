@@ -31,14 +31,14 @@
     <!--    清除字典类型下的默认字典数据-->
     <update id="clearDefault">
         UPDATE sys_dict_data
-        SET default = 'N'
+        SET def = 'N'
         WHERE type_id = #{typeId}
-          AND default = 'Y'
+          AND def = 'Y'
     </update>
     <!--    设置字典数据为默认字典数据-->
     <update id="setDefault">
         UPDATE sys_dict_data
-        SET default = 'Y'
+        SET def = 'Y'
         WHERE id = #{id}
     </update>
     <!--    根据字典类型编码查询字典数据-->

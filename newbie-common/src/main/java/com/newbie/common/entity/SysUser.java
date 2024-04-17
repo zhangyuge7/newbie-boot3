@@ -1,25 +1,19 @@
 package com.newbie.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 系统用户
  * @TableName sys_user
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value ="sys_user")
 @Data
-public class SysUser implements Serializable {
+public class SysUser extends BaseEntity {
     /**
      * 主键
      */
@@ -86,28 +80,4 @@ public class SysUser implements Serializable {
      */
     private Integer sort;
 
-
-    /**
-     * 创建者
-     */
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 修改者
-     */
-    private String updateBy;
-
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

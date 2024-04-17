@@ -1,22 +1,19 @@
 package com.newbie.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 部门表
  * @TableName sys_dept
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value ="sys_dept")
 @Data
-public class SysDept implements Serializable {
+public class SysDept extends BaseEntity{
     /**
      * 主键
      */
@@ -83,27 +80,4 @@ public class SysDept implements Serializable {
      */
     private String remark;
 
-    /**
-     * 创建者
-     */
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新者
-     */
-    private String updateBy;
-
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

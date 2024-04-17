@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 @RestController
@@ -47,7 +48,7 @@ public class SysDictTypeController {
             return R.error(sysDictType.getTypeCode() + "已存在");
 
         sysDictTypeService.save(sysDictType);
-        return R.ok();
+        return R.ok().setMsg("保存成功");
     }
     @PostMapping("/update")
     public R<Object> update(@RequestBody SysDictType sysDictType) {
@@ -68,16 +69,14 @@ public class SysDictTypeController {
 
         // 修改数据
         sysDictTypeService.updateById(sysDictType);
-        return R.ok();
+        return R.ok().setMsg("修改成功");
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/deleteBatch")
     @Transactional
-    public R<Object> deleteDictType(Long id) {
-        if (Objects.isNull(id)) {
-            return R.error("id不能为空");
-        }
-        sysDictTypeService.deleteDictType(id);
-        return R.ok();
+    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+        if (Objects.isNull(ids) || ids.length == 0) return R.error("id不能为空");
+        sysDictTypeService.deleteBatch(Arrays.asList(ids));
+        return R.ok().setMsg("删除成功");
     }
 }

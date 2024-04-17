@@ -29,13 +29,15 @@ spring:
           max-wait: -1ms
           max-idle: 10
           min-idle: 1
+  application:
+    name: newbie-boot3
+    version: 0.0.1
+
+mybatis-plus:
+  global-config:
+    banner: false
 
 sa-token:
   # jwt秘钥
   jwt-secret-key: bsdasdasifhueuiwyurfewbfjsdafjg
-  is-log: true
-
-newbie:
-  security:
-    auth-scheme: jwt
-    jwt-token-timeout: 604800000
+  is-log: false

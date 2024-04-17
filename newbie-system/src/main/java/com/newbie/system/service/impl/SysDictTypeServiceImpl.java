@@ -1,15 +1,18 @@
 package com.newbie.system.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysDictData;
 import com.newbie.common.entity.SysDictType;
 import com.newbie.system.mapper.SysDictDataMapper;
-import com.newbie.system.service.SysDictTypeService;
 import com.newbie.system.mapper.SysDictTypeMapper;
+import com.newbie.system.service.SysDictTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 /**
 * @author 39869
@@ -22,15 +25,19 @@ public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDi
     implements SysDictTypeService{
     private final SysDictTypeMapper sysDictTypeMapper;
     private final SysDictDataMapper sysDictDataMapper;
+
     @Override
     @Transactional
-    public void deleteDictType(Long id) {
+    public void deleteBatch(List<Long> idList) {
+        // 查询字典类型下的字典数据
+        List<SysDictData> dictDataList = sysDictDataMapper.selectList(new LambdaQueryWrapper<SysDictData>()
+                .in(SysDictData::getTypeId, idList));
+
+        if (!CollectionUtils.isEmpty(dictDataList)) {
+           throw new RuntimeException("请先删除数据后再删除类型");
+        }
         // 删除字典类型
-        sysDictTypeMapper.deleteById(id);
-        // 根据字典类型id删除字典数据
-        QueryWrapper<SysDictData> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("type_id", id);
-        sysDictDataMapper.delete(queryWrapper);
+        sysDictTypeMapper.deleteBatchIds(idList);
     }
 }
 

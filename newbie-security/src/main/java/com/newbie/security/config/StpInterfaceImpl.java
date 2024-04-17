@@ -7,7 +7,6 @@ import cn.hutool.json.JSONUtil;
 import com.newbie.security.domain.vo.LoginUserVO;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.Date;
 
 
@@ -24,15 +23,21 @@ import java.util.Date;
 @Slf4j
 @Component
 public class MetaObjectHandlerImpl implements MetaObjectHandler {
+
+    /**
+     * 数据插入自动填充
+     *
+     * @param metaObject 元对象
+     */
     @Override
     public void insertFill(MetaObject metaObject) {
-        String[] setterNames = metaObject.getSetterNames();
-
-        if (Arrays.asList(setterNames).contains("createTime")) {
+        // 如果 有createTime 且 为null 则赋值当前时间
+        if (metaObject.hasSetter("createTime") && metaObject.getValue("createTime") == null) {
             metaObject.setValue("createTime", new Date());
         }
 
-        if (Arrays.asList(setterNames).contains("createBy")) {
+        // 如果 有createBy 且 为null 则赋值当前用户名
+        if (metaObject.hasSetter("createBy") && metaObject.getValue("createBy") == null) {
             JSONObject jsonObject = (JSONObject) StpUtil.getExtra("user");
             LoginUserVO loginUser = JSONUtil.toBean(jsonObject, LoginUserVO.class);
             metaObject.setValue("createBy", loginUser.getUsername());
@@ -42,12 +47,14 @@ public class MetaObjectHandlerImpl implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        String[] setterNames = metaObject.getSetterNames();
-        if (Arrays.asList(setterNames).contains("updateTime")) {
+
+        // 如果 有updateTime 则赋值当前时间
+        if (metaObject.hasSetter("updateTime")) {
             metaObject.setValue("updateTime", new Date());
         }
 
-        if (Arrays.asList(setterNames).contains("updateBy")) {
+        // 如果 有updateBy 则赋值当前用户名
+        if (metaObject.hasSetter("updateBy")) {
             JSONObject jsonObject = (JSONObject) StpUtil.getExtra("user");
             LoginUserVO loginUser = JSONUtil.toBean(jsonObject, LoginUserVO.class);
             metaObject.setValue("updateBy", loginUser.getUsername());
