@@ -1,6 +1,9 @@
 package com.newbie.system.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.newbie.common.entity.SysUser;
 import com.newbie.common.entity.SysUserRole;
 import com.newbie.system.domain.body.SysUserBody;
 
@@ -12,12 +15,6 @@ import java.util.List;
  * @createDate 2024-04-16 15:30:47
  */
 public interface SysUserRoleService extends IService<SysUserRole> {
-    /**
-     * 删除并添加记录
-     * @param body
-     * @return void
-     */
-    void removeAndAdd(SysUserBody body);
 
     /**
      * 根据 用户ID 及 角色ID列表 删除数据
@@ -32,4 +29,25 @@ public interface SysUserRoleService extends IService<SysUserRole> {
      * @param userIds 用户ID列表
      */
     void removeByRoleIdAndUserIds(Long roleId, List<Long> userIds);
+
+    /**
+     * 根据角色ID查询已分配的用户
+     *
+     * @param page    分页参数对象
+     * @param sysUser 筛选条件对象
+     * @param roleId  角色ID
+     * @return
+     */
+    IPage<SysUser> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId);
+
+    /**
+     * 根据角色ID查询未分配的用户
+     *
+     * @param page    分页参数对象
+     * @param sysUser 筛选条件对象
+     * @param roleId  角色ID
+     * @return
+     */
+    IPage<SysUser> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId);
+
 }

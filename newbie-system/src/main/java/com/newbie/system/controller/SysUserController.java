@@ -51,32 +51,4 @@ public class SysUserController {
         boolean b = sysUserService.updateUserPassword(passwordBody.getUserId(),passwordBody.getNewPassword(),passwordBody.getConfirmPassword());
         return b?R.ok().setMsg("修改成功"):R.error("修改密码失败");
     }
-
-    /**
-     * 根据角色ID查询已分配的用户
-     *
-     * @param page    分页参数对象
-     * @param sysUser 筛选条件对象
-     * @param roleId  角色ID
-     * @return
-     */
-    @GetMapping("/queryUserByRoleId/{roleId}")
-    public R<IPage<SysUser>> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
-        IPage<SysUser> pageInfo = sysUserService.queryUserByRoleId(page, sysUser, roleId);
-        return R.ok(pageInfo);
-    }
-
-    /**
-     * 根据角色ID查询未分配的用户
-     *
-     * @param page    分页参数对象
-     * @param sysUser 筛选条件对象
-     * @param roleId  角色ID
-     * @return
-     */
-    @GetMapping("/queryUnUserByRoleId/{roleId}")
-    public R<IPage<SysUser>> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
-        IPage<SysUser> pageInfo = sysUserService.queryUnUserByRoleId(page, sysUser, roleId);
-        return R.ok(pageInfo);
-    }
 }

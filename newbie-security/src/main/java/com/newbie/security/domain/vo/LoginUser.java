@@ -1,6 +1,8 @@
 package com.newbie.security.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.newbie.common.entity.SysUser;
+import com.newbie.security.constant.SecurityConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,7 +18,15 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LoginUserVO extends SysUser {
+public class LoginUser extends SysUser {
     private List<String> roles; // 角色代码列表
     private List<String> perms; // 权限标识码列表
+
+    /**
+     * 是否为admin用户
+     */
+    @JsonIgnore
+    public boolean isAdmin(){
+        return SecurityConstant.ADMIN_USER_NAME.equals(this.getUsername());
+    }
 }

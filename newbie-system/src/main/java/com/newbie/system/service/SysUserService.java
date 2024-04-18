@@ -36,27 +36,6 @@ public interface SysUserService extends IService<SysUser> {
      */
     void updateUser(SysUser sysUser);
 
-
-    /**
-     * 根据角色ID查询已分配的用户
-     *
-     * @param page    分页参数对象
-     * @param sysUser 筛选条件对象
-     * @param roleId  角色ID
-     * @return
-     */
-    IPage<SysUser> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId);
-
-    /**
-     * 根据角色ID查询未分配的用户
-     *
-     * @param page    分页参数对象
-     * @param sysUser 筛选条件对象
-     * @param roleId  角色ID
-     * @return
-     */
-    IPage<SysUser> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId);
-
     /**
      * 修改密码
      *

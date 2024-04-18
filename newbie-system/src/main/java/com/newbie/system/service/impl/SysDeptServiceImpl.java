@@ -1,15 +1,10 @@
 package com.newbie.system.service.impl;
 
-import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysDept;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.TreeUtils;
-import com.newbie.security.domain.vo.LoginUserVO;
 import com.newbie.system.domain.vo.SysDeptVO;
 import com.newbie.system.service.SysDeptService;
 import com.newbie.system.mapper.SysDeptMapper;
@@ -17,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;

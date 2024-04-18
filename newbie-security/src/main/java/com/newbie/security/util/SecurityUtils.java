@@ -6,7 +6,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.newbie.common.entity.SysUser;
 import com.newbie.security.constant.SecurityConstant;
-import com.newbie.security.domain.vo.LoginUserVO;
+import com.newbie.security.domain.vo.LoginUser;
 
 /**
  * Created by IntelliJ IDEA.
@@ -42,9 +42,9 @@ public final class SecurityUtils {
      * 获取当前登录用户
      * @return 当前登录用户
      */
-    public static LoginUserVO getCurrentLoginUser(){
+    public static LoginUser getCurrentLoginUser(){
         JSONObject jsonObject = (JSONObject) StpUtil.getExtra(SecurityConstant.SYS_USER_KEY);
-        return JSONUtil.toBean(jsonObject, LoginUserVO.class);
+        return JSONUtil.toBean(jsonObject, LoginUser.class);
     }
     /**
      * 获取当前用户

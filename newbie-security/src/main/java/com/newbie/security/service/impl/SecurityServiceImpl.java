@@ -14,7 +14,7 @@ import com.newbie.security.domain.Route;
 import com.newbie.security.domain.RouteMeta;
 import com.newbie.security.domain.body.LoginBody;
 import com.newbie.security.domain.body.PasswordBody;
-import com.newbie.security.domain.vo.LoginUserVO;
+import com.newbie.security.domain.vo.LoginUser;
 import com.newbie.security.mapper.SecurityMapper;
 import com.newbie.security.service.SecurityService;
 import com.newbie.security.util.SecurityUtils;
@@ -64,31 +64,31 @@ public class SecurityServiceImpl implements SecurityService {
         sysUser.setPassword(null);
 
         // 构建登录数据
-        LoginUserVO loginUserVO = this.builderLoginUser(sysUser);
+        LoginUser loginUser = this.builderLoginUser(sysUser);
         SaLoginModel loginModel = SaLoginModel
                 .create()
-                .setExtra(SecurityConstant.SYS_USER_KEY, loginUserVO)
+                .setExtra(SecurityConstant.SYS_USER_KEY, loginUser)
                 .build();
         // 登录
-        StpUtil.login(loginUserVO.getId(), loginModel);
+        StpUtil.login(loginUser.getId(), loginModel);
         return StpUtil.getTokenInfo();
     }
 
-    private LoginUserVO builderLoginUser(SysUser sysUser) {
-        LoginUserVO loginUserVO = new LoginUserVO();
-        BeanUtils.copyProperties(sysUser, loginUserVO);
+    private LoginUser builderLoginUser(SysUser sysUser) {
+        LoginUser loginUser = new LoginUser();
+        BeanUtils.copyProperties(sysUser, loginUser);
 
-        if (SecurityConstant.ADMIN_USER_NAME.equals(loginUserVO.getUsername())) {
+        if (SecurityConstant.ADMIN_USER_NAME.equals(loginUser.getUsername())) {
             List<String> all = new ArrayList<>();
             all.add("*");
-            loginUserVO.setRoles(all);
-            loginUserVO.setPerms(all);
+            loginUser.setRoles(all);
+            loginUser.setPerms(all);
         } else {
-            loginUserVO.setRoles(this.getRoleCodes(loginUserVO.getId()));
-            loginUserVO.setPerms(this.getPermissions(loginUserVO.getId()));
+            loginUser.setRoles(this.getRoleCodes(loginUser.getId()));
+            loginUser.setPerms(this.getPermissions(loginUser.getId()));
         }
 
-        return loginUserVO;
+        return loginUser;
     }
 
     private List<String> getPermissions(Long userId) {

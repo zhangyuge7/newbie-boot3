@@ -1,6 +1,9 @@
 package com.newbie.system.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.newbie.common.entity.SysUser;
 import com.newbie.common.entity.SysUserRole;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.R;
@@ -8,10 +11,7 @@ import com.newbie.system.domain.body.SysUserRoleBody;
 import com.newbie.system.service.SysUserRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,5 +75,33 @@ public class SysUserRoleController {
             });
         });
         return list;
+    }
+
+    /**
+     * 根据角色ID查询已分配的用户
+     *
+     * @param page    分页参数对象
+     * @param sysUser 筛选条件对象
+     * @param roleId  角色ID
+     * @return
+     */
+    @GetMapping("/queryUserByRoleId/{roleId}")
+    public R<IPage<SysUser>> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
+        IPage<SysUser> pageInfo = sysUserRoleService.queryUserByRoleId(page, sysUser, roleId);
+        return R.ok(pageInfo);
+    }
+
+    /**
+     * 根据角色ID查询未分配的用户
+     *
+     * @param page    分页参数对象
+     * @param sysUser 筛选条件对象
+     * @param roleId  角色ID
+     * @return
+     */
+    @GetMapping("/queryUnUserByRoleId/{roleId}")
+    public R<IPage<SysUser>> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
+        IPage<SysUser> pageInfo = sysUserRoleService.queryUnUserByRoleId(page, sysUser, roleId);
+        return R.ok(pageInfo);
     }
 }

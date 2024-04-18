@@ -1,9 +1,13 @@
 package com.newbie.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.newbie.common.entity.SysUser;
 import com.newbie.common.entity.SysUserRole;
 import com.newbie.system.domain.body.SysUserBody;
+import com.newbie.system.mapper.SysUserMapper;
 import com.newbie.system.mapper.SysUserRoleMapper;
 import com.newbie.system.service.SysUserRoleService;
 import lombok.RequiredArgsConstructor;
@@ -24,22 +28,7 @@ import java.util.stream.Collectors;
 public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUserRole>
         implements SysUserRoleService {
     private final SysUserRoleMapper sysUserRoleMapper;
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void removeAndAdd(SysUserBody body) {
-        List<SysUserRole> userRoles = list(new QueryWrapper<SysUserRole>().eq("user_id", body.getId()));
-        List<Long> delIds = userRoles.stream().filter(Objects::nonNull).map(SysUserRole::getId).collect(Collectors.toList());
-        removeBatchByIds(delIds);
-
-        List<Long> rolesIds = body.getRolesIds();
-        rolesIds.stream().filter(Objects::nonNull).forEach(source -> {
-            SysUserRole userRole = new SysUserRole();
-            userRole.setUserId(body.getId());
-            userRole.setRoleId(source);
-            save(userRole);
-        });
-    }
+    private final SysUserMapper sysUserMapper;
 
     @Transactional
     @Override
@@ -52,6 +41,15 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
     public void removeByRoleIdAndUserIds(Long roleId, List<Long> userIds) {
         sysUserRoleMapper.removeByRoleIdAndUserIds(roleId,userIds);
 
+    }
+    @Override
+    public IPage<SysUser> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId) {
+        return sysUserMapper.queryUserByRoleId(page, sysUser, roleId);
+    }
+
+    @Override
+    public IPage<SysUser> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId) {
+        return sysUserMapper.queryUnUserByRoleId(page, sysUser, roleId);
     }
 }
 

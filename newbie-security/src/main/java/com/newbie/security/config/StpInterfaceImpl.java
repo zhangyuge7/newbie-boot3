@@ -1,7 +1,7 @@
 package com.newbie.security.config;
 
 import cn.dev33.satoken.stp.StpInterface;
-import com.newbie.security.domain.vo.LoginUserVO;
+import com.newbie.security.domain.vo.LoginUser;
 import com.newbie.security.util.SecurityUtils;
 import org.springframework.stereotype.Component;
 
@@ -19,13 +19,13 @@ import java.util.List;
 public class StpInterfaceImpl implements StpInterface {
     @Override
     public List<String> getPermissionList(Object loginId, String loginType) {
-        LoginUserVO loginUser = SecurityUtils.getCurrentLoginUser();
+        LoginUser loginUser = SecurityUtils.getCurrentLoginUser();
         return loginUser.getPerms();
     }
 
     @Override
     public List<String> getRoleList(Object loginId, String loginType) {
-        LoginUserVO loginUser = SecurityUtils.getCurrentLoginUser();
+        LoginUser loginUser = SecurityUtils.getCurrentLoginUser();
         return loginUser.getRoles();
     }
 }

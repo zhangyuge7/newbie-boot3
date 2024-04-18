@@ -91,21 +91,17 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     }
 
     @Override
-    public IPage<SysUser> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId) {
-        return sysUserMapper.queryUserByRoleId(page, sysUser, roleId);
-    }
-
-    @Override
-    public IPage<SysUser> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId) {
-        return sysUserMapper.queryUnUserByRoleId(page, sysUser, roleId);
-    }
-
-    @Override
     @Transactional
     public boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword) {
         if (userId == null) throw new NewbieException("用户ID为空");
         if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码为空");
         if (!newPassword.equals(confirmNewPassword)) throw new NewbieException("两次输入密码不一致");
+
+        // 系统管理员密码只能由系统管理员修改
+        if (this.isAdminById(userId) && !SecurityUtils.getCurrentLoginUser().isAdmin()) {
+            throw new NewbieException("您没有权限修改系统管理员密码");
+        }
+
         // 密码加密并修改
         SysUser sysUser = new SysUser();
         sysUser.setId(userId);
@@ -123,9 +119,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     @Override
     @Transactional
     public void deleteBatch(List<Long> idList) {
-        // 查询是否有admin用户
-        List<SysUser> userList = sysUserMapper.selectList(new LambdaQueryWrapper<SysUser>().in(SysUser::getId, idList));
-        if (!CollectionUtils.isEmpty(userList.stream().filter(u->SecurityConstant.ADMIN_USER_NAME.equals(u.getUsername())).toList()))
+        // 是否有admin用户
+        if (hasAdminByIdList(idList))
             throw new NewbieException("不可以删除admin系统管理员");
 
         // 查询用户角色关系
