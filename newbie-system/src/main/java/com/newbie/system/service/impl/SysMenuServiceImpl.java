@@ -3,8 +3,10 @@ package com.newbie.system.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.newbie.common.entity.SysDept;
 import com.newbie.common.entity.SysMenu;
 import com.newbie.common.entity.SysRoleMenu;
 import com.newbie.common.exception.NewbieException;
@@ -60,6 +62,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
     }
 
     @Override
+    @Transactional
     public boolean addData(SysMenu sysMenu){
         // 校验数据
         this.verifyMenu(sysMenu);
@@ -69,6 +72,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         return count == 1;
     }
     @Override
+    @Transactional
     public boolean updateData(SysMenu sysMenu){
         // 校验数据
         this.verifyMenu(sysMenu);
@@ -87,16 +91,21 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         return count == 1;
     }
 
-
     @Override
     @Transactional
-    public boolean deleteBatchByIds(List<Long> idList) {
-        if(!CollectionUtils.isEmpty(idList)){
-            int count = sysMenuMapper.deleteBatchIds(idList);
-            sysRoleMenuMapper.delete(Wrappers.<SysRoleMenu>lambdaQuery().in(SysRoleMenu::getMenuId, idList));
-            return count == idList.size();
+    public void deleteBatch(List<Long> idList) {
+        // 查找子数据
+        if (sysMenuMapper.selectCount(new LambdaQueryWrapper<SysMenu>()
+                .in(SysMenu::getParentId, idList)
+                .notIn(SysMenu::getId,idList)) > 0) {
+            throw new NewbieException("请先删除子菜单/按钮后再次尝试");
         }
-        return true;
+        // 查找与角色关系
+        if (sysRoleMenuMapper.selectCount(new LambdaQueryWrapper<SysRoleMenu>()
+                .in(SysRoleMenu::getMenuId, idList))>0) {
+            throw new NewbieException("请先解除角色菜单关联后再次尝试");
+        }
+        sysMenuMapper.deleteBatchIds(idList);
     }
 
 

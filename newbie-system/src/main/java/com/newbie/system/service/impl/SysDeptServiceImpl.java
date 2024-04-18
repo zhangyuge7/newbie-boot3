@@ -3,6 +3,7 @@ package com.newbie.system.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysDept;
@@ -102,7 +103,7 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept>
     @Override
     @Transactional
     public void deleteBatch(List<Long> idList) {
-        if (sysDeptMapper.selectCount(new LambdaUpdateWrapper<SysDept>()
+        if (sysDeptMapper.selectCount(new LambdaQueryWrapper<SysDept>()
                 .in(SysDept::getParentId, idList)
                 .notIn(SysDept::getId,idList)) > 0) {
             throw new NewbieException("请先删除子部门后再次尝试");

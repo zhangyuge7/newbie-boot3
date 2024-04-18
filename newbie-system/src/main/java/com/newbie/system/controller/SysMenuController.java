@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/system/menu")
@@ -29,7 +28,7 @@ public class SysMenuController {
         if (menuId != null) {
             return R.error("请检查此数据是否已存在,menuId=" + menuId);
         }
-        return sysMenuService.addData(sysMenu) ? R.ok() : R.error("新增失败");
+        return sysMenuService.addData(sysMenu) ? R.ok().setMsg("新增成功") : R.error("新增失败");
     }
 
     @PostMapping("/update")
@@ -37,16 +36,13 @@ public class SysMenuController {
         if (sysMenu.getId() == null) {
             return R.error("菜单ID为空");
         }
-        return sysMenuService.updateData(sysMenu) ? R.ok() : R.error("修改失败");
+        return sysMenuService.updateData(sysMenu) ? R.ok().setMsg("修改成功") : R.error("修改失败");
     }
 
-    @PostMapping("/delete")
-    public R<Object> delete(@RequestBody String[] ids) {
-        if (ids==null || ids.length==0) {
-            return R.error("id列表为空");
-        }
-        List<Long> idList = Arrays.stream(ids).map(Long::valueOf).collect(Collectors.toList());
-        boolean b = sysMenuService.deleteBatchByIds(idList);
-        return b ? R.ok() : R.error("操作失败");
+    @PostMapping("/deleteBatch")
+    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+        if (ids == null || ids.length == 0) return R.error("菜单ID为空");
+        sysMenuService.deleteBatch(Arrays.asList(ids));
+        return R.ok().setMsg("删除成功");
     }
 }

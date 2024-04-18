@@ -54,7 +54,7 @@ public class SysDictDataController {
 
         // 保存
         sysDictDataService.save(sysDictData);
-        return R.ok();
+        return R.ok().setMsg("保存成功");
     }
 
     @PostMapping("/update")
@@ -77,7 +77,7 @@ public class SysDictDataController {
 
         // 更新数据
         sysDictDataService.updateById(sysDictData);
-        return R.ok();
+        return R.ok().setMsg("修改成功");
     }
 
     @PostMapping("/deleteBatch")

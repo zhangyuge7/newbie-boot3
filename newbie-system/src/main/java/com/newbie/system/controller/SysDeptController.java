@@ -28,7 +28,7 @@ public class SysDeptController {
         if (deptId != null) {
             return R.error("请检查此数据是否已存在,deptId=" + deptId);
         }
-        return sysDeptService.addDept(sysDept) ? R.ok() : R.error("新增失败");
+        return sysDeptService.addDept(sysDept) ? R.ok().setMsg("新增成功") : R.error("新增失败");
     }
 
     @PostMapping("/update")
@@ -36,7 +36,7 @@ public class SysDeptController {
         if (sysDept.getId() == null) {
             return R.error("部门ID为空");
         }
-        return sysDeptService.updateDept(sysDept) ? R.ok() : R.error("修改失败");
+        return sysDeptService.updateDept(sysDept) ? R.ok().setMsg("修改成功") : R.error("修改失败");
     }
 
     @PostMapping("/deleteBatch")

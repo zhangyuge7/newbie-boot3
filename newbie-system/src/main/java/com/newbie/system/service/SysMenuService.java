@@ -33,9 +33,8 @@ public interface SysMenuService extends IService<SysMenu> {
     boolean updateData(SysMenu sysMenu);
 
     /**
-     * 根据ID列表批量删除数据（并删除角色权限关系）
-     * @param idList ID列表
-     * @return Boolean
+     * 批量删除数据
+     * @param idList 菜单ID列表
      */
-    boolean deleteBatchByIds(List<Long> idList);
+    void deleteBatch(List<Long> idList);
 }
