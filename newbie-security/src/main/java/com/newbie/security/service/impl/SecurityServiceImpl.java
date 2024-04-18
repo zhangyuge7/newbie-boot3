@@ -1,17 +1,15 @@
 package com.newbie.security.service.impl;
 
-import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.SaLoginModel;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.newbie.common.entity.SysMenu;
 import com.newbie.common.entity.SysRole;
 import com.newbie.common.entity.SysUser;
 import com.newbie.common.enums.CommonStatusEnum;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.TreeUtils;
+import com.newbie.security.constant.SecurityConstant;
 import com.newbie.security.domain.Route;
 import com.newbie.security.domain.RouteMeta;
 import com.newbie.security.domain.body.LoginBody;
@@ -19,6 +17,7 @@ import com.newbie.security.domain.body.PasswordBody;
 import com.newbie.security.domain.vo.LoginUserVO;
 import com.newbie.security.mapper.SecurityMapper;
 import com.newbie.security.service.SecurityService;
+import com.newbie.security.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -53,7 +52,7 @@ public class SecurityServiceImpl implements SecurityService {
         if (sysUser == null) throw new NewbieException("用户不存在");
 
         // 验证密码
-        if (!BCrypt.checkpw(loginBody.getPassword(), sysUser.getPassword()))
+        if (!SecurityUtils.checkPassword(loginBody.getPassword(), sysUser.getPassword()))
             throw new NewbieException("密码错误");
 
         // 是否禁用
@@ -68,7 +67,7 @@ public class SecurityServiceImpl implements SecurityService {
         LoginUserVO loginUserVO = this.builderLoginUser(sysUser);
         SaLoginModel loginModel = SaLoginModel
                 .create()
-                .setExtra("user", loginUserVO)
+                .setExtra(SecurityConstant.SYS_USER_KEY, loginUserVO)
                 .build();
         // 登录
         StpUtil.login(loginUserVO.getId(), loginModel);
@@ -79,7 +78,7 @@ public class SecurityServiceImpl implements SecurityService {
         LoginUserVO loginUserVO = new LoginUserVO();
         BeanUtils.copyProperties(sysUser, loginUserVO);
 
-        if ("admin".equals(loginUserVO.getUsername())) {
+        if (SecurityConstant.ADMIN_USER_NAME.equals(loginUserVO.getUsername())) {
             List<String> all = new ArrayList<>();
             all.add("*");
             loginUserVO.setRoles(all);
@@ -109,21 +108,20 @@ public class SecurityServiceImpl implements SecurityService {
         // 校验参数
         this.verifyPasswordBogy(passwordBody);
 
-        if (securityMapper.selectUserByUsername("admin") != null) throw new NewbieException("系统管理员已存在");
+        if (securityMapper.selectUserByUsername(SecurityConstant.ADMIN_USER_NAME) != null) throw new NewbieException("系统管理员已存在");
 
         SysUser sysUser = new SysUser();
-        sysUser.setUsername("admin");
+        sysUser.setUsername(SecurityConstant.ADMIN_USER_NAME);
         sysUser.setNickName("系统管理员");
-        sysUser.setPassword(BCrypt.hashpw(passwordBody.getNewPassword()));
+        sysUser.setPassword(SecurityUtils.encodePassword(passwordBody.getNewPassword()));
         if (securityMapper.insertAdminUser(sysUser) != 1) throw new NewbieException("初始化系统管理员失败");
     }
 
     @Override
     public List<Route> getMenuList() {
-        JSONObject jsonObject = (JSONObject) StpUtil.getExtra("user");
-        LoginUserVO user = JSONUtil.toBean(jsonObject, LoginUserVO.class);
+        SysUser user = SecurityUtils.getCurrentUser();
         List<SysMenu> menuList;
-        if ("admin".equals(user.getUsername())) {
+        if (SecurityConstant.ADMIN_USER_NAME.equals(user.getUsername())) {
             // 获取所有菜单
             menuList = securityMapper.selectMenuAll();
         } else {
@@ -143,9 +141,10 @@ public class SecurityServiceImpl implements SecurityService {
         this.verifyPasswordBogy(passwordBody);
         long userId = StpUtil.getLoginIdAsLong();
         SysUser sysUser = securityMapper.selectUserByUserId(userId);
-        if (!BCrypt.checkpw(passwordBody.getOldPassword(), sysUser.getPassword()))
+
+        if (!SecurityUtils.checkPassword(passwordBody.getOldPassword(), sysUser.getPassword()))
             throw new NewbieException("原密码错误");
-        String newPassword = BCrypt.hashpw(passwordBody.getNewPassword());
+        String newPassword = SecurityUtils.encodePassword(passwordBody.getNewPassword());
         sysUser.setPassword(newPassword);
         int i = securityMapper.updateUserPasswordByUserId(sysUser);
         if (i != 1) throw new NewbieException("修改密码失败");

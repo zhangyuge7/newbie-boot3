@@ -2,14 +2,12 @@ package com.newbie.security.controller;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.newbie.common.util.R;
 import com.newbie.security.domain.Route;
 import com.newbie.security.domain.body.LoginBody;
 import com.newbie.security.domain.body.PasswordBody;
-import com.newbie.security.domain.vo.LoginUserVO;
 import com.newbie.security.service.SecurityService;
+import com.newbie.security.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,8 +47,7 @@ public class SecurityController {
 
     @GetMapping("/userInfo")
     public R<Object> userInfo() {
-        JSONObject jsonObject = (JSONObject) StpUtil.getExtra("user");
-        return R.ok(JSONUtil.toBean(jsonObject,LoginUserVO.class));
+        return R.ok(SecurityUtils.getCurrentLoginUser());
     }
 
     @PostMapping("/updatePassword")

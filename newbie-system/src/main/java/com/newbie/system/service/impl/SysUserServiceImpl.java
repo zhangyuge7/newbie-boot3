@@ -1,16 +1,19 @@
 package com.newbie.system.service.impl;
 
-import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysDept;
 import com.newbie.common.entity.SysUser;
+import com.newbie.common.entity.SysUserRole;
 import com.newbie.common.exception.NewbieException;
+import com.newbie.security.constant.SecurityConstant;
+import com.newbie.security.util.SecurityUtils;
 import com.newbie.system.mapper.SysDeptMapper;
 import com.newbie.system.mapper.SysUserMapper;
-import com.newbie.system.service.SysUserRoleService;
+import com.newbie.system.mapper.SysUserRoleMapper;
 import com.newbie.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +24,6 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -34,8 +36,8 @@ import java.util.stream.Collectors;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         implements SysUserService {
     private final SysUserMapper sysUserMapper;
-
     private final SysDeptMapper sysDeptMapper;
+    private final SysUserRoleMapper sysUserRoleMapper;
 
     @Override
     public IPage<SysUser> queryPage(Page<SysUser> page, SysUser sysUser) {
@@ -50,7 +52,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
             sysDepts = sysDeptMapper.selectDeptList(sysDept);
         }
         return lambdaQuery()
-                .ne(SysUser::getUsername, "admin")
+                .ne(SysUser::getUsername, SecurityConstant.ADMIN_USER_NAME)
                 .like(StringUtils.hasLength(nickName), SysUser::getNickName, nickName)
                 .like(StringUtils.hasLength(username), SysUser::getUsername, username)
                 .in(!CollectionUtils.isEmpty(sysDepts), SysUser::getDeptId, sysDepts.stream().map(SysDept::getId).collect(Collectors.toList()))
@@ -65,16 +67,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         if (!StringUtils.hasLength(sysUser.getUsername())) throw new NewbieException("用户名不能为空");
         if (!StringUtils.hasLength(sysUser.getPassword())) throw new NewbieException("登录密码不能为空");
         if (!StringUtils.hasLength(sysUser.getNickName())) throw new NewbieException("用户昵称不能为空");
-        if (!checkUniqueUsername(sysUser.getUsername())) throw new NewbieException("用户名已存在，请勿重复添加");
+        if(SecurityConstant.ADMIN_USER_NAME.equals(sysUser.getUsername())) throw new NewbieException("用户名不能为admin");
+        if (sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername,sysUser.getUsername())) > 0)
+            throw new NewbieException("用户名已存在，请勿重复添加");
 
-        sysUser.setPassword(BCrypt.hashpw(sysUser.getPassword()));
+        sysUser.setPassword(SecurityUtils.encodePassword(sysUser.getPassword()));
         save(sysUser);
     }
 
     @Transactional
     @Override
     public void updateUser(SysUser sysUser) {
-        if ("admin".equals(sysUser.getUsername()))
+        if (SecurityConstant.ADMIN_USER_NAME.equals(sysUser.getUsername()))
             throw new NewbieException("管理员用户不允许修改");
         if (sysUser.getId() == null) throw new NewbieException("用户ID不能为空");
         if (!StringUtils.hasLength(sysUser.getNickName())) throw new NewbieException("用户昵称不能为空");
@@ -97,6 +101,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     }
 
     @Override
+    @Transactional
     public boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword) {
         if (userId == null) throw new NewbieException("用户ID为空");
         if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码为空");
@@ -104,7 +109,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         // 密码加密并修改
         SysUser sysUser = new SysUser();
         sysUser.setId(userId);
-        sysUser.setPassword(BCrypt.hashpw(newPassword));
+        sysUser.setPassword(SecurityUtils.encodePassword(newPassword));
         int updateCount = sysUserMapper.updateById(sysUser);
 
         // 将被修改用户强制掉线
@@ -115,16 +120,43 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         return false;
     }
 
-    /**
-     * 校验用户名是否唯一
-     *
-     * @param username
-     * @return boolean
-     */
-    private boolean checkUniqueUsername(String username) {
-        SysUser user = lambdaQuery().eq(SysUser::getUsername, username).one();
-        return Objects.isNull(user);
+    @Override
+    @Transactional
+    public void deleteBatch(List<Long> idList) {
+        // 查询是否有admin用户
+        List<SysUser> userList = sysUserMapper.selectList(new LambdaQueryWrapper<SysUser>().in(SysUser::getId, idList));
+        if (!CollectionUtils.isEmpty(userList.stream().filter(u->SecurityConstant.ADMIN_USER_NAME.equals(u.getUsername())).toList()))
+            throw new NewbieException("不可以删除admin系统管理员");
+
+        // 查询用户角色关系
+        if (sysUserRoleMapper.selectCount(new LambdaQueryWrapper<SysUserRole>().in(SysUserRole::getUserId,idList)) > 0)
+            throw new NewbieException("请先解除用户与角色的关联后再次尝试");
+
+        idList.forEach(StpUtil::logout); // 被删除用户下线
+
+        sysUserMapper.deleteBatchIds(idList);
     }
+
+    /**
+     * 根据用户ID判断是否为admin系统管理员
+     * @param userId 用户ID
+     */
+    private boolean isAdminById(Long userId) {
+        return sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>()
+                .eq(SysUser::getId, userId)
+                .eq(SysUser::getUsername,SecurityConstant.ADMIN_USER_NAME)) > 0;
+    }
+
+    /**
+     * 根据用户ID列表判断是否有admin系统管理员
+     * @param userIdList 用户ID列表
+     */
+    private boolean hasAdminByIdList(List<Long> userIdList) {
+        return sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>()
+                .in(SysUser::getId, userIdList)
+                .eq(SysUser::getUsername,SecurityConstant.ADMIN_USER_NAME)) > 0;
+    }
+
 }
 
 

@@ -9,6 +9,8 @@ import com.newbie.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+
 
 @RestController
 @RequestMapping("/system/user")
@@ -17,36 +19,31 @@ public class SysUserController {
     private final SysUserService sysUserService;
 
     @GetMapping("/page")
-    public R<IPage<SysUser>> getUserPaging(Page<SysUser> page, SysUser sysUser) {
+    public R<IPage<SysUser>> page(Page<SysUser> page, SysUser sysUser) {
         IPage<SysUser> iPage = sysUserService.queryPage(page, sysUser);
         return R.ok(iPage);
     }
 
     @PostMapping("/add")
-    public R<Object> addUser(@RequestBody SysUser sysUser) {
+    public R<Object> add(@RequestBody SysUser sysUser) {
         Long userId = sysUser.getId();
-        if (userId != null) {
-            return R.error("请检查此数据是否已存在,userId=" + userId);
-        }
+        if (userId != null)  return R.error("请检查此数据是否已存在,userId=" + userId);
         sysUserService.saveUser(sysUser);
-        return R.ok();
+        return R.ok().setMsg("添加成功");
     }
 
     @PostMapping("/update")
-    public R<Object> updateUser(@RequestBody SysUser sysUser) {
-        if (sysUser.getId() == null) {
-            return R.error("用户ID为空");
-        }
+    public R<Object> update(@RequestBody SysUser sysUser) {
+        if (sysUser.getId() == null) return R.error("用户ID为空");
         sysUserService.updateUser(sysUser);
-        return R.ok();
+        return R.ok().setMsg("修改成功");
     }
 
-    @DeleteMapping("/{id}")
-    public R<Object> deleteUser(@PathVariable Long id) {
-        if (id == null) {
-            return R.error("id为空");
-        }
-        return sysUserService.removeById(id) ? R.ok() : R.error("删除失败");
+    @PostMapping("/deleteBatch")
+    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+        if(ids==null || ids.length==0) return R.error("用户ID为空");
+        sysUserService.deleteBatch(Arrays.asList(ids));
+        return  R.ok().setMsg("删除成功");
     }
 
     @PostMapping("/updateUserPassword")

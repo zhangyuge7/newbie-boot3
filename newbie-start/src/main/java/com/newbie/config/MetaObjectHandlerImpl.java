@@ -1,10 +1,8 @@
 package com.newbie.config;
 
-import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.newbie.security.domain.vo.LoginUserVO;
+import com.newbie.common.entity.SysUser;
+import com.newbie.security.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
@@ -38,9 +36,8 @@ public class MetaObjectHandlerImpl implements MetaObjectHandler {
 
         // 如果 有createBy 且 为null 则赋值当前用户名
         if (metaObject.hasSetter("createBy") && metaObject.getValue("createBy") == null) {
-            JSONObject jsonObject = (JSONObject) StpUtil.getExtra("user");
-            LoginUserVO loginUser = JSONUtil.toBean(jsonObject, LoginUserVO.class);
-            metaObject.setValue("createBy", loginUser.getUsername());
+            SysUser currentUser = SecurityUtils.getCurrentUser();
+            metaObject.setValue("createBy", currentUser.getUsername());
         }
 
     }
@@ -55,9 +52,8 @@ public class MetaObjectHandlerImpl implements MetaObjectHandler {
 
         // 如果 有updateBy 则赋值当前用户名
         if (metaObject.hasSetter("updateBy")) {
-            JSONObject jsonObject = (JSONObject) StpUtil.getExtra("user");
-            LoginUserVO loginUser = JSONUtil.toBean(jsonObject, LoginUserVO.class);
-            metaObject.setValue("updateBy", loginUser.getUsername());
+            SysUser currentUser = SecurityUtils.getCurrentUser();
+            metaObject.setValue("updateBy", currentUser.getUsername());
         }
     }
 }

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.newbie.common.entity.SysUser;
 
+import java.util.List;
+
 /**
  * @author 39869
  * @description 针对表【sys_user(系统用户)】的数据库操作Service
@@ -64,4 +66,10 @@ public interface SysUserService extends IService<SysUser> {
      * @return 是否成功
      */
     boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword);
+
+    /**
+     * 批量删除
+     * @param idList ID列表
+     */
+    void deleteBatch(List<Long> idList);
 }
