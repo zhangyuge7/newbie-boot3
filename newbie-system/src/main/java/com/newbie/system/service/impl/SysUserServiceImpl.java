@@ -98,7 +98,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         if (!newPassword.equals(confirmNewPassword)) throw new NewbieException("两次输入密码不一致");
 
         // 系统管理员密码只能由系统管理员修改
-        if (this.isAdminById(userId) && !SecurityUtils.getCurrentLoginUser().isAdmin()) {
+        if (this.isAdminById(userId) && !SecurityUtils.isAdmin()) {
             throw new NewbieException("您没有权限修改系统管理员密码");
         }
 

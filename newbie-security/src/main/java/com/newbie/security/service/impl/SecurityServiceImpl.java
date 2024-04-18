@@ -119,14 +119,14 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public List<Route> getMenuList() {
-        SysUser user = SecurityUtils.getCurrentUser();
+        LoginUser loginUser = SecurityUtils.getCurrentLoginUser();
         List<SysMenu> menuList;
-        if (SecurityConstant.ADMIN_USER_NAME.equals(user.getUsername())) {
+        if (loginUser.isAdmin()) {
             // 获取所有菜单
             menuList = securityMapper.selectMenuAll();
         } else {
             // 根据用户id获取菜单
-            menuList = securityMapper.selectMenuByUserId(user.getId());
+            menuList = securityMapper.selectMenuByUserId(loginUser.getId());
         }
         if (CollectionUtils.isEmpty(menuList)) {
             return new ArrayList<>();

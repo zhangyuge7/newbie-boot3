@@ -46,11 +46,12 @@ public final class SecurityUtils {
         JSONObject jsonObject = (JSONObject) StpUtil.getExtra(SecurityConstant.SYS_USER_KEY);
         return JSONUtil.toBean(jsonObject, LoginUser.class);
     }
+
     /**
-     * 获取当前用户
-     * @return 当前用户
+     * 判断当前登录用户是否为admin用户
      */
-    public static SysUser getCurrentUser(){
-        return getCurrentLoginUser();
+    public static boolean isAdmin(){
+        return getCurrentLoginUser().isAdmin();
     }
+
 }
