@@ -7,7 +7,6 @@
     <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysDept">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="deptName" column="dept_name" jdbcType="VARCHAR"/>
-            <result property="deptCode" column="dept_code" jdbcType="VARCHAR"/>
             <result property="parentId" column="parent_id" jdbcType="BIGINT"/>
             <result property="ancestors" column="ancestors" jdbcType="VARCHAR"/>
             <result property="sort" column="sort" jdbcType="INTEGER"/>
@@ -25,7 +24,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,dept_name,dept_code,
+        id,dept_name,
         parent_id,ancestors,sort,
         leader,phone,email,
         status,tier,home_path,
@@ -33,7 +32,7 @@
         update_by,update_time
     </sql>
     <sql id="T1_Column_List">
-        t1.id,t1.dept_name,t1.dept_code,
+        t1.id,t1.dept_name,
         t1.parent_id,t1.ancestors,t1.sort,
         t1.leader,t1.phone,t1.email,
         t1.status,t1.tier,t1.home_path,
