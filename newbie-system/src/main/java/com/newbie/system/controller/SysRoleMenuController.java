@@ -23,12 +23,10 @@ public class SysRoleMenuController {
     public R<Object> removeAndSaveByRoleId(@RequestBody SysRoleMenuBody sysRoleMenuBody) {
         Long roleId = sysRoleMenuBody.getRoleId();
         List<Long> menuIds = sysRoleMenuBody.getMenuIds();
-        if (roleId == null || menuIds == null) {
-            return R.error("角色ID或菜单ID列表为空");
-        }
+        if (roleId == null || menuIds == null) return R.error("角色ID或菜单ID列表为空");
 
         // 根据 roleId 删除已有的权限信息
-        boolean b1 = sysRoleMenuService.remove(Wrappers.<SysRoleMenu>lambdaQuery().eq(SysRoleMenu::getRoleId, sysRoleMenuBody.getRoleId()));
+        sysRoleMenuService.remove(Wrappers.<SysRoleMenu>lambdaQuery().eq(SysRoleMenu::getRoleId, sysRoleMenuBody.getRoleId()));
 
         // 保存角色权限信息
         List<SysRoleMenu> sysRoleMenuList = new ArrayList<>();
@@ -38,9 +36,9 @@ public class SysRoleMenuController {
             sysRoleMenu.setRoleId(roleId);
             sysRoleMenuList.add(sysRoleMenu);
         });
-        boolean b2 = sysRoleMenuService.saveBatch(sysRoleMenuList);
+        sysRoleMenuService.saveBatch(sysRoleMenuList);
 
-        return b1 && b2 ? R.ok() : R.error("操作失败");
+        return R.ok().setMsg("保存成功");
     }
 
 

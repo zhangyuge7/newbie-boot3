@@ -9,14 +9,16 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 系统字典类型
  * @TableName sys_dict_type
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value ="sys_dict_type")
 @Data
-public class SysDictType implements Serializable {
+public class SysDictType extends BaseEntity{
     /**
      * 主键
      */
@@ -48,27 +50,4 @@ public class SysDictType implements Serializable {
      */
     private String remark;
 
-    /**
-     * 创建者
-     */
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 修改者
-     */
-    private String updateBy;
-
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

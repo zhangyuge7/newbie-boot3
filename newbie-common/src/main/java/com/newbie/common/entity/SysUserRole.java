@@ -9,14 +9,16 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 用户和角色关系表
  * @TableName sys_user_role
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value ="sys_user_role")
 @Data
-public class SysUserRole implements Serializable {
+public class SysUserRole extends BaseEntity {
     /**
      * 主键
      */
@@ -33,17 +35,4 @@ public class SysUserRole implements Serializable {
      */
     private Long roleId;
 
-    /**
-     * 创建者
-     */
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

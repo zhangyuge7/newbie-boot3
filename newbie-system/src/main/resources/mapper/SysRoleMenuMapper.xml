@@ -5,15 +5,17 @@
 <mapper namespace="com.newbie.system.mapper.SysRoleMenuMapper">
 
     <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysRoleMenu">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="roleId" column="role_id" jdbcType="BIGINT"/>
-            <result property="menuId" column="menu_id" jdbcType="BIGINT"/>
-            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="roleId" column="role_id" jdbcType="BIGINT"/>
+        <result property="menuId" column="menu_id" jdbcType="BIGINT"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,role_id,menu_id,
-        create_by,create_time
+        create_by,create_time,update_by,update_time
     </sql>
 </mapper>

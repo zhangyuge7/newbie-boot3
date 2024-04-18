@@ -103,7 +103,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         // 查找与角色关系
         if (sysRoleMenuMapper.selectCount(new LambdaQueryWrapper<SysRoleMenu>()
                 .in(SysRoleMenu::getMenuId, idList))>0) {
-            throw new NewbieException("请先解除角色菜单关联后再次尝试");
+            throw new NewbieException("请先解除角色与菜单的关联后再次尝试");
         }
         sysMenuMapper.deleteBatchIds(idList);
     }

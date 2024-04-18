@@ -6,15 +6,16 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 系统菜单表
  * @TableName sys_menu
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value ="sys_menu")
 @Data
-
-public class SysMenu implements Serializable {
+public class SysMenu extends BaseEntity {
     /**
      * 菜单ID
      */
@@ -60,30 +61,6 @@ public class SysMenu implements Serializable {
      * 备注
      */
     private String remark;
-
-    /**
-     * 创建者
-     */
-    @TableField(fill = FieldFill.INSERT)
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
-
-    /**
-     * 更新者
-     */
-    @TableField(fill = FieldFill.UPDATE)
-    private String updateBy;
-
-    /**
-     * 修改时间
-     */
-    @TableField(fill = FieldFill.UPDATE)
-    private Date updateTime;
 
     /**
      * 是否缓存组件（1缓存 0不缓存）
@@ -134,8 +111,4 @@ public class SysMenu implements Serializable {
      * 是否固定在tabs（1是 0否）
      */
     private String fixedTab;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

@@ -47,8 +47,8 @@
         <if test="sysUser.nickName!=null and sysUser.nickName!=''">
             AND u.nick_name LIKE CONCAT('%',#{sysUser.nickName},'%')
         </if>
-        <if test="sysUser.mobile!=null and sysUser.mobile!=''">
-            AND u.mobile LIKE CONCAT('%',#{sysUser.mobile},'%')
+        <if test="sysUser.phone!=null and sysUser.phone!=''">
+            AND u.phone LIKE CONCAT('%',#{sysUser.phone},'%')
         </if>
         <if test="sysUser.email!=null and sysUser.email!=''">
             AND u.email LIKE CONCAT('%',#{sysUser.email},'%')
@@ -71,8 +71,8 @@
         <if test="sysUser.nickName!=null and sysUser.nickName!=''">
             AND u.nick_name LIKE CONCAT('%',#{sysUser.nickName},'%')
         </if>
-        <if test="sysUser.mobile!=null and sysUser.mobile!=''">
-            AND u.mobile LIKE CONCAT('%',#{sysUser.mobile},'%')
+        <if test="sysUser.phone!=null and sysUser.phone!=''">
+            AND u.phone LIKE CONCAT('%',#{sysUser.phone},'%')
         </if>
         <if test="sysUser.email!=null and sysUser.email!=''">
             AND u.email LIKE CONCAT('%',#{sysUser.email},'%')

@@ -16,7 +16,7 @@ import lombok.Data;
  */
 @TableName(value ="sys_role")
 @Data
-public class SysRole implements Serializable {
+public class SysRole extends BaseEntity {
     /**
      * 主键
      */
@@ -53,27 +53,4 @@ public class SysRole implements Serializable {
      */
     private String remark;
 
-    /**
-     * 创建者
-     */
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新者
-     */
-    private String updateBy;
-
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

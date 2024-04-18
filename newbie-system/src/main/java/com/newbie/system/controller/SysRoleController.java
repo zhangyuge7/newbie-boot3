@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/system/role")
@@ -37,17 +37,14 @@ public class SysRoleController {
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysRole sysRole) {
         Long roleId = sysRole.getId();
-        if(roleId != null){
-            return R.error("请检查此数据是否已存在,roleId=" + roleId);
-        }
+        if (roleId != null) return R.error("添加失败，请检查此数据是否已存在,roleId=" + roleId);
         // 查询角色编码唯一
-        if (Objects.nonNull(sysRoleService.lambdaQuery().eq(SysRole::getRoleCode, sysRole.getRoleCode()).one())) {
+        if (sysRoleService.lambdaQuery().eq(SysRole::getRoleCode, sysRole.getRoleCode()).count() > 0)
             return R.error("角色编码已存在");
-        }
 
         // 保存角色信息
         sysRoleService.save(sysRole);
-        return R.ok();
+        return R.ok().setMsg("添加成功");
     }
 
     @PostMapping("/update")
@@ -56,19 +53,22 @@ public class SysRoleController {
             return R.error("角色ID为空");
         }
         // 判断角色编码是否重复
-        SysRole one = sysRoleService.lambdaQuery().eq(SysRole::getRoleCode, sysRole.getRoleCode()).one();
-        if (Objects.nonNull(one) && !one.getId().equals(sysRole.getId())) {
+        if (sysRoleService.lambdaQuery()
+                .eq(SysRole::getRoleCode, sysRole.getRoleCode())
+                .ne(SysRole::getId, sysRole.getId()).count() > 0)
             return R.error("角色编码已存在");
-        }
+
 
         // 修改角色信息
         sysRoleService.updateById(sysRole);
-        return R.ok();
+        return R.ok().setMsg("修改成功");
     }
 
-    @DeleteMapping("/{id}")
-    public R<Object> deleteRole(@PathVariable Long id) {
-        return sysRoleService.removeById(id)?R.ok():R.error("删除失败");
+    @PostMapping("/deleteBatch")
+    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+        if (ids == null || ids.length == 0) return R.error("角色ID为空");
+        sysRoleService.deleteBatch(Arrays.asList(ids));
+        return R.ok().setMsg("删除成功");
     }
 
 }
