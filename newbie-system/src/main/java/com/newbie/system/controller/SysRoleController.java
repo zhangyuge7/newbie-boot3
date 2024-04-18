@@ -1,5 +1,6 @@
 package com.newbie.system.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.entity.SysRole;
@@ -17,7 +18,7 @@ import java.util.Arrays;
 public class SysRoleController {
     private final SysRoleService sysRoleService;
 
-
+    @SaCheckPermission("sys.role")
     @GetMapping("/page")
     public R<IPage<SysRole>> page(Page<SysRole> page, SysRole sysRole) {
         String roleName = sysRole.getRoleName();
@@ -34,6 +35,7 @@ public class SysRoleController {
         return R.ok(pageInfo);
     }
 
+    @SaCheckPermission("sys.role.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysRole sysRole) {
         Long roleId = sysRole.getId();
@@ -47,6 +49,7 @@ public class SysRoleController {
         return R.ok().setMsg("添加成功");
     }
 
+    @SaCheckPermission("sys.role.update")
     @PostMapping("/update")
     public R<Object> update(@RequestBody SysRole sysRole) {
         if (sysRole.getId() == null) {
@@ -64,6 +67,7 @@ public class SysRoleController {
         return R.ok().setMsg("修改成功");
     }
 
+    @SaCheckPermission("sys.role.del")
     @PostMapping("/deleteBatch")
     public R<Object> deleteBatch(@RequestBody Long[] ids) {
         if (ids == null || ids.length == 0) return R.error("角色ID为空");

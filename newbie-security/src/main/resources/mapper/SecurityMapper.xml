@@ -76,6 +76,7 @@
         ON m.id = rm.menu_id AND m.type = '1' AND m.status = '1'
         JOIN sys_user_role ur
         ON ur.role_id = rm.role_id AND ur.user_id = #{userId}
+        join sys_role r on r.id = ur.role_id AND r.status = '1'
         ORDER BY m.sort
     </select>
     <select id="selectUserByUserId" resultType="com.newbie.common.entity.SysUser">

@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class SaTokenExceptionHandler {
     @ExceptionHandler(NotLoginException.class)
     public R<Object> handlerNotLoginException(NotLoginException nle) {
-        return R.error(401,nle.getMessage());
+        String message = nle.getMessage();
+        if (message.startsWith("token 无效：") && message.length() > 10) {
+            message = "登录失效，请重新登录";
+        }
+        return R.error(401, message);
     }
 
     @ExceptionHandler

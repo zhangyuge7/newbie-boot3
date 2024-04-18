@@ -1,6 +1,7 @@
 package com.newbie.system.controller;
 
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.entity.SysUser;
@@ -25,6 +26,7 @@ public class SysUserRoleController {
     /**
      * 增量关联
      */
+    @SaCheckPermission("sys.role.user")
     @PostMapping("/append")
     public R<Object> append(@RequestBody SysUserRoleBody sysUserRoleBody) {
         List<SysUserRole> list = this.bodyToSysUserRole(sysUserRoleBody);
@@ -35,6 +37,7 @@ public class SysUserRoleController {
     /**
      * 批量清楚关联
      */
+    @SaCheckPermission("sys.role.user")
     @PostMapping("/cancelBatch")
     public R<Object> batchDel(@RequestBody SysUserRoleBody sysUserRoleBody) {
         List<Long> userIds = sysUserRoleBody.getUserIds();
@@ -85,6 +88,7 @@ public class SysUserRoleController {
      * @param roleId  角色ID
      * @return
      */
+    @SaCheckPermission("sys.role.user")
     @GetMapping("/queryUserByRoleId/{roleId}")
     public R<IPage<SysUser>> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
         IPage<SysUser> pageInfo = sysUserRoleService.queryUserByRoleId(page, sysUser, roleId);
@@ -99,6 +103,7 @@ public class SysUserRoleController {
      * @param roleId  角色ID
      * @return
      */
+    @SaCheckPermission("sys.role.user")
     @GetMapping("/queryUnUserByRoleId/{roleId}")
     public R<IPage<SysUser>> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
         IPage<SysUser> pageInfo = sysUserRoleService.queryUnUserByRoleId(page, sysUser, roleId);

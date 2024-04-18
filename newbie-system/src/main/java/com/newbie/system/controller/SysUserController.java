@@ -1,5 +1,6 @@
 package com.newbie.system.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.entity.SysUser;
@@ -17,13 +18,13 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class SysUserController {
     private final SysUserService sysUserService;
-
+    @SaCheckPermission("sys.user")
     @GetMapping("/page")
     public R<IPage<SysUser>> page(Page<SysUser> page, SysUser sysUser) {
         IPage<SysUser> iPage = sysUserService.queryPage(page, sysUser);
         return R.ok(iPage);
     }
-
+    @SaCheckPermission("sys.user.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysUser sysUser) {
         Long userId = sysUser.getId();
@@ -31,7 +32,7 @@ public class SysUserController {
         sysUserService.saveUser(sysUser);
         return R.ok().setMsg("添加成功");
     }
-
+    @SaCheckPermission("sys.user.update")
     @PostMapping("/update")
     public R<Object> update(@RequestBody SysUser sysUser) {
         if (sysUser.getId() == null) return R.error("用户ID为空");
@@ -39,6 +40,7 @@ public class SysUserController {
         return R.ok().setMsg("修改成功");
     }
 
+    @SaCheckPermission("sys.user.del")
     @PostMapping("/deleteBatch")
     public R<Object> deleteBatch(@RequestBody Long[] ids) {
         if(ids==null || ids.length==0) return R.error("用户ID为空");
@@ -46,6 +48,7 @@ public class SysUserController {
         return  R.ok().setMsg("删除成功");
     }
 
+    @SaCheckPermission("sys.user.update.password")
     @PostMapping("/updateUserPassword")
     public R<Object> updateUserPassword(@RequestBody PasswordBody passwordBody){
         boolean b = sysUserService.updateUserPassword(passwordBody.getUserId(),passwordBody.getNewPassword(),passwordBody.getConfirmPassword());

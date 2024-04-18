@@ -1,5 +1,6 @@
 package com.newbie.system.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.entity.SysDictData;
 import com.newbie.common.util.R;
@@ -19,6 +20,7 @@ import java.util.Objects;
 public class SysDictDataController {
     private final SysDictDataService sysDictDataService;
 
+    @SaCheckPermission("sys.dict.data")
     @GetMapping("/page")
     public R<Page<SysDictData>> page(Page<SysDictData> page, SysDictData sysDictData) {
         Long typeId = sysDictData.getTypeId();
@@ -33,6 +35,7 @@ public class SysDictDataController {
         return R.ok(pageData);
     }
 
+    @SaCheckPermission("sys.dict.data.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysDictData sysDictData) {
         if (Objects.isNull(sysDictData.getTypeId())) return R.error("字典类型不能为空");
@@ -57,6 +60,7 @@ public class SysDictDataController {
         return R.ok().setMsg("保存成功");
     }
 
+    @SaCheckPermission("sys.dict.data.update")
     @PostMapping("/update")
     public R<Object> update(@RequestBody SysDictData sysDictData) {
         if (Objects.isNull(sysDictData.getTypeId())) return R.error("字典类型不能为空");
@@ -80,6 +84,7 @@ public class SysDictDataController {
         return R.ok().setMsg("修改成功");
     }
 
+    @SaCheckPermission("sys.dict.data.del")
     @PostMapping("/deleteBatch")
     public R<Object> deleteBatch(@RequestBody Long[] ids) {
         if (Objects.isNull(ids) || ids.length == 0) return R.error("字典数据ID不能为空");
@@ -89,6 +94,7 @@ public class SysDictDataController {
 
     /**
      * 设置默认
+     *
      * @param id 字典数据ID
      * @return
      */

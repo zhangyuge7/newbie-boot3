@@ -1,5 +1,6 @@
 package com.newbie.system.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.newbie.common.entity.SysRoleMenu;
 import com.newbie.common.util.R;
@@ -18,6 +19,7 @@ import java.util.List;
 public class SysRoleMenuController {
     private final SysRoleMenuService sysRoleMenuService;
 
+    @SaCheckPermission("sys.role.perm")
     @PostMapping("/removeAndSaveByRoleId")
     @Transactional
     public R<Object> removeAndSaveByRoleId(@RequestBody SysRoleMenuBody sysRoleMenuBody) {
@@ -48,6 +50,7 @@ public class SysRoleMenuController {
      * @param roleId 角色ID
      * @return 角色权限关系列表
      */
+    @SaCheckPermission("sys.role.perm")
     @GetMapping("/listByRoleId")
     public R<List<SysRoleMenu>> menuIdsByRoleId(Long roleId) {
         List<SysRoleMenu> list = sysRoleMenuService

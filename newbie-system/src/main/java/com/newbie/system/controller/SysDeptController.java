@@ -1,5 +1,6 @@
 package com.newbie.system.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.newbie.common.entity.SysDept;
 import com.newbie.common.util.R;
 import com.newbie.system.domain.vo.SysDeptVO;
@@ -17,11 +18,13 @@ public class SysDeptController {
 
     private final SysDeptService sysDeptService;
 
+    @SaCheckPermission("sys.dept")
     @GetMapping("/tree")
     public R<List<SysDeptVO>> getDeptTree(SysDept sysDept) {
         return R.ok(sysDeptService.getDeptTree(sysDept));
     }
 
+    @SaCheckPermission("sys.dept.add")
     @PostMapping("/add")
     public R<Object> addDept(@RequestBody SysDept sysDept) {
         Long deptId = sysDept.getId();
@@ -31,6 +34,7 @@ public class SysDeptController {
         return sysDeptService.addDept(sysDept) ? R.ok().setMsg("新增成功") : R.error("新增失败");
     }
 
+    @SaCheckPermission("sys.dept.update")
     @PostMapping("/update")
     public R<Object> updateDept(@RequestBody SysDept sysDept) {
         if (sysDept.getId() == null) {
@@ -39,9 +43,10 @@ public class SysDeptController {
         return sysDeptService.updateDept(sysDept) ? R.ok().setMsg("修改成功") : R.error("修改失败");
     }
 
+    @SaCheckPermission("sys.dept.del")
     @PostMapping("/deleteBatch")
     public R<Object> deleteBatch(@RequestBody Long[] ids) {
-        if(ids == null || ids.length == 0) return R.error("部门ID为空");
+        if (ids == null || ids.length == 0) return R.error("部门ID为空");
         sysDeptService.deleteBatch(Arrays.asList(ids));
         return R.ok().setMsg("删除成功");
     }
