@@ -20,12 +20,6 @@ public interface SysDeptService extends IService<SysDept> {
      */
     List<SysDeptVO> getDeptTree(SysDept sysDept);
 
-    /**
-     * 根据ID列表批量删除部门及子级
-     * @param idList 部门ID列表
-     * @return 是否成功
-     */
-    boolean deleteDeptBatch(List<Long> idList);
 
     /**
      * 新增部门
@@ -40,4 +34,10 @@ public interface SysDeptService extends IService<SysDept> {
      * @return 是否成功
      */
     boolean updateDept(SysDept sysDept);
+
+    /**
+     * 批量删除部门
+     * @param idList 部门ID列表
+     */
+    void deleteBatch(List<Long> idList);
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/system/dept")
@@ -40,11 +39,10 @@ public class SysDeptController {
         return sysDeptService.updateDept(sysDept) ? R.ok() : R.error("修改失败");
     }
 
-    @PostMapping("/delete")
-    public R<Boolean> delete(@RequestBody String[] ids) {
-        List<Long> deptIdList = Arrays.stream(ids).map(Long::valueOf).collect(Collectors.toList());
-        return sysDeptService.deleteDeptBatch(deptIdList)
-                ? R.ok()
-                : R.error("操作失败");
+    @PostMapping("/deleteBatch")
+    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+        if(ids == null || ids.length == 0) return R.error("部门ID为空");
+        sysDeptService.deleteBatch(Arrays.asList(ids));
+        return R.ok().setMsg("删除成功");
     }
 }

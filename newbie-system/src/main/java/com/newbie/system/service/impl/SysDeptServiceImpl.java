@@ -3,6 +3,7 @@ package com.newbie.system.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.newbie.common.entity.SysDept;
 import com.newbie.common.exception.NewbieException;
@@ -85,6 +86,7 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept>
     }
 
     @Override
+    @Transactional
     public boolean updateDept(SysDept sysDept){
         this.verifyDeptData(sysDept);
         // 检查是否修改节点位置
@@ -99,13 +101,13 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept>
 
     @Override
     @Transactional
-    public boolean deleteDeptBatch(List<Long> idList) {
-        if (CollectionUtils.isEmpty(idList)) {
-            return false;
+    public void deleteBatch(List<Long> idList) {
+        if (sysDeptMapper.selectCount(new LambdaUpdateWrapper<SysDept>()
+                .in(SysDept::getParentId, idList)
+                .notIn(SysDept::getId,idList)) > 0) {
+            throw new NewbieException("请先删除子部门后再次尝试");
         }
-        // 批量删除部门
-        int count = sysDeptMapper.deleteBatchIds(idList);
-        return idList.size() == count;
+        sysDeptMapper.deleteBatchIds(idList);
     }
 
     private void verifyDeptData(SysDept sysDept){
