@@ -40,4 +40,5 @@ mybatis-plus:
 sa-token:
   # jwt秘钥
   jwt-secret-key: bsdasdasifhueuiwyurfewbfjsdafjg
-  is-log: false
+  # token有效期半小时（单位：秒）
+  timeout: 1800

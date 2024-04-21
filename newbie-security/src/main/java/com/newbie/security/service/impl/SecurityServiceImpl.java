@@ -69,6 +69,11 @@ public class SecurityServiceImpl implements SecurityService {
                 .create()
                 .setExtra(SecurityConstant.SYS_USER_KEY, loginUser)
                 .build();
+
+        // token有效期
+        if (loginBody.getTokenTimeout()!=null) {
+            loginModel.setTimeout(loginBody.getTokenTimeout());
+        }
         // 登录
         StpUtil.login(loginUser.getId(), loginModel);
         return StpUtil.getTokenInfo();

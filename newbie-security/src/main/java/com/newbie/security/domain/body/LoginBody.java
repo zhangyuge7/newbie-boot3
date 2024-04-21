@@ -12,6 +12,7 @@ import lombok.Data;
  */
 @Data
 public class LoginBody {
-    private String username;
-    private String password;
+    private String username; // 用户名
+    private String password; // 密码
+    private Long tokenTimeout; // token有效期，单位：秒
 }
