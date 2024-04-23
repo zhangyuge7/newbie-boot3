@@ -6,12 +6,15 @@ import com.newbie.common.util.R;
 import com.newbie.security.domain.Route;
 import com.newbie.security.domain.body.LoginBody;
 import com.newbie.security.domain.body.PasswordBody;
+import com.newbie.security.domain.vo.Captcha;
+import com.newbie.security.service.CaptchaService;
 import com.newbie.security.service.SecurityService;
 import com.newbie.security.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,6 +30,13 @@ import java.util.List;
 public class SecurityController {
 
     private final SecurityService securityService;
+    private final CaptchaService captchaService;
+
+    @GetMapping("/imageCaptcha")
+    public R<Captcha> imageCaptcha(){
+        String key = UUID.randomUUID().toString();
+        return R.ok(captchaService.create("captcha:" + key));
+    }
 
     @PostMapping("/initAdmin")
     public R<Object> initAdmin(@RequestBody PasswordBody passwordBody) {
@@ -60,5 +70,8 @@ public class SecurityController {
     public R<List<Route>> menus() {
         return R.ok(securityService.getMenuList());
     }
+
+
+
 
 }

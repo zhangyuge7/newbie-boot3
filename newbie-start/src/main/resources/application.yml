@@ -4,7 +4,7 @@ server:
     context-path: /
 spring:
   main:
-    # # 相同的bean是否覆盖
+    # 相同的bean是否覆盖
     allow-bean-definition-overriding: true
   jackson:
     # 日期格式统一配置
@@ -42,3 +42,6 @@ sa-token:
   jwt-secret-key: bsdasdasifhueuiwyurfewbfjsdafjg
   # token有效期半小时（单位：秒）
   timeout: 1800
+# 验证码配置
+captcha:
+  timeout: 60 #超时（单位：秒）

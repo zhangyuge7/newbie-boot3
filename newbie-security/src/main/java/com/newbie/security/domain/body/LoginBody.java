@@ -15,4 +15,6 @@ public class LoginBody {
     private String username; // 用户名
     private String password; // 密码
     private Long tokenTimeout; // token有效期，单位：秒
+    private String checkCode; // 验证码
+    private String checkCodeKey; // 验证码缓存的key
 }

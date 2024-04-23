@@ -16,6 +16,7 @@ import com.newbie.security.domain.body.LoginBody;
 import com.newbie.security.domain.body.PasswordBody;
 import com.newbie.security.domain.vo.LoginUser;
 import com.newbie.security.mapper.SecurityMapper;
+import com.newbie.security.service.CaptchaService;
 import com.newbie.security.service.SecurityService;
 import com.newbie.security.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
@@ -40,11 +41,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityServiceImpl implements SecurityService {
     private final SecurityMapper securityMapper;
+    private final CaptchaService captchaService;
+
 
     @Override
     public SaTokenInfo login(LoginBody loginBody) {
         // 校验参数
         this.verifyLoginBody(loginBody);
+
+        // 检验验证码
+        if(!captchaService.verify(loginBody.getCheckCodeKey(), loginBody.getCheckCode()))
+            throw new NewbieException("验证码不正确");
 
         // 根据username查询用户
         SysUser sysUser = securityMapper.selectUserByUsername(loginBody.getUsername());
@@ -71,7 +78,7 @@ public class SecurityServiceImpl implements SecurityService {
                 .build();
 
         // token有效期
-        if (loginBody.getTokenTimeout()!=null) {
+        if (loginBody.getTokenTimeout() != null) {
             loginModel.setTimeout(loginBody.getTokenTimeout());
         }
         // 登录
@@ -113,7 +120,8 @@ public class SecurityServiceImpl implements SecurityService {
         // 校验参数
         this.verifyPasswordBogy(passwordBody);
 
-        if (securityMapper.selectUserByUsername(SecurityConstant.ADMIN_USER_NAME) != null) throw new NewbieException("系统管理员已存在");
+        if (securityMapper.selectUserByUsername(SecurityConstant.ADMIN_USER_NAME) != null)
+            throw new NewbieException("系统管理员已存在");
 
         SysUser sysUser = new SysUser();
         sysUser.setUsername(SecurityConstant.ADMIN_USER_NAME);
@@ -157,6 +165,8 @@ public class SecurityServiceImpl implements SecurityService {
         // 强制下线
         StpUtil.logout();
     }
+
+
 
     /**
      * 构建路由

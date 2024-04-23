@@ -4,6 +4,7 @@ import cn.dev33.satoken.stp.SaTokenInfo;
 import com.newbie.security.domain.Route;
 import com.newbie.security.domain.body.LoginBody;
 import com.newbie.security.domain.body.PasswordBody;
+import com.newbie.security.domain.vo.ImageCaptcha;
 
 import java.util.List;
 
@@ -40,4 +41,5 @@ public interface SecurityService {
      * @param passwordBody 修改密码参数
      */
     void updatePassword(PasswordBody passwordBody);
+
 }

@@ -19,9 +19,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class SaTokenConfigure implements WebMvcConfigurer {
-    public static final String LOGIN_URL = "/security/login";
+    public static final String[] STATIC_LIST = {"/**/error","/**/favicon.ico"};
     // 白名单
-    public static final String[] WHITE_LIST = {"/security/initAdmin"};
+    public static final String[] WHITE_LIST = {"/security/login","/security/initAdmin","/security/imageCaptcha"};
 
     /**
      * 注册拦截器
@@ -31,9 +31,9 @@ public class SaTokenConfigure implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 注册 Sa-Token 拦截器
-        registry.addInterceptor(new SaInterceptor(handler -> StpUtil.checkLogin()))
+        registry.addInterceptor(new SaInterceptor(handler ->  StpUtil.checkLogin()))
                 .addPathPatterns("/**")
-                .excludePathPatterns(LOGIN_URL)
+                .excludePathPatterns(STATIC_LIST)
                 .excludePathPatterns(WHITE_LIST);
     }
 
