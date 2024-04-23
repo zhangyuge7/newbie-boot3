@@ -41,7 +41,7 @@ public class SecurityController {
     @PostMapping("/initAdmin")
     public R<Object> initAdmin(@RequestBody PasswordBody passwordBody) {
         securityService.initAdmin(passwordBody);
-        return R.ok();
+        return R.ok().setMsg("admin初始化成功");
     }
 
     @PostMapping("/login")

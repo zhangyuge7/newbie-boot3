@@ -36,8 +36,13 @@ public class MetaObjectHandlerImpl implements MetaObjectHandler {
 
         // 如果 有createBy 且 为null 则赋值当前用户名
         if (metaObject.hasSetter("createBy") && metaObject.getValue("createBy") == null) {
-            SysUser currentUser = SecurityUtils.getCurrentLoginUser();
-            metaObject.setValue("createBy", currentUser.getUsername());
+            try {
+                SysUser currentUser = SecurityUtils.getCurrentLoginUser();
+                metaObject.setValue("createBy", currentUser.getUsername());
+            }catch (Exception ignored){
+
+            }
+
         }
 
     }
@@ -52,8 +57,12 @@ public class MetaObjectHandlerImpl implements MetaObjectHandler {
 
         // 如果 有updateBy 则赋值当前用户名
         if (metaObject.hasSetter("updateBy")) {
-            SysUser currentUser = SecurityUtils.getCurrentLoginUser();
-            metaObject.setValue("updateBy", currentUser.getUsername());
+            try {
+                SysUser currentUser = SecurityUtils.getCurrentLoginUser();
+                metaObject.setValue("updateBy", currentUser.getUsername());
+            }catch (Exception ignored){
+
+            }
         }
     }
 }

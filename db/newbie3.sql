@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 18/04/2024 20:04:05
+ Date: 23/04/2024 15:42:12
 */
 
 SET NAMES utf8mb4;
@@ -24,7 +24,6 @@ DROP TABLE IF EXISTS `sys_dept`;
 CREATE TABLE `sys_dept`  (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
   `dept_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '部门名称',
-  `dept_code` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '部门编码',
   `parent_id` bigint NULL DEFAULT 0 COMMENT '父级id',
   `ancestors` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '祖级列表',
   `sort` int NULL DEFAULT 1 COMMENT '显示顺序',
@@ -45,16 +44,16 @@ CREATE TABLE `sys_dept`  (
 -- ----------------------------
 -- Records of sys_dept
 -- ----------------------------
-INSERT INTO `sys_dept` VALUES (270, '公司总部', NULL, 0, '270', 1, '张三', '13566666666', 'zhangsan@newbie.com', '1', 1, NULL, '描述信息', 'admin', '2023-11-28 19:42:59', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (271, '山东分公司', NULL, 270, '270,271', 1, '张三', '13566666666', 'zhangsan@newbie.com', '1', 2, NULL, '描述信息', 'admin', '2023-11-28 19:43:42', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (272, '河南分公司', NULL, 270, '270,272', 2, '李四', '13566666666', 'lisi@newbie.com', '1', 2, NULL, '描述信息', 'admin', '2023-11-28 19:46:35', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (273, '云南分公司', NULL, 270, '270,273', 3, '王五', '13566666666', 'wangwu@newbie.com', '1', 2, NULL, '描述信息', 'admin', '2023-11-28 19:51:00', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (274, '河北分公司', NULL, 270, '270,274', 4, '赵六', '13599999999', 'zhaoliu@newbie.com', '1', 2, NULL, '描述信息', 'admin', '2023-11-28 19:51:55', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (275, '东营分部', NULL, 271, '270,271,275', 2, '悟空', '13234435454', 'wukong@newbie.com', '1', 3, NULL, '描述信息', 'admin', '2023-11-28 19:53:38', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (276, '济南分部', NULL, 271, '270,271,276', 1, '八戒', '15543547357', 'bajie@newbie.com', '1', 3, NULL, '描述信息', 'admin', '2023-11-28 19:55:25', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (277, '昆明分部', NULL, 273, '270,273,277', 1, '三藏', '16546273436', 'sanzang@newbie.com', '1', 3, NULL, '', 'admin', '2023-11-28 19:56:21', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (278, '济宁分部', NULL, 271, '270,271,278', 4, '阿虎', '16323242332', 'ahu@newbie.com', '1', 3, NULL, '', 'admin', '2023-11-28 19:57:47', 'admin', '2023-11-28 20:57:50');
-INSERT INTO `sys_dept` VALUES (279, '菏泽分部', NULL, 271, '270,271,279', 5, '石头', '16767466463', 'shitou@newbie.com', '1', 3, NULL, '', 'admin', '2023-11-28 19:58:35', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (270, '公司总部', 0, '270', 1, '张三', '13566666666', 'zhangsan@newbie.com', '1', 1, NULL, '描述信息', 'admin', '2023-11-28 19:42:59', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (271, '山东分公司', 270, '270,271', 1, '张三', '13566666666', 'zhangsan@newbie.com', '1', 2, NULL, '描述信息', 'admin', '2023-11-28 19:43:42', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (272, '河南分公司', 270, '270,272', 2, '李四', '13566666666', 'lisi@newbie.com', '1', 2, NULL, '描述信息', 'admin', '2023-11-28 19:46:35', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (273, '云南分公司', 270, '270,273', 3, '王五', '13566666666', 'wangwu@newbie.com', '1', 2, NULL, '描述信息', 'admin', '2023-11-28 19:51:00', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (274, '河北分公司', 270, '270,274', 4, '赵六', '13599999999', 'zhaoliu@newbie.com', '1', 2, NULL, '描述信息', 'admin', '2023-11-28 19:51:55', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (275, '东营分部', 271, '270,271,275', 2, '悟空', '13234435454', 'wukong@newbie.com', '1', 3, NULL, '描述信息', 'admin', '2023-11-28 19:53:38', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (276, '济南分部', 271, '270,271,276', 1, '八戒', '15543547357', 'bajie@newbie.com', '1', 3, NULL, '描述信息', 'admin', '2023-11-28 19:55:25', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (277, '昆明分部', 273, '270,273,277', 1, '三藏', '16546273436', 'sanzang@newbie.com', '1', 3, NULL, '', 'admin', '2023-11-28 19:56:21', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (278, '济宁分部', 271, '270,271,278', 4, '阿虎', '16323242332', 'ahu@newbie.com', '1', 3, NULL, '', 'admin', '2023-11-28 19:57:47', 'admin', '2023-11-28 20:57:50');
+INSERT INTO `sys_dept` VALUES (279, '菏泽分部', 271, '270,271,279', 5, '石头', '16767466463', 'shitou@newbie.com', '1', 3, NULL, '', 'admin', '2023-11-28 19:58:35', 'admin', '2023-11-28 20:57:50');
 
 -- ----------------------------
 -- Table structure for sys_dict_data
@@ -118,7 +117,7 @@ CREATE TABLE `sys_dict_type`  (
 -- ----------------------------
 INSERT INTO `sys_dict_type` VALUES (33, '用户性别', 'userGender', '1', 2, '', 'admin', '2024-02-21 17:10:39', 'admin', '2024-03-09 22:03:41');
 INSERT INTO `sys_dict_type` VALUES (35, '用户状态', 'userStatus', '1', 3, '', 'admin', '2024-03-09 21:02:27', 'admin', '2024-03-09 22:50:28');
-INSERT INTO `sys_dict_type` VALUES (37, '通用状态', 'commonStatus', '1', 1, '通用状态', 'admin', '2024-03-09 21:32:14', 'admin', '2024-03-09 22:50:23');
+INSERT INTO `sys_dict_type` VALUES (37, '通用状态', 'commonStatus', '1', 1, '通用状态', 'admin', '2024-03-09 21:32:14', 'admin', '2024-04-23 14:59:51');
 INSERT INTO `sys_dict_type` VALUES (38, '元素类型', 'eleType', '1', 4, '元素类型', 'admin', '2024-03-09 22:52:58', 'admin', '2024-03-10 13:41:31');
 
 -- ----------------------------
@@ -247,44 +246,23 @@ CREATE TABLE `sys_role_menu`  (
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改者',
   `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1090 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关系表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1112 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关系表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES (1025, 173, 2042, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1026, 173, 2008, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1027, 173, 2009, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1028, 173, 3038, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1029, 173, 3039, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1030, 173, 3040, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1031, 173, 3041, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1032, 173, 2010, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1033, 173, 3042, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1034, 173, 3043, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1035, 173, 3044, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1036, 173, 3045, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1037, 173, 3046, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1038, 173, 2013, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1039, 173, 2050, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1040, 173, 2051, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1041, 173, 2052, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1042, 173, 2071, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1043, 173, 3047, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1044, 173, 3048, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1045, 173, 3049, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1046, 173, 3009, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1047, 173, 3050, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1048, 173, 3051, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1049, 173, 3052, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1050, 173, 3010, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1051, 173, 3053, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1052, 173, 3054, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1053, 173, 3055, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1054, 173, 3056, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1055, 173, 2072, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1056, 173, 2069, 'admin', '2024-04-18 19:37:20', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES (1057, 173, 3015, 'admin', '2024-04-18 19:37:20', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1100, 173, 2042, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1101, 173, 2008, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1102, 173, 2009, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1103, 173, 3039, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1104, 173, 3041, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1105, 173, 2010, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1106, 173, 2013, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1107, 173, 2071, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1108, 173, 3009, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1109, 173, 3010, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1110, 173, 2072, 'admin', '2024-04-20 23:26:01', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES (1111, 173, 3015, 'admin', '2024-04-20 23:26:01', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user
