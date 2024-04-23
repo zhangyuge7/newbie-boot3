@@ -42,9 +42,10 @@ public interface SysUserService extends IService<SysUser> {
      * @param userId             用户ID
      * @param newPassword        新密码
      * @param confirmNewPassword 确认密码
+     * @param immediatelyKick 修改成功后是否强制下线
      * @return 是否成功
      */
-    boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword);
+    boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword,Boolean immediatelyKick);
 
     /**
      * 批量删除

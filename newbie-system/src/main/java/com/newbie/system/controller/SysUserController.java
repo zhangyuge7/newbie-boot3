@@ -51,7 +51,7 @@ public class SysUserController {
     @SaCheckPermission("sys.user.update.password")
     @PostMapping("/updateUserPassword")
     public R<Object> updateUserPassword(@RequestBody PasswordBody passwordBody){
-        boolean b = sysUserService.updateUserPassword(passwordBody.getUserId(),passwordBody.getNewPassword(),passwordBody.getConfirmPassword());
+        boolean b = sysUserService.updateUserPassword(passwordBody.getUserId(),passwordBody.getNewPassword(),passwordBody.getConfirmPassword(),passwordBody.getImmediatelyKick());
         return b?R.ok().setMsg("修改成功"):R.error("修改密码失败");
     }
 }

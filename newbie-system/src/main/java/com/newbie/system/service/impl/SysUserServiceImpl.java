@@ -92,7 +92,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
     @Override
     @Transactional
-    public boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword) {
+    public boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword,Boolean immediatelyKick) {
         if (userId == null) throw new NewbieException("用户ID为空");
         if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码为空");
         if (!newPassword.equals(confirmNewPassword)) throw new NewbieException("两次输入密码不一致");
@@ -109,7 +109,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         int updateCount = sysUserMapper.updateById(sysUser);
 
         // 将被修改用户强制掉线
-        if (updateCount == 1) {
+        if (immediatelyKick && updateCount == 1) {
             StpUtil.logout(userId);
             return true;
         }

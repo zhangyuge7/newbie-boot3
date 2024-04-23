@@ -16,4 +16,5 @@ public class PasswordBody {
     private String oldPassword; // 原密码
     private String newPassword; // 新密码
     private String confirmPassword; // 确认密码
+    private Boolean immediatelyKick; // 立即踢出，修改用户密码时，修改成功后是否立即踢下线
 }
