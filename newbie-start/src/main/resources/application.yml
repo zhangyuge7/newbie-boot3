@@ -11,37 +11,18 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     # 时区配置
     time-zone: Asia/Shanghai
-  # 数据源配置
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/newbie3?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8&allowMultiQueries=true
-    username: root
-    password: root
-  data:
-    redis:
-      host: 127.0.0.1
-      port: 6379
-      password: 123456
-      timeout: 10s
-      lettuce:
-        pool:
-          max-active: 200
-          max-wait: -1ms
-          max-idle: 10
-          min-idle: 1
   application:
     name: newbie-boot3
     version: 0.0.1
-
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      maxRequestSize: 200MB
+  profiles:
+    active: dev,datasource
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, file:${newbie.file.file-location}
 mybatis-plus:
   global-config:
     banner: false
-
-sa-token:
-  # jwt秘钥
-  jwt-secret-key: bsdasdasifhueuiwyurfewbfjsdafjg
-  # token有效期半小时（单位：秒）
-  timeout: 1800
-# 验证码配置
-captcha:
-  timeout: 60 #超时（单位：秒）

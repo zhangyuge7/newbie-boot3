@@ -20,8 +20,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class SaTokenConfigure implements WebMvcConfigurer {
     public static final String[] STATIC_LIST = {"/**/error","/**/favicon.ico"};
-    // 白名单
-    public static final String[] WHITE_LIST = {"/security/login","/security/initAdmin","/security/imageCaptcha"};
+
+
+    public static final String[] WHITE_LIST = {
+            "/security/login",
+            "/security/initAdmin",
+            "/security/imageCaptcha",
+            "/public/**",
+            "/**/download/**"
+    };
 
     /**
      * 注册拦截器

@@ -1,0 +1,19 @@
+newbie:
+  file:
+    # 本服务器文件保存磁盘地址
+    file-location: D:/project/self/temp/files
+    prefix: public
+    # minio
+    minio:
+      end-point: http://localhost:9000
+      access-key: upaGr2JF0uGD7dxpLzqM
+      secret-key: NZvAgDfqr58OvcUrW9G942kmv4MSX40QTIuxTX0f
+      bucket: files
+sa-token:
+  # jwt秘钥
+  jwt-secret-key: bsdasdasifhueuiwyurfewbfjsdafjg
+  # token有效期半小时（单位：秒）
+  timeout: 1800
+# 验证码配置
+captcha:
+  timeout: 60 #超时（单位：秒）

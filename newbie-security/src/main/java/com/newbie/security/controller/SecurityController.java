@@ -11,6 +11,7 @@ import com.newbie.security.service.CaptchaService;
 import com.newbie.security.service.SecurityService;
 import com.newbie.security.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,9 +34,16 @@ public class SecurityController {
     private final CaptchaService captchaService;
 
     @GetMapping("/imageCaptcha")
-    public R<Captcha> imageCaptcha(){
-        String key = UUID.randomUUID().toString();
-        return R.ok(captchaService.create("captcha:" + key));
+    public R<Captcha> imageCaptcha(String key) {
+
+        /*
+        为了节省资源
+        建议重新生成验证码时，提供之前获取验证码的key
+        * */
+        if (!StringUtils.hasLength(key)) {
+            key = "captcha:" + UUID.randomUUID();
+        }
+        return R.ok(captchaService.create(key));
     }
 
     @PostMapping("/initAdmin")
@@ -70,8 +78,6 @@ public class SecurityController {
     public R<List<Route>> menus() {
         return R.ok(securityService.getMenuList());
     }
-
-
 
 
 }
