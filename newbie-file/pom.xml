@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>newbie-start</artifactId>
+    <artifactId>newbie-file</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -19,19 +19,12 @@
     <dependencies>
         <dependency>
             <groupId>com.newbie</groupId>
-            <artifactId>newbie-security</artifactId>
+            <artifactId>newbie-common</artifactId>
         </dependency>
+        <!--        Minio-->
         <dependency>
-            <groupId>com.newbie</groupId>
-            <artifactId>newbie-system</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.newbie</groupId>
-            <artifactId>newbie-file</artifactId>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
         </dependency>
     </dependencies>
 

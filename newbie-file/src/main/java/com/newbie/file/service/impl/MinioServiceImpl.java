@@ -1,16 +1,19 @@
-package com.newbie.common.service.impl;
+package com.newbie.file.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.util.RandomUtil;
-import com.newbie.common.entity.vo.FileVO;
 import com.newbie.common.exception.NewbieException;
-import com.newbie.common.service.FileService;
+import com.newbie.file.domain.vo.FileVO;
+import com.newbie.file.service.FileService;
 import io.minio.*;
-import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,7 +76,12 @@ public class MinioServiceImpl implements FileService {
         if (fileSuffix != null) {
             newFileName += "." + fileSuffix;
         }
-        return this.prefix + DateUtil.format(new Date(), "/yyyy/MM/dd/") + newFileName;
+        if(StringUtils.hasLength(this.prefix)){
+            return this.prefix + DateUtil.format(new Date(), "/yyyy/MM/dd/") + newFileName;
+        }else{
+            return DateUtil.format(new Date(), "yyyy/MM/dd/") + newFileName;
+        }
+
     }
 
     @Override
@@ -111,24 +119,41 @@ public class MinioServiceImpl implements FileService {
     public void download(String objectName, HttpServletResponse response) {
         if (!this.bucketExists(this.bucket)) throw new NewbieException("桶" + this.bucket + "不存在，请联系管理员");
         response.reset();
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
         try {
-            ServletOutputStream outputStream = response.getOutputStream();
-            GetObjectResponse objectResponse = minioClient.getObject(GetObjectArgs
+            outputStream = response.getOutputStream();
+            inputStream = minioClient.getObject(GetObjectArgs
                     .builder()
                     .bucket(this.bucket)
                     .object(objectName)
                     .build());
             byte[] buf = new byte[1024 * 1024];
             int len;
-            while ((len = objectResponse.read(buf, 0, buf.length)) > 0) {
+            while ((len = inputStream.read(buf, 0, buf.length)) > 0) {
                 outputStream.write(buf, 0, len);
             }
             outputStream.flush();
             outputStream.close();
-            objectResponse.close();
+            inputStream.close();
         }
         catch (Exception e) {
             throw new RuntimeException(e);
+        }finally {
+            if(outputStream!=null){
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if(inputStream!=null){
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 

@@ -1,16 +1,12 @@
-package com.newbie.common.controller;
+package com.newbie.file.controller;
 
-import com.newbie.common.entity.body.FileBody;
-import com.newbie.common.entity.vo.FileVO;
+import com.newbie.file.domain.body.FileBody;
+import com.newbie.file.domain.vo.FileVO;
 import com.newbie.common.exception.NewbieException;
-import com.newbie.common.service.FileService;
+import com.newbie.file.service.FileService;
 import com.newbie.common.util.R;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +23,7 @@ import java.util.List;
  * @Descriptions: 文件控制器
  */
 @RestController
-@RequestMapping("/common")
+@RequestMapping("/file")
 @RequiredArgsConstructor
 public class FileController {
     private final FileService fileService;

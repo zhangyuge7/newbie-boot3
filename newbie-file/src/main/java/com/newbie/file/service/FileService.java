@@ -1,6 +1,6 @@
-package com.newbie.common.service;
+package com.newbie.file.service;
 
-import com.newbie.common.entity.vo.FileVO;
+import com.newbie.file.domain.vo.FileVO;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface FileService {
     /**
-     * 保存文件
+     * 上传文件
      * @param files 文件对象列表
      * @return 文件路径与名称
      */
@@ -25,7 +25,6 @@ public interface FileService {
 
     /**
      * 下载文件
-     * 将输入流中的数据循环写入到响应输出流中，而不是一次性读取到内存
      *
      * @param filePath     文件路径
      * @param response

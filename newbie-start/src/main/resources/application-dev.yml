@@ -1,8 +1,9 @@
 newbie:
   file:
+    scheme: default
+    prefix: public
     # 本服务器文件保存磁盘地址
     file-location: D:/project/self/temp/files
-    prefix: public
     # minio
     minio:
       end-point: http://localhost:9000

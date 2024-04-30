@@ -1,4 +1,4 @@
-package com.newbie.common.entity.body;
+package com.newbie.file.domain.body;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;

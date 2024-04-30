@@ -1,13 +1,14 @@
-package com.newbie.common.service.impl;
+package com.newbie.file.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.util.RandomUtil;
-import com.newbie.common.entity.vo.FileVO;
+import com.newbie.file.domain.vo.FileVO;
 import com.newbie.common.exception.NewbieException;
-import com.newbie.common.service.FileService;
+import com.newbie.file.service.FileService;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -50,7 +51,13 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public List<FileVO> upload(List<MultipartFile> files) {
-        String fileDir = this.prefix + DateUtil.format(new Date(), "/yyyy/MM/dd");
+        String fileDir;
+        if(StringUtils.hasLength(this.prefix)){
+            fileDir = this.prefix + DateUtil.format(new Date(), "/yyyy/MM/dd");
+        }else{
+            fileDir = DateUtil.format(new Date(), "yyyy/MM/dd");
+        }
+
         File targetPath = new File(fileLocation, fileDir);
         if (!targetPath.exists()) {
             if (!targetPath.mkdirs()) {

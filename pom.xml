@@ -18,6 +18,7 @@
         <module>newbie-common</module>
         <module>newbie-start</module>
         <module>newbie-system</module>
+        <module>newbie-file</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -47,6 +48,11 @@
             <dependency>
                 <groupId>com.newbie</groupId>
                 <artifactId>newbie-system</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.newbie</groupId>
+                <artifactId>newbie-file</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <!-- 子模块结束 -->

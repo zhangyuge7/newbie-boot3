@@ -1,4 +1,4 @@
-package com.newbie.common.entity.vo;
+package com.newbie.file.domain.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
