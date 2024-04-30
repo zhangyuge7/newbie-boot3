@@ -19,20 +19,26 @@
     <dependencies>
         <dependency>
             <groupId>com.newbie</groupId>
-            <artifactId>newbie-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.newbie</groupId>
             <artifactId>newbie-system</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.newbie</groupId>
             <artifactId>newbie-file</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

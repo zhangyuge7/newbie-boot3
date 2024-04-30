@@ -1,19 +1,16 @@
 package com.newbie.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 角色表
  * @TableName sys_role
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName(value ="sys_role")
 @Data
 public class SysRole extends BaseEntity {
