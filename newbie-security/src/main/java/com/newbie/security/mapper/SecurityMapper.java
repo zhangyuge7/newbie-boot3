@@ -1,8 +1,10 @@
 package com.newbie.security.mapper;
 
+import com.newbie.common.entity.SysDept;
 import com.newbie.common.entity.SysMenu;
 import com.newbie.common.entity.SysRole;
 import com.newbie.common.entity.SysUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,10 +30,10 @@ public interface SecurityMapper {
      * @param userId 用户ID
      * @return 菜单列表
      */
-    List<SysMenu> selectMenuListByUserId(Long userId);
+    List<SysMenu> selectMenuListByUserId(@Param("userId") Long userId,@Param("menuType") String menuType);
 
     /**
-     * 根据用户ID角色列表
+     * 根据用户ID查询角色列表
      * @param userId 用户ID
      * @return 角色列表
      */
@@ -50,12 +52,6 @@ public interface SecurityMapper {
     List<SysMenu> selectMenuAll();
 
     /**
-     * 根据用户ID查询菜单列表
-     * @return 菜单列表
-     */
-    List<SysMenu> selectMenuByUserId(Long userId);
-
-    /**
      * 根据用户ID查询用户
      * @param userId 用户ID
      * @return 用户
@@ -67,4 +63,11 @@ public interface SecurityMapper {
      * @param sysUser 用户对象
      */
     int updateUserPasswordByUserId(SysUser sysUser);
+
+    /**
+     * 根据部门ID获取部门信息
+     * @param deptId 部门ID
+     * @return
+     */
+    SysDept selectDeptByDeptId(Long deptId);
 }

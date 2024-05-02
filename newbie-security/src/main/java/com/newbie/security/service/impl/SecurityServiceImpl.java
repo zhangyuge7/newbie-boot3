@@ -3,6 +3,7 @@ package com.newbie.security.service.impl;
 import cn.dev33.satoken.stp.SaLoginModel;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
+import com.newbie.common.entity.SysDept;
 import com.newbie.common.entity.SysMenu;
 import com.newbie.common.entity.SysRole;
 import com.newbie.common.entity.SysUser;
@@ -90,13 +91,24 @@ public class SecurityServiceImpl implements SecurityService {
         LoginUser loginUser = new LoginUser();
         BeanUtils.copyProperties(sysUser, loginUser);
 
+        // 根据用户ID查询角色列表
+        List<SysRole> roleList = securityMapper.selectRoleListByUserId(loginUser.getId());
+        loginUser.setRoleList(roleList);
+        // 根据部门ID获取部门信息
+        if(loginUser.getDeptId()!=null){
+            SysDept sysDept = securityMapper.selectDeptByDeptId(loginUser.getDeptId());
+            loginUser.setDept(sysDept);
+        }
+
+
+        // 角色代码列表和权限标识列表
         if (SecurityConstant.ADMIN_USER_NAME.equals(loginUser.getUsername())) {
             List<String> all = new ArrayList<>();
             all.add("*");
             loginUser.setRoles(all);
             loginUser.setPerms(all);
         } else {
-            loginUser.setRoles(this.getRoleCodes(loginUser.getId()));
+            loginUser.setRoles(roleList.stream().map(SysRole::getRoleCode).toList());
             loginUser.setPerms(this.getPermissions(loginUser.getId()));
         }
 
@@ -104,8 +116,11 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     private List<String> getPermissions(Long userId) {
-        List<SysMenu> menuList = securityMapper.selectMenuListByUserId(userId);
-        return menuList.stream().map(SysMenu::getPerm).toList();
+        List<SysMenu> menuList = securityMapper.selectMenuListByUserId(userId,null);
+        return menuList.stream()
+                .map(SysMenu::getPerm)
+                .filter(StringUtils::hasLength)
+                .toList();
     }
 
     private List<String> getRoleCodes(Long userId) {
@@ -139,7 +154,7 @@ public class SecurityServiceImpl implements SecurityService {
             menuList = securityMapper.selectMenuAll();
         } else {
             // 根据用户id获取菜单
-            menuList = securityMapper.selectMenuByUserId(loginUser.getId());
+            menuList = securityMapper.selectMenuListByUserId(loginUser.getId(),"1");
         }
         if (CollectionUtils.isEmpty(menuList)) {
             return new ArrayList<>();

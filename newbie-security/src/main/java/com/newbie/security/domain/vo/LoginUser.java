@@ -1,6 +1,8 @@
 package com.newbie.security.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.newbie.common.entity.SysDept;
+import com.newbie.common.entity.SysRole;
 import com.newbie.common.entity.SysUser;
 import com.newbie.security.constant.SecurityConstant;
 import lombok.Data;
@@ -21,6 +23,8 @@ import java.util.List;
 public class LoginUser extends SysUser {
     private List<String> roles; // 角色代码列表
     private List<String> perms; // 权限标识码列表
+    private List<SysRole> roleList; // 角色列表
+    private SysDept dept; // 部门
 
     /**
      * 是否为admin用户

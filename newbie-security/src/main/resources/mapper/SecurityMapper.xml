@@ -43,15 +43,6 @@
         from sys_user u
         where username = #{username}
     </select>
-    <select id="selectMenuListByUserId" resultType="com.newbie.common.entity.SysMenu">
-        select
-        <include refid="Menu_Column_List"/>
-        from sys_menu m
-        join sys_role_menu rm on m.id = rm.menu_id
-        join sys_user_role ur on rm.role_id = ur.role_id
-        where ur.user_id = #{userId}
-        and status = '1'
-    </select>
     <select id="selectRoleListByUserId" resultType="com.newbie.common.entity.SysRole">
         select
         <include refid="Role_Column_List"/>
@@ -59,6 +50,7 @@
         join sys_user_role ur on r.id = ur.role_id
         where ur.user_id = #{userId}
         and r.status = '1'
+        order by r.sort
     </select>
     <select id="selectMenuAll" resultType="com.newbie.common.entity.SysMenu">
         SELECT
@@ -68,12 +60,15 @@
         AND status = '1'
         order by sort
     </select>
-    <select id="selectMenuByUserId" resultType="com.newbie.common.entity.SysMenu">
+    <select id="selectMenuListByUserId" resultType="com.newbie.common.entity.SysMenu">
         SELECT
         <include refid="Menu_Column_List"/>
         FROM sys_menu m
         JOIN sys_role_menu rm
-        ON m.id = rm.menu_id AND m.type = '1' AND m.status = '1'
+        ON m.id = rm.menu_id  AND m.status = '1'
+        <if test="menuType != null and menuType != ''">
+            AND m.type = #{menuType}
+        </if>
         JOIN sys_user_role ur
         ON ur.role_id = rm.role_id AND ur.user_id = #{userId}
         join sys_role r on r.id = ur.role_id AND r.status = '1'
@@ -84,5 +79,9 @@
         <include refid="User_Column_List"/>
         from sys_user u
         where id = #{userId}
+    </select>
+    <select id="selectDeptByDeptId" resultType="com.newbie.common.entity.SysDept">
+        select * from sys_dept
+        where id=#{deptId}
     </select>
 </mapper>
