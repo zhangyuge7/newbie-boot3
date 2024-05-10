@@ -1,6 +1,5 @@
 package com.newbie.security.service.impl;
 
-import cn.dev33.satoken.stp.SaLoginModel;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import com.newbie.common.entity.SysDept;
@@ -10,16 +9,16 @@ import com.newbie.common.entity.SysUser;
 import com.newbie.common.enums.CommonStatusEnum;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.TreeUtils;
-import com.newbie.security.constant.SecurityConstant;
+import com.newbie.common.constant.SecurityConstant;
 import com.newbie.security.domain.Route;
 import com.newbie.security.domain.RouteMeta;
 import com.newbie.security.domain.body.LoginBody;
 import com.newbie.security.domain.body.PasswordBody;
-import com.newbie.security.domain.vo.LoginUser;
+import com.newbie.common.domain.LoginUser;
 import com.newbie.security.mapper.SecurityMapper;
 import com.newbie.security.service.CaptchaService;
 import com.newbie.security.service.SecurityService;
-import com.newbie.security.util.SecurityUtils;
+import com.newbie.common.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -73,18 +72,8 @@ public class SecurityServiceImpl implements SecurityService {
 
         // 构建登录数据
         LoginUser loginUser = this.builderLoginUser(sysUser);
-        SaLoginModel loginModel = SaLoginModel
-                .create()
-                .setExtra(SecurityConstant.SYS_USER_KEY, loginUser)
-                .build();
-
-        // token有效期
-        if (loginBody.getTokenTimeout() != null) {
-            loginModel.setTimeout(loginBody.getTokenTimeout());
-        }
         // 登录
-        StpUtil.login(loginUser.getId(), loginModel);
-        return StpUtil.getTokenInfo();
+        return SecurityUtils.login(loginUser,loginBody.getTokenTimeout());
     }
 
     private LoginUser builderLoginUser(SysUser sysUser) {

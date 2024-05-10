@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 public class ImageCaptchaServiceImpl implements CaptchaService {
     private final RedisTemplate<String, Object> redisTemplate;
     private final CodeGenerator codeGenerator = new MathGenerator(1);
-    @Value("${captcha.timeout}")
+    @Value("${newbie.captcha.timeout}")
     private Long timeout;
 
     @Override

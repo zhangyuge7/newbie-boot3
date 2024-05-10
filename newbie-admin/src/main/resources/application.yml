@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  main:
+    # 相同的bean是否覆盖
+    allow-bean-definition-overriding: true
+  jackson:
+    # 日期格式统一配置
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 时区配置
+    time-zone: Asia/Shanghai
+  application:
+    name: NewbieAdmin
+    version: 0.0.1
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      maxRequestSize: 200MB
+  profiles:
+    active: dev,datasource
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, file:${newbie.file.file-location}
+mybatis-plus:
+  global-config:
+    banner: false

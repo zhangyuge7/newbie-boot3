@@ -1,8 +1,8 @@
 package com.newbie.security.config;
 
 import cn.dev33.satoken.stp.StpInterface;
-import com.newbie.security.domain.vo.LoginUser;
-import com.newbie.security.util.SecurityUtils;
+import com.newbie.common.domain.LoginUser;
+import com.newbie.common.util.SecurityUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

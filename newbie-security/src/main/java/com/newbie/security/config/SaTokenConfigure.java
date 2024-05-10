@@ -4,6 +4,8 @@ import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.dev33.satoken.jwt.StpLogicJwtForSimple;
 import cn.dev33.satoken.stp.StpLogic;
 import cn.dev33.satoken.stp.StpUtil;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,17 +20,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Descriptions: SaToken配置
  */
 @Configuration
+@Data
+@ConfigurationProperties(prefix = "sa-token")
 public class SaTokenConfigure implements WebMvcConfigurer {
-    public static final String[] STATIC_LIST = {"/**/error","/**/favicon.ico"};
+    public static final String[] STATIC_LIST = {"/**/error", "/**/favicon.ico"};
 
-
-    public static final String[] WHITE_LIST = {
-            "/security/login",
-            "/security/initAdmin",
-            "/security/imageCaptcha",
-            "/public/**",
-            "/**/download/**"
-    };
+    private String[] whiteList = {"/security/login", "/security/initAdmin", "/security/imageCaptcha", "/public/**", "/file/download"};
 
     /**
      * 注册拦截器
@@ -38,10 +35,10 @@ public class SaTokenConfigure implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 注册 Sa-Token 拦截器
-        registry.addInterceptor(new SaInterceptor(handler ->  StpUtil.checkLogin()))
+        registry.addInterceptor(new SaInterceptor(handler -> StpUtil.checkLogin()))
                 .addPathPatterns("/**")
                 .excludePathPatterns(STATIC_LIST)
-                .excludePathPatterns(WHITE_LIST);
+                .excludePathPatterns(this.whiteList);
     }
 
     // Sa-Token 整合 jwt

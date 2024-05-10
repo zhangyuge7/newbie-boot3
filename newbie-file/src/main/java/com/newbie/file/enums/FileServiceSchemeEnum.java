@@ -9,7 +9,7 @@ package com.newbie.file.enums;
  * @Descriptions: 文件服务方案枚举
  */
 public enum FileServiceSchemeEnum {
-    DEFAULT
+    DEFAULT // 服务器本地磁盘
     ,
-    MINIO
+    MINIO // 使用minio
 }

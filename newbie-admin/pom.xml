@@ -9,28 +9,40 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>newbie-security</artifactId>
+    <artifactId>newbie-admin</artifactId>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.newbie</groupId>
-            <artifactId>newbie-common</artifactId>
+            <artifactId>newbie-system</artifactId>
         </dependency>
-        <!-- Sa-Token 整合 Redis （使用 jdk 默认序列化方式） -->
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-redis</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
-        <!-- Sa-Token 整合 jwt -->
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-jwt</artifactId>
+            <groupId>com.newbie</groupId>
+            <artifactId>newbie-file</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.newbie</groupId>
+            <artifactId>newbie-security</artifactId>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

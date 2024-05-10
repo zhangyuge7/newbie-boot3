@@ -14,11 +14,11 @@
     <name>newbie-boot3</name>
     <description>newbie-boot3</description>
     <modules>
-        <module>newbie-security</module>
         <module>newbie-common</module>
-        <module>newbie-start</module>
+        <module>newbie-security</module>
         <module>newbie-system</module>
         <module>newbie-file</module>
+        <module>newbie-admin</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -42,7 +42,7 @@
             </dependency>
             <dependency>
                 <groupId>com.newbie</groupId>
-                <artifactId>newbie-start</artifactId>
+                <artifactId>newbie-admin</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
