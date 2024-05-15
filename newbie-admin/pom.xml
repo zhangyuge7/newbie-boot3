@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>newbie-admin</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
