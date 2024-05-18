@@ -3,9 +3,8 @@ package com.newbie.system.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.newbie.common.entity.SysUser;
-import com.newbie.common.entity.SysUserRole;
-import com.newbie.system.domain.body.SysUserBody;
+import com.newbie.common.domain.entity.SysUser;
+import com.newbie.common.domain.entity.SysUserRole;
 
 import java.util.List;
 

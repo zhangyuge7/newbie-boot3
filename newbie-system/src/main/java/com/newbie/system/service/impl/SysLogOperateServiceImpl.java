@@ -2,7 +2,7 @@ package com.newbie.system.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.newbie.common.entity.SysLogOperate;
+import com.newbie.common.domain.entity.SysLogOperate;
 import com.newbie.system.mapper.SysLogOperateMapper;
 import com.newbie.system.service.SysLogOperateService;
 import org.springframework.stereotype.Service;

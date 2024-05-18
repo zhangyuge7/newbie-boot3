@@ -2,10 +2,10 @@ package com.newbie.security.service.impl;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
-import com.newbie.common.entity.SysDept;
-import com.newbie.common.entity.SysMenu;
-import com.newbie.common.entity.SysRole;
-import com.newbie.common.entity.SysUser;
+import com.newbie.common.domain.entity.SysDept;
+import com.newbie.common.domain.entity.SysMenu;
+import com.newbie.common.domain.entity.SysRole;
+import com.newbie.common.domain.entity.SysUser;
 import com.newbie.common.enums.CommonStatusEnum;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.TreeUtils;

@@ -1,12 +1,10 @@
 package com.newbie.system.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.newbie.common.entity.SysUser;
-import com.newbie.common.entity.SysUserRole;
-import com.newbie.system.domain.body.SysUserBody;
+import com.newbie.common.domain.entity.SysUser;
+import com.newbie.common.domain.entity.SysUserRole;
 import com.newbie.system.mapper.SysUserMapper;
 import com.newbie.system.mapper.SysUserRoleMapper;
 import com.newbie.system.service.SysUserRoleService;
@@ -15,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @author 39869

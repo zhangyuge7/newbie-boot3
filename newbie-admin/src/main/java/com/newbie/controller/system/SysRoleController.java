@@ -3,7 +3,7 @@ package com.newbie.controller.system;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.newbie.common.entity.SysRole;
+import com.newbie.common.domain.entity.SysRole;
 import com.newbie.common.util.R;
 import com.newbie.system.service.SysRoleService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,8 @@ public class SysRoleController {
     private final SysRoleService sysRoleService;
 
     @SaCheckPermission("sys.role")
-    @GetMapping("/page")
-    public R<IPage<SysRole>> page(Page<SysRole> page, SysRole sysRole) {
+    @GetMapping("/paging")
+    public R<IPage<SysRole>> paging(Page<SysRole> page, SysRole sysRole) {
         String roleName = sysRole.getRoleName();
         String roleCode = sysRole.getRoleCode();
         String status = sysRole.getStatus();

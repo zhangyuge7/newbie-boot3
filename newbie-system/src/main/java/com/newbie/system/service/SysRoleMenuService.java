@@ -1,7 +1,7 @@
 package com.newbie.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.newbie.common.entity.SysRoleMenu;
+import com.newbie.common.domain.entity.SysRoleMenu;
 
 /**
  * @author 39869

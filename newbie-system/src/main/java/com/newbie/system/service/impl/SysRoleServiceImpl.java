@@ -2,9 +2,9 @@ package com.newbie.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.newbie.common.entity.SysRole;
-import com.newbie.common.entity.SysRoleMenu;
-import com.newbie.common.entity.SysUserRole;
+import com.newbie.common.domain.entity.SysRole;
+import com.newbie.common.domain.entity.SysRoleMenu;
+import com.newbie.common.domain.entity.SysUserRole;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.system.mapper.SysRoleMapper;
 import com.newbie.system.mapper.SysRoleMenuMapper;

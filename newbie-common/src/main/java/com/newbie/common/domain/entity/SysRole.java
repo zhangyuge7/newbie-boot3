@@ -1,4 +1,4 @@
-package com.newbie.common.entity;
+package com.newbie.common.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -7,13 +7,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 部门表
- * @TableName sys_dept
+ * 角色表
+ * @TableName sys_role
  */
 @EqualsAndHashCode(callSuper = true)
-@TableName(value ="sys_dept")
+@TableName(value ="sys_role")
 @Data
-public class SysDept extends BaseEntity{
+public class SysRole extends BaseEntity {
     /**
      * 主键
      */
@@ -21,50 +21,24 @@ public class SysDept extends BaseEntity{
     private Long id;
 
     /**
-     * 部门名称
+     * 角色名称
      */
-    private String deptName;
-
+    private String roleName;
 
     /**
-     * 父级id
+     * 角色编码
      */
-    private Long parentId;
+    private String roleCode;
 
     /**
-     * 祖级列表
-     */
-    private String ancestors;
-
-    /**
-     * 显示顺序
+     * 排序顺序
      */
     private Integer sort;
 
     /**
-     * 负责人
-     */
-    private String leader;
-
-    /**
-     * 联系电话
-     */
-    private String phone;
-
-    /**
-     * 邮箱
-     */
-    private String email;
-
-    /**
-     * 状态（1正常 0停用）
+     * 角色状态（1正常 0停用）
      */
     private String status;
-
-    /**
-     * 层级
-     */
-    private Integer tier;
 
     /**
      * 首页路由地址

@@ -1,7 +1,7 @@
 package com.newbie.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.newbie.common.entity.SysRole;
+import com.newbie.common.domain.entity.SysRole;
 
 import java.util.List;
 

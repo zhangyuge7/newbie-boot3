@@ -4,7 +4,7 @@ package com.newbie.system.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.newbie.common.entity.SysUser;
+import com.newbie.common.domain.entity.SysUser;
 import org.apache.ibatis.annotations.Param;
 
 /**

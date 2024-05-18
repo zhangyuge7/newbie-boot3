@@ -2,7 +2,7 @@ package com.newbie.system.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.newbie.common.entity.SysMenu;
+import com.newbie.common.domain.entity.SysMenu;
 import com.newbie.system.domain.vo.SysMenuVO;
 
 import java.util.List;

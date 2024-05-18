@@ -1,7 +1,7 @@
 package com.newbie.common.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.newbie.common.entity.SysUser;
+import com.newbie.common.domain.entity.SysUser;
 import com.newbie.common.util.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;

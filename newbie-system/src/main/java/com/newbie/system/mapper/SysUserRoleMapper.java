@@ -2,7 +2,7 @@ package com.newbie.system.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.newbie.common.entity.SysUserRole;
+import com.newbie.common.domain.entity.SysUserRole;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

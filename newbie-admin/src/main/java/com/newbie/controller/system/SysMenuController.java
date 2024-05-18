@@ -1,7 +1,7 @@
 package com.newbie.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import com.newbie.common.entity.SysMenu;
+import com.newbie.common.domain.entity.SysMenu;
 import com.newbie.common.util.R;
 import com.newbie.system.domain.vo.SysMenuVO;
 import com.newbie.system.service.SysMenuService;

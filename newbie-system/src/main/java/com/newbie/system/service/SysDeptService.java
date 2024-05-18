@@ -1,6 +1,6 @@
 package com.newbie.system.service;
 
-import com.newbie.common.entity.SysDept ;
+import com.newbie.common.domain.entity.SysDept;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.newbie.system.domain.vo.SysDeptVO;
 

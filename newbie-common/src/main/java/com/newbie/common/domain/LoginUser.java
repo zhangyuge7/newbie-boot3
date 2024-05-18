@@ -1,9 +1,9 @@
 package com.newbie.common.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.newbie.common.entity.SysDept;
-import com.newbie.common.entity.SysRole;
-import com.newbie.common.entity.SysUser;
+import com.newbie.common.domain.entity.SysDept;
+import com.newbie.common.domain.entity.SysRole;
+import com.newbie.common.domain.entity.SysUser;
 import com.newbie.common.constant.SecurityConstant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

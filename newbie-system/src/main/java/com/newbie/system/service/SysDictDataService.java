@@ -1,6 +1,6 @@
 package com.newbie.system.service;
 
-import com.newbie.common.entity.SysDictData;
+import com.newbie.common.domain.entity.SysDictData;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

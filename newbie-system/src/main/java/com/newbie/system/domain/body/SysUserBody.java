@@ -1,6 +1,6 @@
 package com.newbie.system.domain.body;
 
-import com.newbie.common.entity.SysUser;
+import com.newbie.common.domain.entity.SysUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,24 +1,19 @@
-package com.newbie.common.entity;
+package com.newbie.common.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户和角色关系表
- * @TableName sys_user_role
+ * 角色菜单关系表
+ * @TableName sys_role_menu
  */
 @EqualsAndHashCode(callSuper = true)
-@TableName(value ="sys_user_role")
+@TableName(value ="sys_role_menu")
 @Data
-public class SysUserRole extends BaseEntity {
+public class SysRoleMenu extends BaseEntity {
     /**
      * 主键
      */
@@ -26,13 +21,12 @@ public class SysUserRole extends BaseEntity {
     private Long id;
 
     /**
-     * 用户ID
-     */
-    private Long userId;
-
-    /**
      * 角色ID
      */
     private Long roleId;
 
+    /**
+     * 菜单ID
+     */
+    private Long menuId;
 }

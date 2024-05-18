@@ -2,7 +2,7 @@ package com.newbie.weblog.aspect;
 
 import cn.hutool.core.thread.ThreadUtil;
 import com.newbie.common.domain.LoginUser;
-import com.newbie.common.entity.SysLogOperate;
+import com.newbie.common.domain.entity.SysLogOperate;
 import com.newbie.common.util.IpUtils;
 import com.newbie.common.util.SecurityUtils;
 import com.newbie.system.service.SysLogOperateService;

@@ -1,4 +1,4 @@
-package com.newbie.common.entity;
+package com.newbie.common.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 

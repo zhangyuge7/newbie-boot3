@@ -3,7 +3,7 @@ package com.newbie.controller.system;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.newbie.common.entity.SysUser;
+import com.newbie.common.domain.entity.SysUser;
 import com.newbie.common.util.R;
 import com.newbie.security.domain.body.PasswordBody;
 import com.newbie.system.service.SysUserService;
@@ -19,8 +19,8 @@ import java.util.Arrays;
 public class SysUserController {
     private final SysUserService sysUserService;
     @SaCheckPermission("sys.user")
-    @GetMapping("/page")
-    public R<IPage<SysUser>> page(Page<SysUser> page, SysUser sysUser) {
+    @GetMapping("/paging")
+    public R<IPage<SysUser>> paging(Page<SysUser> page, SysUser sysUser) {
         IPage<SysUser> iPage = sysUserService.queryPage(page, sysUser);
         return R.ok(iPage);
     }

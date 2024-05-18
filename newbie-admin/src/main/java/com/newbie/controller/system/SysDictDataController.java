@@ -2,7 +2,7 @@ package com.newbie.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.newbie.common.entity.SysDictData;
+import com.newbie.common.domain.entity.SysDictData;
 import com.newbie.common.util.R;
 import com.newbie.system.service.SysDictDataService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +21,8 @@ public class SysDictDataController {
     private final SysDictDataService sysDictDataService;
 
     @SaCheckPermission("sys.dict.data")
-    @GetMapping("/page")
-    public R<Page<SysDictData>> page(Page<SysDictData> page, SysDictData sysDictData) {
+    @GetMapping("/paging")
+    public R<Page<SysDictData>> paging(Page<SysDictData> page, SysDictData sysDictData) {
         Long typeId = sysDictData.getTypeId();
         String label = sysDictData.getLabel();
         String status = sysDictData.getStatus();

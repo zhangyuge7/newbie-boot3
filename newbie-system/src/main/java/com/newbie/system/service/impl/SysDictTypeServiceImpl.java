@@ -2,8 +2,8 @@ package com.newbie.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.newbie.common.entity.SysDictData;
-import com.newbie.common.entity.SysDictType;
+import com.newbie.common.domain.entity.SysDictData;
+import com.newbie.common.domain.entity.SysDictType;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.system.mapper.SysDictDataMapper;
 import com.newbie.system.mapper.SysDictTypeMapper;

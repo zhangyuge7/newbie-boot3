@@ -1,6 +1,6 @@
 package com.newbie.system.domain.vo;
 
-import com.newbie.common.entity.SysMenu;
+import com.newbie.common.domain.entity.SysMenu;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

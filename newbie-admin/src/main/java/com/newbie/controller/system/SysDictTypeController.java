@@ -2,7 +2,7 @@ package com.newbie.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.newbie.common.entity.SysDictType;
+import com.newbie.common.domain.entity.SysDictType;
 import com.newbie.common.util.R;
 import com.newbie.system.service.SysDictTypeService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,8 @@ public class SysDictTypeController {
     private final SysDictTypeService sysDictTypeService;
 
     @SaCheckPermission("sys.dict.type")
-    @GetMapping("/page")
-    public R<Page<SysDictType>> page(Page<SysDictType> page, SysDictType sysDictType) {
+    @GetMapping("/paging")
+    public R<Page<SysDictType>> paging(Page<SysDictType> page, SysDictType sysDictType) {
         String typeName = sysDictType.getTypeName();
         String typeCode = sysDictType.getTypeCode();
         String status = sysDictType.getStatus();

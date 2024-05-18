@@ -2,7 +2,7 @@ package com.newbie.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.newbie.common.entity.SysRoleMenu;
+import com.newbie.common.domain.entity.SysRoleMenu;
 import com.newbie.system.mapper.SysRoleMenuMapper;
 import com.newbie.system.service.SysRoleMenuService;
 import org.springframework.stereotype.Service;

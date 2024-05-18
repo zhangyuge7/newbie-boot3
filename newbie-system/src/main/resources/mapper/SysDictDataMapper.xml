@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newbie.system.mapper.SysDictDataMapper">
 
-    <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysDictData">
+    <resultMap id="BaseResultMap" type="com.newbie.common.domain.entity.SysDictData">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="label" column="label" jdbcType="VARCHAR"/>
             <result property="value" column="value" jdbcType="VARCHAR"/>
@@ -42,7 +42,7 @@
         WHERE id = #{id}
     </update>
     <!--    根据字典类型编码查询字典数据-->
-    <select id="getDictDataListByTypeCode" resultType="com.newbie.common.entity.SysDictData">
+    <select id="getDictDataListByTypeCode" resultType="com.newbie.common.domain.entity.SysDictData">
         SELECT
         <include refid="Base_Column_List"/>
         FROM sys_dict_data t

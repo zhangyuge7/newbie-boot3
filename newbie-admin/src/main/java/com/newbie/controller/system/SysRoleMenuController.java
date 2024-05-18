@@ -2,7 +2,7 @@ package com.newbie.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.newbie.common.entity.SysRoleMenu;
+import com.newbie.common.domain.entity.SysRoleMenu;
 import com.newbie.common.util.R;
 import com.newbie.system.domain.body.SysRoleMenuBody;
 import com.newbie.system.service.SysRoleMenuService;

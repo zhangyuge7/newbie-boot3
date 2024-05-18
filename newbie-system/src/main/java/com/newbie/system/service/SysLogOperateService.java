@@ -1,7 +1,7 @@
 package com.newbie.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.newbie.common.entity.SysLogOperate;
+import com.newbie.common.domain.entity.SysLogOperate;
 
 /**
 * @author 39869

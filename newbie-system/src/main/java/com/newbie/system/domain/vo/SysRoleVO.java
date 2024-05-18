@@ -1,6 +1,6 @@
 package com.newbie.system.domain.vo;
 
-import com.newbie.common.entity.SysRole;
+import com.newbie.common.domain.entity.SysRole;
 import lombok.Getter;
 import lombok.Setter;
 

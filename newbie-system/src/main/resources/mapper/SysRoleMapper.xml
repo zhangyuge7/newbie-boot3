@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newbie.system.mapper.SysRoleMapper">
 
-    <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysRole">
+    <resultMap id="BaseResultMap" type="com.newbie.common.domain.entity.SysRole">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
         <result property="roleCode" column="role_code" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
         r.remark,r.create_by,r.create_time,
         r.update_by,r.update_time
     </sql>
-    <select id="selectListByUserId" resultType="com.newbie.common.entity.SysRole">
+    <select id="selectListByUserId" resultType="com.newbie.common.domain.entity.SysRole">
         select
         <include refid="Base_Column_List"/>
         from sys_role r

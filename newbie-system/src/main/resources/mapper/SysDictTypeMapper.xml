@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newbie.system.mapper.SysDictTypeMapper">
 
-    <resultMap id="BaseResultMap" type="com.newbie.common.entity.SysDictType">
+    <resultMap id="BaseResultMap" type="com.newbie.common.domain.entity.SysDictType">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
             <result property="typeCode" column="type_code" jdbcType="VARCHAR"/>

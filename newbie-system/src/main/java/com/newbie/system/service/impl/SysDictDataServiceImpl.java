@@ -1,7 +1,7 @@
 package com.newbie.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.newbie.common.entity.SysDictData;
+import com.newbie.common.domain.entity.SysDictData;
 import com.newbie.system.service.SysDictDataService;
 import com.newbie.system.mapper.SysDictDataMapper;
 import lombok.RequiredArgsConstructor;

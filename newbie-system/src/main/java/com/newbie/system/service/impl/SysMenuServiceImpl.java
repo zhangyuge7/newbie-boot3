@@ -2,8 +2,8 @@ package com.newbie.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.newbie.common.entity.SysMenu;
-import com.newbie.common.entity.SysRoleMenu;
+import com.newbie.common.domain.entity.SysMenu;
+import com.newbie.common.domain.entity.SysRoleMenu;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.TreeUtils;
 import com.newbie.system.constant.SysMenuConstant;

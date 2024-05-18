@@ -1,7 +1,7 @@
 package com.newbie.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.newbie.common.entity.SysDictData;
+import com.newbie.common.domain.entity.SysDictData;
 
 import java.util.List;
 

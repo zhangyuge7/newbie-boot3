@@ -37,13 +37,13 @@
         set password = #{password}
         where id = #{id}
     </update>
-    <select id="selectUserByUsername" resultType="com.newbie.common.entity.SysUser">
+    <select id="selectUserByUsername" resultType="com.newbie.common.domain.entity.SysUser">
         select
         <include refid="User_Column_List"/>
         from sys_user u
         where username = #{username}
     </select>
-    <select id="selectRoleListByUserId" resultType="com.newbie.common.entity.SysRole">
+    <select id="selectRoleListByUserId" resultType="com.newbie.common.domain.entity.SysRole">
         select
         <include refid="Role_Column_List"/>
         from sys_role r
@@ -52,7 +52,7 @@
         and r.status = '1'
         order by r.sort
     </select>
-    <select id="selectMenuAll" resultType="com.newbie.common.entity.SysMenu">
+    <select id="selectMenuAll" resultType="com.newbie.common.domain.entity.SysMenu">
         SELECT
         <include refid="Menu_Column_List" />
         FROM sys_menu m
@@ -60,7 +60,7 @@
         AND status = '1'
         order by sort
     </select>
-    <select id="selectMenuListByUserId" resultType="com.newbie.common.entity.SysMenu">
+    <select id="selectMenuListByUserId" resultType="com.newbie.common.domain.entity.SysMenu">
         SELECT
         <include refid="Menu_Column_List"/>
         FROM sys_menu m
@@ -74,13 +74,13 @@
         join sys_role r on r.id = ur.role_id AND r.status = '1'
         ORDER BY m.sort
     </select>
-    <select id="selectUserByUserId" resultType="com.newbie.common.entity.SysUser">
+    <select id="selectUserByUserId" resultType="com.newbie.common.domain.entity.SysUser">
         select
         <include refid="User_Column_List"/>
         from sys_user u
         where id = #{userId}
     </select>
-    <select id="selectDeptByDeptId" resultType="com.newbie.common.entity.SysDept">
+    <select id="selectDeptByDeptId" resultType="com.newbie.common.domain.entity.SysDept">
         select * from sys_dept
         where id=#{deptId}
     </select>

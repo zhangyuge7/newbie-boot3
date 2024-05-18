@@ -1,9 +1,9 @@
 package com.newbie.security.mapper;
 
-import com.newbie.common.entity.SysDept;
-import com.newbie.common.entity.SysMenu;
-import com.newbie.common.entity.SysRole;
-import com.newbie.common.entity.SysUser;
+import com.newbie.common.domain.entity.SysDept;
+import com.newbie.common.domain.entity.SysMenu;
+import com.newbie.common.domain.entity.SysRole;
+import com.newbie.common.domain.entity.SysUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

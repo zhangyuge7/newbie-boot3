@@ -1,7 +1,7 @@
 package com.newbie.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import com.newbie.common.entity.SysDept;
+import com.newbie.common.domain.entity.SysDept;
 import com.newbie.common.util.R;
 import com.newbie.system.domain.vo.SysDeptVO;
 import com.newbie.system.service.SysDeptService;
