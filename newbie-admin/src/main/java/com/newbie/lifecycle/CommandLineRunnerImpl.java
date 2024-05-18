@@ -2,6 +2,9 @@ package com.newbie.lifecycle;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.web.embedded.tomcat.TomcatWebServer;
+import org.springframework.boot.web.server.WebServer;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +25,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = environment.getProperty("server.port");
         String property = environment.getProperty("server.servlet.context-path");

@@ -1,4 +1,8 @@
 newbie:
+  # 日志
+  weblog:
+    default-strategy: all_api
+    enable: true
   # 验证码配置
   captcha:
     timeout: 60 #超时（单位：秒）

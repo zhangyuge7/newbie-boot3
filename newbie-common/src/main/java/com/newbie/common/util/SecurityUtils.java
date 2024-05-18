@@ -78,4 +78,13 @@ public final class SecurityUtils {
         return StpUtil.getTokenInfo();
     }
 
+    /**
+     * 登录
+     * @param loginUser 登录用户对象
+     * @return SaTokenInfo
+     */
+    public static SaTokenInfo login(LoginUser loginUser){
+       return SecurityUtils.login(loginUser,null);
+    }
+
 }

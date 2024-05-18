@@ -14,11 +14,18 @@
     <name>newbie-boot3</name>
     <description>newbie-boot3</description>
     <modules>
+        <!-- 通用 -->
         <module>newbie-common</module>
+        <!-- 认证鉴权 -->
         <module>newbie-security</module>
+        <!-- 系统管理 -->
         <module>newbie-system</module>
+        <!-- 文件服务 -->
         <module>newbie-file</module>
+        <!-- 后台接口 -->
         <module>newbie-admin</module>
+        <!-- web日志服务  -->
+        <module>newbie-weblog</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -26,6 +33,7 @@
         <satoken.version>1.37.0</satoken.version>
         <hutool.version>5.8.26</hutool.version>
         <minio.version>8.4.3</minio.version>
+        <newbie.version>0.0.1-SNAPSHOT</newbie.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -33,27 +41,32 @@
             <dependency>
                 <groupId>com.newbie</groupId>
                 <artifactId>newbie-security</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${newbie.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.newbie</groupId>
                 <artifactId>newbie-common</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${newbie.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.newbie</groupId>
                 <artifactId>newbie-admin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${newbie.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.newbie</groupId>
                 <artifactId>newbie-system</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${newbie.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.newbie</groupId>
                 <artifactId>newbie-file</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${newbie.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.newbie</groupId>
+                <artifactId>newbie-weblog</artifactId>
+                <version>${newbie.version}</version>
             </dependency>
             <!-- 子模块结束 -->
             <!--MybatisPlus-->

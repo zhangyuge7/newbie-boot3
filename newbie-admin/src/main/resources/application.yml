@@ -2,6 +2,7 @@ server:
   port: 8080
   servlet:
     context-path: /
+  shutdown: graceful
 spring:
   main:
     # 相同的bean是否覆盖
