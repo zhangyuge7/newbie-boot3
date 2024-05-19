@@ -1,6 +1,7 @@
 package com.newbie.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.domain.entity.SysDictData;
 import com.newbie.common.util.R;
@@ -22,7 +23,7 @@ public class SysDictDataController {
 
     @SaCheckPermission("sys.dict.data")
     @GetMapping("/paging")
-    public R<Page<SysDictData>> paging(Page<SysDictData> page, SysDictData sysDictData) {
+    public R<IPage<SysDictData>> paging(Page<SysDictData> page, SysDictData sysDictData) {
         Long typeId = sysDictData.getTypeId();
         String label = sysDictData.getLabel();
         String status = sysDictData.getStatus();
