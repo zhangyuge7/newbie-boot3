@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.newbie</groupId>
-            <artifactId>newbie-common</artifactId>
+            <artifactId>newbie-system</artifactId>
         </dependency>
         <!-- Sa-Token 整合 Redis （使用 jdk 默认序列化方式） -->
         <dependency>

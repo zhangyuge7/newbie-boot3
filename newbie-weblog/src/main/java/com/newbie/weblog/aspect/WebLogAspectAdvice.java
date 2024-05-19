@@ -6,6 +6,7 @@ import com.newbie.common.domain.entity.SysLogOperate;
 import com.newbie.common.util.IpUtils;
 import com.newbie.common.util.SecurityUtils;
 import com.newbie.system.service.SysLogOperateService;
+import com.newbie.weblog.config.WebLogConfigProperties;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -27,12 +28,15 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class WebLogAspectAdvice {
     private final SysLogOperateService sysLogOperateService;
+    private final WebLogConfigProperties webLogConfigProperties;
 
     public Object doAroundAdvice(ProceedingJoinPoint point)  throws Throwable{
         long beginTime = System.currentTimeMillis();
         try {
             Object proceed = point.proceed();
-            this.saveSysLog(point, beginTime, null);
+            if (!webLogConfigProperties.getOnlyError()) {
+                this.saveSysLog(point, beginTime, null);
+            }
             return proceed;
         } catch (Throwable throwable) {
             this.saveSysLog(point, beginTime, throwable);
