@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 18/05/2024 20:55:53
+ Date: 20/05/2024 18:44:14
 */
 
 SET NAMES utf8mb4;
@@ -126,24 +126,36 @@ INSERT INTO `sys_dict_type` VALUES (38, '元素类型', 'eleType', '1', 4, '元�
 DROP TABLE IF EXISTS `sys_log_login`;
 CREATE TABLE `sys_log_login`  (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `user_id` bigint NULL DEFAULT NULL COMMENT '用户ID',
-  `login_time` datetime NULL DEFAULT NULL COMMENT '登录时间',
-  `login_status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登录状态 1 成功，0 失败',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '状态 1 成功，0 失败',
   `login_ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登录IP',
-  `device_info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登录设备',
   `login_method` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登录方式',
-  `client_type` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '客户端类型：\'Web\', \'iOS\', \'Android\', \'API\', \'Other\'',
-  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登录地点',
-  `failure_reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '失败原因',
-  `os` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '操作系统',
+  `fail_reason` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '失败原因',
+  `os` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '操作系统',
   `browser` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '浏览器信息',
   `cost_time` bigint NULL DEFAULT NULL COMMENT '消耗时长，毫秒',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `login_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '1 登入，0 登出',
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统登录日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统登录日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log_login
 -- ----------------------------
+INSERT INTO `sys_log_login` VALUES (23, '1', '192.168.50.45', NULL, NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 536, '2024-05-20 17:14:09', '1', NULL);
+INSERT INTO `sys_log_login` VALUES (24, '1', '192.168.50.45', NULL, NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-20 17:14:12', '0', NULL);
+INSERT INTO `sys_log_login` VALUES (25, '1', '192.168.2.102', NULL, NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 83, '2024-05-20 17:58:50', '1', NULL);
+INSERT INTO `sys_log_login` VALUES (26, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 188, '2024-05-20 18:09:34', '1', NULL);
+INSERT INTO `sys_log_login` VALUES (27, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 101, '2024-05-20 18:18:13', '1', NULL);
+INSERT INTO `sys_log_login` VALUES (28, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 566, '2024-05-20 18:20:17', '1', NULL);
+INSERT INTO `sys_log_login` VALUES (29, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 8, '2024-05-20 18:20:19', '0', NULL);
+INSERT INTO `sys_log_login` VALUES (30, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 673, '2024-05-20 18:36:45', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (31, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 10, '2024-05-20 18:36:59', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (32, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 78, '2024-05-20 18:37:08', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (33, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-20 18:37:13', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (34, '0', '192.168.2.102', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 300, '2024-05-20 18:38:16', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (35, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1276, '2024-05-20 18:39:01', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (36, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 24, '2024-05-20 18:42:48', '0', 'admin');
 
 -- ----------------------------
 -- Table structure for sys_log_operate
@@ -161,11 +173,41 @@ CREATE TABLE `sys_log_operate`  (
   `cost_time` bigint NULL DEFAULT NULL COMMENT '消耗时长，毫秒',
   `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 80 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统操作日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 846 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统操作日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log_operate
 -- ----------------------------
+INSERT INTO `sys_log_operate` VALUES (616, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 15, '2024-05-19 21:11:43');
+INSERT INTO `sys_log_operate` VALUES (617, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/deleteBatch', 'com.newbie.controller.system.SysLogOperateController.deleteBatch', 'POST', 14, '2024-05-19 21:11:46');
+INSERT INTO `sys_log_operate` VALUES (618, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-19 21:11:46');
+INSERT INTO `sys_log_operate` VALUES (619, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 6, '2024-05-19 21:11:51');
+INSERT INTO `sys_log_operate` VALUES (620, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-19 21:11:54');
+INSERT INTO `sys_log_operate` VALUES (621, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 0, '2024-05-19 21:12:11');
+INSERT INTO `sys_log_operate` VALUES (622, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-19 21:12:12');
+INSERT INTO `sys_log_operate` VALUES (623, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 19, '2024-05-19 21:12:37');
+INSERT INTO `sys_log_operate` VALUES (624, 'admin', '1', NULL, '192.168.2.104', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 12, '2024-05-19 21:12:51');
+INSERT INTO `sys_log_operate` VALUES (625, 'admin', '1', NULL, '192.168.2.104', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 25, '2024-05-19 21:12:51');
+INSERT INTO `sys_log_operate` VALUES (626, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-19 21:12:52');
+INSERT INTO `sys_log_operate` VALUES (627, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 7, '2024-05-19 21:13:05');
+INSERT INTO `sys_log_operate` VALUES (628, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-19 21:13:07');
+INSERT INTO `sys_log_operate` VALUES (629, 'admin', '1', NULL, '192.168.2.104', '/security/userInfo', 'com.newbie.controller.security.SecurityController.userInfo', 'GET', 347, '2024-05-19 21:19:44');
+INSERT INTO `sys_log_operate` VALUES (630, 'admin', '1', NULL, '192.168.2.104', '/security/menus', 'com.newbie.controller.security.SecurityController.menus', 'GET', 154, '2024-05-19 21:19:45');
+INSERT INTO `sys_log_operate` VALUES (631, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 122, '2024-05-19 21:20:01');
+INSERT INTO `sys_log_operate` VALUES (632, 'admin', '1', NULL, '192.168.2.104', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 21, '2024-05-19 21:20:29');
+INSERT INTO `sys_log_operate` VALUES (633, 'admin', '1', NULL, '192.168.2.104', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 14, '2024-05-19 21:20:33');
+INSERT INTO `sys_log_operate` VALUES (634, 'admin', '1', NULL, '192.168.2.104', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 10, '2024-05-19 21:20:37');
+INSERT INTO `sys_log_operate` VALUES (635, 'admin', '1', NULL, '192.168.2.104', '/system/menu/add', 'com.newbie.controller.system.SysMenuController.add', 'POST', 23, '2024-05-19 21:21:05');
+INSERT INTO `sys_log_operate` VALUES (636, 'admin', '1', NULL, '192.168.2.104', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 14, '2024-05-19 21:21:05');
+INSERT INTO `sys_log_operate` VALUES (637, 'admin', '1', NULL, '192.168.2.104', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 28, '2024-05-19 21:26:45');
+INSERT INTO `sys_log_operate` VALUES (638, 'admin', '1', NULL, '192.168.2.104', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 17, '2024-05-19 21:26:46');
+INSERT INTO `sys_log_operate` VALUES (639, 'admin', '1', NULL, '192.168.2.104', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 23, '2024-05-19 21:26:46');
+INSERT INTO `sys_log_operate` VALUES (640, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 21, '2024-05-19 21:26:46');
+INSERT INTO `sys_log_operate` VALUES (641, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 31, '2024-05-19 21:26:47');
+INSERT INTO `sys_log_operate` VALUES (842, '#', '0', '用户不存在', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 9, '2024-05-20 16:01:52');
+INSERT INTO `sys_log_operate` VALUES (843, '#', '0', '验证码已失效', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 1, '2024-05-20 16:01:54');
+INSERT INTO `sys_log_operate` VALUES (844, '#', '0', '密码错误', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 108, '2024-05-20 16:01:59');
+INSERT INTO `sys_log_operate` VALUES (845, '#', '0', '密码错误', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 86, '2024-05-20 16:02:05');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -196,7 +238,7 @@ CREATE TABLE `sys_menu`  (
   `transition` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '切换动画',
   `fixed_tab` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '是否固定在tabs（1是 0否）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3064 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3067 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -236,7 +278,9 @@ INSERT INTO `sys_menu` VALUES (3055, '删除', 3010, 3, '1', NULL, NULL, NULL, '
 INSERT INTO `sys_menu` VALUES (3056, '默认', 3010, 4, '1', NULL, NULL, NULL, '字典数据设置默认的按钮', 'admin', '2024-04-18 18:08:52', NULL, NULL, '0', '0', '0', 'sys.dict.data.def', NULL, '0', NULL, '0', NULL, '0');
 INSERT INTO `sys_menu` VALUES (3059, '演示', 0, 98, '1', '/demo', '', '', '', 'admin', '2024-04-30 15:06:58', 'admin', '2024-05-18 17:11:44', '0', '1', '0', '', 'MingcuteDepartmentLine', '0', '', '0', '', '0');
 INSERT INTO `sys_menu` VALUES (3060, '上传下载', 3059, 1, '1', '/uploadtest', 'UploadTest', 'demo/UploadTest', '', 'admin', '2024-04-30 15:08:16', NULL, NULL, '0', '1', '0', '', '', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3063, '系统监控', 0, 3, '1', '/monitoring', '', '', '', 'admin', '2024-05-18 17:11:16', 'admin', '2024-05-18 17:15:49', '0', '1', '0', 'monitoring', 'CarbonCloudMonitoring', '0', '', '0', '', '0');
+INSERT INTO `sys_menu` VALUES (3064, '操作日志', 2008, 20, '1', '/system/operatelog', 'SysLogOperate', 'system/logOperate/index', '', 'admin', '2024-05-18 21:03:59', 'admin', '2024-05-19 21:29:07', '0', '1', '0', 'sys.log.operate', 'MaterialSymbolsDataInfoAlertRounded', '0', '', '0', '', '0');
+INSERT INTO `sys_menu` VALUES (3065, '登录日志', 2008, 30, '1', '/system/loginlog', '', '', '', 'admin', '2024-05-18 21:18:26', NULL, NULL, '0', '1', '0', '', 'CarbonCloudMonitoring', '0', '', '0', '', '0');
+INSERT INTO `sys_menu` VALUES (3066, '删除', 3064, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-19 21:21:05', NULL, NULL, '0', '0', '0', 'sys.log.operate.del', NULL, '0', NULL, '0', NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_role

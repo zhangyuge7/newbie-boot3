@@ -1,7 +1,7 @@
 newbie:
   # 日志
   weblog:
-    enable: true
+    enable: false
     default-strategy: all_api
     only-error: true
   # 验证码配置

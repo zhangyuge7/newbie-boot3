@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbie.system.mapper.SysLogLoginMapper">
+
+    <resultMap id="BaseResultMap" type="com.newbie.common.domain.entity.SysLogLogin">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="loginIp" column="login_ip" jdbcType="VARCHAR"/>
+            <result property="loginMethod" column="login_method" jdbcType="VARCHAR"/>
+            <result property="failReason" column="fail_reason" jdbcType="VARCHAR"/>
+            <result property="os" column="os" jdbcType="VARCHAR"/>
+            <result property="browser" column="browser" jdbcType="VARCHAR"/>
+            <result property="costTime" column="cost_time" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="loginType" column="login_type" jdbcType="CHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,status,
+        login_ip,login_method,
+        fail_reason,os,
+        browser,cost_time,create_time,login_type,username
+    </sql>
+</mapper>
