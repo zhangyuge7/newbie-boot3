@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.domain.entity.SysLogLogin;
 import com.newbie.common.util.R;
+import com.newbie.common.util.SecurityUtils;
 import com.newbie.system.service.SysLogLoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
@@ -27,6 +28,7 @@ import java.util.Date;
 @RequestMapping("/system/log/login")
 public class SysLogLoginController {
     private final SysLogLoginService sysLogLoginService;
+
     @SaCheckPermission("sys.log.login")
     @GetMapping("/paging")
     public R<IPage<SysLogLogin>> paging(Page<SysLogLogin> page, SysLogLogin sysLogLogin) {
@@ -34,6 +36,18 @@ public class SysLogLoginController {
         String status = sysLogLogin.getStatus();
         Page<SysLogLogin> pageData = sysLogLoginService.lambdaQuery()
                 .like(StringUtils.hasLength(username),SysLogLogin::getUsername,username)
+                .eq(StringUtils.hasLength(status),SysLogLogin::getStatus,status)
+                .orderByDesc(SysLogLogin::getCreateTime)
+                .page(page);
+        return R.ok(pageData);
+    }
+
+    @GetMapping("/pagingByCurrUser")
+    public R<IPage<SysLogLogin>> pagingByCurrUser(Page<SysLogLogin> page, SysLogLogin sysLogLogin) {
+        String username = SecurityUtils.getCurrentLoginUser().getUsername();
+        String status = sysLogLogin.getStatus();
+        Page<SysLogLogin> pageData = sysLogLoginService.lambdaQuery()
+                .eq(StringUtils.hasLength(username),SysLogLogin::getUsername,username)
                 .eq(StringUtils.hasLength(status),SysLogLogin::getStatus,status)
                 .orderByDesc(SysLogLogin::getCreateTime)
                 .page(page);
