@@ -10,4 +10,13 @@ import com.newbie.common.domain.entity.SysLogOperate;
 */
 public interface SysLogOperateService extends IService<SysLogOperate> {
 
+    /**
+     * 保存操作日志
+     * @param targetFun 目标类方法
+     * @param startTimeMillis 开始时间戳
+     * @param throwable 异常对象
+     */
+    void saveSysLogOperate(String targetFun,long startTimeMillis,Throwable throwable);
+
+    void saveSysLogOperate(String targetFun,long startTimeMillis);
 }
