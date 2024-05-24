@@ -52,4 +52,10 @@ public interface SysUserService extends IService<SysUser> {
      * @param idList ID列表
      */
     void deleteBatch(List<Long> idList);
+
+    /**
+     * 修改当前用户基本信息
+     * @param sysUser 用户对象
+     */
+    void updateByCurr(SysUser sysUser);
 }

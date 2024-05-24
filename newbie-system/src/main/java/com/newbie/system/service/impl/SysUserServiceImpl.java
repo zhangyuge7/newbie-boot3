@@ -132,6 +132,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         sysUserMapper.deleteBatchIds(idList);
     }
 
+    @Override
+    public void updateByCurr(SysUser sysUser) {
+        if (!StringUtils.hasLength(sysUser.getNickName())) throw new NewbieException("昵称不能为空");
+        sysUser.setId(StpUtil.getLoginIdAsLong());
+        sysUserMapper.updateById(sysUser);
+    }
+
     /**
      * 根据用户ID判断是否为admin系统管理员
      * @param userId 用户ID

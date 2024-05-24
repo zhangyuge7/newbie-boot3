@@ -54,4 +54,15 @@ public class SysUserController {
         boolean b = sysUserService.updateUserPassword(passwordBody.getUserId(),passwordBody.getNewPassword(),passwordBody.getConfirmPassword(),passwordBody.getImmediatelyKick());
         return b?R.ok().setMsg("修改成功"):R.error("修改密码失败");
     }
+
+    /**
+     * 当前用户修改自己的基本用户信息
+     * @param sysUser 用户对象
+     * @return
+     */
+    @PostMapping("/updateByCurr")
+    public R<Object> updateByCurr(@RequestBody SysUser sysUser){
+        sysUserService.updateByCurr(sysUser);
+        return R.ok();
+    }
 }
