@@ -154,20 +154,17 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     @Transactional
     public void updatePassword(PasswordBody passwordBody) {
-        if (!StringUtils.hasLength(passwordBody.getOldPassword())) throw new NewbieException("原密码不能为空");
+        if (!StringUtils.hasLength(passwordBody.getOldPassword())) throw new NewbieException("旧密码不能为空");
         this.verifyPasswordBogy(passwordBody);
         long userId = StpUtil.getLoginIdAsLong();
         SysUser sysUser = securityMapper.selectUserByUserId(userId);
 
         if (!SecurityUtils.checkPassword(passwordBody.getOldPassword(), sysUser.getPassword()))
-            throw new NewbieException("原密码错误");
+            throw new NewbieException("旧密码不正确");
         String newPassword = SecurityUtils.encodePassword(passwordBody.getNewPassword());
         sysUser.setPassword(newPassword);
         int i = securityMapper.updateUserPasswordByUserId(sysUser);
         if (i != 1) throw new NewbieException("修改密码失败");
-
-        // 强制下线
-        StpUtil.logout();
     }
 
 

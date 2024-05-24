@@ -2,11 +2,9 @@ package com.newbie.controller.security;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.core.thread.ThreadUtil;
 import com.newbie.common.annotation.IgnoreWebLog;
 import com.newbie.common.constant.LoginMethodConstant;
 import com.newbie.common.domain.LoginUser;
-import com.newbie.system.service.SysLogLoginService;
 import com.newbie.common.util.R;
 import com.newbie.common.util.SecurityUtils;
 import com.newbie.security.domain.Route;
@@ -15,7 +13,7 @@ import com.newbie.security.domain.body.PasswordBody;
 import com.newbie.security.domain.vo.Captcha;
 import com.newbie.security.service.CaptchaService;
 import com.newbie.security.service.SecurityService;
-import jakarta.servlet.http.HttpServletRequest;
+import com.newbie.system.service.SysLogLoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -110,5 +108,4 @@ public class SecurityController {
     public R<List<Route>> menus() {
         return R.ok(securityService.getMenuList());
     }
-
 }
