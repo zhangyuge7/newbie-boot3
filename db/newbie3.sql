@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 20/05/2024 18:44:14
+ Date: 24/05/2024 11:27:29
 */
 
 SET NAMES utf8mb4;
@@ -137,18 +137,11 @@ CREATE TABLE `sys_log_login`  (
   `login_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '1 登入，0 登出',
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统登录日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统登录日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log_login
 -- ----------------------------
-INSERT INTO `sys_log_login` VALUES (23, '1', '192.168.50.45', NULL, NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 536, '2024-05-20 17:14:09', '1', NULL);
-INSERT INTO `sys_log_login` VALUES (24, '1', '192.168.50.45', NULL, NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-20 17:14:12', '0', NULL);
-INSERT INTO `sys_log_login` VALUES (25, '1', '192.168.2.102', NULL, NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 83, '2024-05-20 17:58:50', '1', NULL);
-INSERT INTO `sys_log_login` VALUES (26, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 188, '2024-05-20 18:09:34', '1', NULL);
-INSERT INTO `sys_log_login` VALUES (27, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 101, '2024-05-20 18:18:13', '1', NULL);
-INSERT INTO `sys_log_login` VALUES (28, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 566, '2024-05-20 18:20:17', '1', NULL);
-INSERT INTO `sys_log_login` VALUES (29, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 8, '2024-05-20 18:20:19', '0', NULL);
 INSERT INTO `sys_log_login` VALUES (30, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 673, '2024-05-20 18:36:45', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (31, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 10, '2024-05-20 18:36:59', '0', 'admin');
 INSERT INTO `sys_log_login` VALUES (32, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 78, '2024-05-20 18:37:08', '1', 'admin');
@@ -156,6 +149,17 @@ INSERT INTO `sys_log_login` VALUES (33, '1', '192.168.2.102', 'username', NULL, 
 INSERT INTO `sys_log_login` VALUES (34, '0', '192.168.2.102', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 300, '2024-05-20 18:38:16', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (35, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1276, '2024-05-20 18:39:01', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (36, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 24, '2024-05-20 18:42:48', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (37, '1', '192.168.124.27', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 2000, '2024-05-21 09:38:51', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (38, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1827, '2024-05-23 14:08:28', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (39, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 46, '2024-05-24 09:10:32', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (40, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 135, '2024-05-24 09:10:35', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (41, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-24 09:11:51', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (42, '0', '192.168.50.45', 'username', '验证码不正确', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 3, '2024-05-24 09:11:55', '1', 'admin2');
+INSERT INTO `sys_log_login` VALUES (43, '0', '192.168.50.45', 'username', '用户不存在', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 4, '2024-05-24 09:12:21', '1', 'admin2');
+INSERT INTO `sys_log_login` VALUES (44, '0', '192.168.50.45', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 2, '2024-05-24 09:12:37', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (45, '0', '192.168.50.45', 'username', '密码错误', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 92, '2024-05-24 09:12:41', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (46, '0', '192.168.50.45', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 2, '2024-05-24 09:13:30', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (47, '0', '192.168.50.45', 'username', '密码错误', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 111, '2024-05-24 09:13:34', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for sys_log_operate
@@ -173,7 +177,7 @@ CREATE TABLE `sys_log_operate`  (
   `cost_time` bigint NULL DEFAULT NULL COMMENT '消耗时长，毫秒',
   `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 846 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统操作日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1243 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统操作日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log_operate
@@ -208,6 +212,403 @@ INSERT INTO `sys_log_operate` VALUES (842, '#', '0', '用户不存在', '192.168
 INSERT INTO `sys_log_operate` VALUES (843, '#', '0', '验证码已失效', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 1, '2024-05-20 16:01:54');
 INSERT INTO `sys_log_operate` VALUES (844, '#', '0', '密码错误', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 108, '2024-05-20 16:01:59');
 INSERT INTO `sys_log_operate` VALUES (845, '#', '0', '密码错误', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 86, '2024-05-20 16:02:05');
+INSERT INTO `sys_log_operate` VALUES (846, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 179, '2024-05-21 09:42:41');
+INSERT INTO `sys_log_operate` VALUES (847, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 23, '2024-05-21 09:42:52');
+INSERT INTO `sys_log_operate` VALUES (848, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 21, '2024-05-21 09:42:52');
+INSERT INTO `sys_log_operate` VALUES (849, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 16, '2024-05-21 09:43:22');
+INSERT INTO `sys_log_operate` VALUES (850, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/deleteBeforeData', 'com.newbie.controller.system.SysLogOperateController.deleteBeforeData', 'GET', 19, '2024-05-21 09:43:38');
+INSERT INTO `sys_log_operate` VALUES (851, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-21 09:43:38');
+INSERT INTO `sys_log_operate` VALUES (852, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 16, '2024-05-21 09:43:51');
+INSERT INTO `sys_log_operate` VALUES (853, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-21 09:43:54');
+INSERT INTO `sys_log_operate` VALUES (854, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-21 09:47:44');
+INSERT INTO `sys_log_operate` VALUES (855, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 158, '2024-05-23 14:18:56');
+INSERT INTO `sys_log_operate` VALUES (856, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 8, '2024-05-23 14:19:02');
+INSERT INTO `sys_log_operate` VALUES (857, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-23 14:19:08');
+INSERT INTO `sys_log_operate` VALUES (858, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 307, '2024-05-23 14:19:41');
+INSERT INTO `sys_log_operate` VALUES (859, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 16, '2024-05-23 14:19:47');
+INSERT INTO `sys_log_operate` VALUES (860, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 9, '2024-05-23 14:19:50');
+INSERT INTO `sys_log_operate` VALUES (861, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-23 14:19:50');
+INSERT INTO `sys_log_operate` VALUES (862, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 17, '2024-05-23 14:19:51');
+INSERT INTO `sys_log_operate` VALUES (863, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 274, '2024-05-23 14:20:34');
+INSERT INTO `sys_log_operate` VALUES (864, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 174, '2024-05-23 14:33:45');
+INSERT INTO `sys_log_operate` VALUES (865, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-23 14:33:46');
+INSERT INTO `sys_log_operate` VALUES (866, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 4, '2024-05-23 14:33:48');
+INSERT INTO `sys_log_operate` VALUES (867, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 18, '2024-05-23 14:33:49');
+INSERT INTO `sys_log_operate` VALUES (868, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-23 14:33:49');
+INSERT INTO `sys_log_operate` VALUES (869, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-23 14:33:50');
+INSERT INTO `sys_log_operate` VALUES (870, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 8, '2024-05-23 14:33:51');
+INSERT INTO `sys_log_operate` VALUES (871, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 9, '2024-05-23 14:33:51');
+INSERT INTO `sys_log_operate` VALUES (872, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-23 14:33:52');
+INSERT INTO `sys_log_operate` VALUES (873, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 8, '2024-05-23 14:33:52');
+INSERT INTO `sys_log_operate` VALUES (874, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-23 14:33:53');
+INSERT INTO `sys_log_operate` VALUES (875, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-23 14:33:54');
+INSERT INTO `sys_log_operate` VALUES (876, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 14, '2024-05-23 14:33:54');
+INSERT INTO `sys_log_operate` VALUES (877, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 8, '2024-05-23 14:33:55');
+INSERT INTO `sys_log_operate` VALUES (878, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-23 14:33:55');
+INSERT INTO `sys_log_operate` VALUES (879, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 174, '2024-05-24 09:10:21');
+INSERT INTO `sys_log_operate` VALUES (880, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 14, '2024-05-24 09:10:35');
+INSERT INTO `sys_log_operate` VALUES (881, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 09:13:45');
+INSERT INTO `sys_log_operate` VALUES (882, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 14, '2024-05-24 09:13:48');
+INSERT INTO `sys_log_operate` VALUES (883, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 41, '2024-05-24 09:13:48');
+INSERT INTO `sys_log_operate` VALUES (884, '#', '1', NULL, '192.168.50.45', '/security/initAdmin', 'com.newbie.controller.security.SecurityController.initAdmin', 'POST', 150, '2024-05-24 09:15:38');
+INSERT INTO `sys_log_operate` VALUES (885, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 6, '2024-05-24 09:15:46');
+INSERT INTO `sys_log_operate` VALUES (886, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 24, '2024-05-24 09:15:46');
+INSERT INTO `sys_log_operate` VALUES (887, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 09:16:10');
+INSERT INTO `sys_log_operate` VALUES (888, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 17, '2024-05-24 09:16:17');
+INSERT INTO `sys_log_operate` VALUES (889, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 31, '2024-05-24 09:16:17');
+INSERT INTO `sys_log_operate` VALUES (890, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 09:16:18');
+INSERT INTO `sys_log_operate` VALUES (891, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 15, '2024-05-24 09:16:26');
+INSERT INTO `sys_log_operate` VALUES (892, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 14, '2024-05-24 09:16:26');
+INSERT INTO `sys_log_operate` VALUES (893, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 18, '2024-05-24 09:16:28');
+INSERT INTO `sys_log_operate` VALUES (894, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 41, '2024-05-24 09:16:30');
+INSERT INTO `sys_log_operate` VALUES (895, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 20, '2024-05-24 09:16:33');
+INSERT INTO `sys_log_operate` VALUES (896, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 09:16:34');
+INSERT INTO `sys_log_operate` VALUES (897, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 180, '2024-05-24 09:17:25');
+INSERT INTO `sys_log_operate` VALUES (898, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 15, '2024-05-24 09:17:45');
+INSERT INTO `sys_log_operate` VALUES (899, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/deleteBeforeData', 'com.newbie.controller.system.SysLogOperateController.deleteBeforeData', 'GET', 9, '2024-05-24 09:17:57');
+INSERT INTO `sys_log_operate` VALUES (900, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 19, '2024-05-24 09:17:57');
+INSERT INTO `sys_log_operate` VALUES (901, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 09:18:04');
+INSERT INTO `sys_log_operate` VALUES (902, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 15, '2024-05-24 09:18:06');
+INSERT INTO `sys_log_operate` VALUES (903, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 32, '2024-05-24 09:19:05');
+INSERT INTO `sys_log_operate` VALUES (904, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 22, '2024-05-24 09:19:05');
+INSERT INTO `sys_log_operate` VALUES (905, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 17, '2024-05-24 09:19:05');
+INSERT INTO `sys_log_operate` VALUES (906, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 9, '2024-05-24 09:19:13');
+INSERT INTO `sys_log_operate` VALUES (907, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 15, '2024-05-24 09:19:19');
+INSERT INTO `sys_log_operate` VALUES (908, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 6, '2024-05-24 09:19:25');
+INSERT INTO `sys_log_operate` VALUES (909, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 23, '2024-05-24 09:19:25');
+INSERT INTO `sys_log_operate` VALUES (910, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 9, '2024-05-24 09:53:37');
+INSERT INTO `sys_log_operate` VALUES (911, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 22, '2024-05-24 09:53:37');
+INSERT INTO `sys_log_operate` VALUES (912, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 7, '2024-05-24 09:54:15');
+INSERT INTO `sys_log_operate` VALUES (913, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 6, '2024-05-24 09:54:21');
+INSERT INTO `sys_log_operate` VALUES (914, 'admin', '1', NULL, '192.168.50.45', '/system/menu/update', 'com.newbie.controller.system.SysMenuController.update', 'POST', 29, '2024-05-24 09:54:32');
+INSERT INTO `sys_log_operate` VALUES (915, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 6, '2024-05-24 09:54:32');
+INSERT INTO `sys_log_operate` VALUES (916, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 9, '2024-05-24 09:56:58');
+INSERT INTO `sys_log_operate` VALUES (917, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 7, '2024-05-24 09:57:04');
+INSERT INTO `sys_log_operate` VALUES (918, 'admin', '1', NULL, '192.168.50.45', '/system/menu/update', 'com.newbie.controller.system.SysMenuController.update', 'POST', 19, '2024-05-24 09:57:13');
+INSERT INTO `sys_log_operate` VALUES (919, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 0, '2024-05-24 09:57:13');
+INSERT INTO `sys_log_operate` VALUES (920, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 10, '2024-05-24 10:11:41');
+INSERT INTO `sys_log_operate` VALUES (921, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 19, '2024-05-24 10:11:42');
+INSERT INTO `sys_log_operate` VALUES (922, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 10:11:43');
+INSERT INTO `sys_log_operate` VALUES (923, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 15, '2024-05-24 10:11:43');
+INSERT INTO `sys_log_operate` VALUES (924, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-24 10:11:47');
+INSERT INTO `sys_log_operate` VALUES (925, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 11, '2024-05-24 10:11:52');
+INSERT INTO `sys_log_operate` VALUES (926, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 15, '2024-05-24 10:11:52');
+INSERT INTO `sys_log_operate` VALUES (927, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 4, '2024-05-24 10:13:12');
+INSERT INTO `sys_log_operate` VALUES (928, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 16, '2024-05-24 10:13:12');
+INSERT INTO `sys_log_operate` VALUES (929, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 12, '2024-05-24 10:13:20');
+INSERT INTO `sys_log_operate` VALUES (930, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 10:13:22');
+INSERT INTO `sys_log_operate` VALUES (931, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 15, '2024-05-24 10:13:22');
+INSERT INTO `sys_log_operate` VALUES (932, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 13, '2024-05-24 10:14:16');
+INSERT INTO `sys_log_operate` VALUES (933, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 10, '2024-05-24 10:14:16');
+INSERT INTO `sys_log_operate` VALUES (934, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 10:14:17');
+INSERT INTO `sys_log_operate` VALUES (935, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-24 10:14:19');
+INSERT INTO `sys_log_operate` VALUES (936, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 10:14:29');
+INSERT INTO `sys_log_operate` VALUES (937, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 12, '2024-05-24 10:14:30');
+INSERT INTO `sys_log_operate` VALUES (938, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 23, '2024-05-24 10:18:19');
+INSERT INTO `sys_log_operate` VALUES (939, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 8, '2024-05-24 10:18:20');
+INSERT INTO `sys_log_operate` VALUES (940, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 24, '2024-05-24 10:19:23');
+INSERT INTO `sys_log_operate` VALUES (941, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 14, '2024-05-24 10:19:40');
+INSERT INTO `sys_log_operate` VALUES (942, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 12, '2024-05-24 10:19:54');
+INSERT INTO `sys_log_operate` VALUES (943, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 16, '2024-05-24 10:19:57');
+INSERT INTO `sys_log_operate` VALUES (944, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 4, '2024-05-24 10:20:07');
+INSERT INTO `sys_log_operate` VALUES (945, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 17, '2024-05-24 10:20:19');
+INSERT INTO `sys_log_operate` VALUES (946, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 12, '2024-05-24 10:28:52');
+INSERT INTO `sys_log_operate` VALUES (947, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 14, '2024-05-24 10:30:00');
+INSERT INTO `sys_log_operate` VALUES (948, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 11, '2024-05-24 10:30:09');
+INSERT INTO `sys_log_operate` VALUES (949, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 17, '2024-05-24 10:30:30');
+INSERT INTO `sys_log_operate` VALUES (950, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 15, '2024-05-24 10:30:46');
+INSERT INTO `sys_log_operate` VALUES (951, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 20, '2024-05-24 10:30:52');
+INSERT INTO `sys_log_operate` VALUES (952, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 7, '2024-05-24 10:30:53');
+INSERT INTO `sys_log_operate` VALUES (953, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 7, '2024-05-24 10:30:53');
+INSERT INTO `sys_log_operate` VALUES (954, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 4, '2024-05-24 10:30:53');
+INSERT INTO `sys_log_operate` VALUES (955, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 14, '2024-05-24 10:30:57');
+INSERT INTO `sys_log_operate` VALUES (956, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 27, '2024-05-24 10:30:57');
+INSERT INTO `sys_log_operate` VALUES (957, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 9, '2024-05-24 10:30:59');
+INSERT INTO `sys_log_operate` VALUES (958, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 8, '2024-05-24 10:31:00');
+INSERT INTO `sys_log_operate` VALUES (959, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 10, '2024-05-24 10:31:08');
+INSERT INTO `sys_log_operate` VALUES (960, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 15, '2024-05-24 10:32:41');
+INSERT INTO `sys_log_operate` VALUES (961, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 14, '2024-05-24 10:32:49');
+INSERT INTO `sys_log_operate` VALUES (962, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-24 10:32:53');
+INSERT INTO `sys_log_operate` VALUES (963, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 8, '2024-05-24 10:32:54');
+INSERT INTO `sys_log_operate` VALUES (964, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 15, '2024-05-24 10:33:23');
+INSERT INTO `sys_log_operate` VALUES (965, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 9, '2024-05-24 10:34:28');
+INSERT INTO `sys_log_operate` VALUES (966, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 12, '2024-05-24 10:34:43');
+INSERT INTO `sys_log_operate` VALUES (967, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 16, '2024-05-24 10:37:12');
+INSERT INTO `sys_log_operate` VALUES (968, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 6, '2024-05-24 10:37:16');
+INSERT INTO `sys_log_operate` VALUES (969, 'admin', '1', NULL, '192.168.50.45', '/system/menu/update', 'com.newbie.controller.system.SysMenuController.update', 'POST', 19, '2024-05-24 10:37:20');
+INSERT INTO `sys_log_operate` VALUES (970, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 11, '2024-05-24 10:37:20');
+INSERT INTO `sys_log_operate` VALUES (971, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 7, '2024-05-24 10:37:26');
+INSERT INTO `sys_log_operate` VALUES (972, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 10, '2024-05-24 10:37:32');
+INSERT INTO `sys_log_operate` VALUES (973, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 463, '2024-05-24 10:41:54');
+INSERT INTO `sys_log_operate` VALUES (974, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 21, '2024-05-24 10:42:41');
+INSERT INTO `sys_log_operate` VALUES (975, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 10:42:59');
+INSERT INTO `sys_log_operate` VALUES (976, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 46, '2024-05-24 10:45:50');
+INSERT INTO `sys_log_operate` VALUES (977, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 8, '2024-05-24 10:45:55');
+INSERT INTO `sys_log_operate` VALUES (978, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 29, '2024-05-24 10:46:00');
+INSERT INTO `sys_log_operate` VALUES (979, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 8, '2024-05-24 10:46:06');
+INSERT INTO `sys_log_operate` VALUES (980, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 13, '2024-05-24 10:48:36');
+INSERT INTO `sys_log_operate` VALUES (981, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/deleteBatch', 'com.newbie.controller.system.SysLogLoginController.deleteBatch', 'POST', 19, '2024-05-24 10:49:20');
+INSERT INTO `sys_log_operate` VALUES (982, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 7, '2024-05-24 10:49:20');
+INSERT INTO `sys_log_operate` VALUES (983, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/deleteBatch', 'com.newbie.controller.system.SysLogLoginController.deleteBatch', 'POST', 11, '2024-05-24 10:49:31');
+INSERT INTO `sys_log_operate` VALUES (984, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 10:49:31');
+INSERT INTO `sys_log_operate` VALUES (985, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 6, '2024-05-24 10:49:37');
+INSERT INTO `sys_log_operate` VALUES (986, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 7, '2024-05-24 10:49:37');
+INSERT INTO `sys_log_operate` VALUES (987, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 5, '2024-05-24 10:49:38');
+INSERT INTO `sys_log_operate` VALUES (988, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 17, '2024-05-24 10:49:42');
+INSERT INTO `sys_log_operate` VALUES (989, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 8, '2024-05-24 10:49:43');
+INSERT INTO `sys_log_operate` VALUES (990, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 10:49:47');
+INSERT INTO `sys_log_operate` VALUES (991, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 10:49:48');
+INSERT INTO `sys_log_operate` VALUES (992, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 37, '2024-05-24 10:49:49');
+INSERT INTO `sys_log_operate` VALUES (993, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 17, '2024-05-24 10:49:52');
+INSERT INTO `sys_log_operate` VALUES (994, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 10:49:54');
+INSERT INTO `sys_log_operate` VALUES (995, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 10:49:55');
+INSERT INTO `sys_log_operate` VALUES (996, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 10:50:00');
+INSERT INTO `sys_log_operate` VALUES (997, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-24 10:50:02');
+INSERT INTO `sys_log_operate` VALUES (998, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-24 10:50:03');
+INSERT INTO `sys_log_operate` VALUES (999, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 10:50:04');
+INSERT INTO `sys_log_operate` VALUES (1000, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 10:50:06');
+INSERT INTO `sys_log_operate` VALUES (1001, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 7, '2024-05-24 10:50:22');
+INSERT INTO `sys_log_operate` VALUES (1002, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 8, '2024-05-24 10:50:23');
+INSERT INTO `sys_log_operate` VALUES (1003, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 10:50:24');
+INSERT INTO `sys_log_operate` VALUES (1004, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 10:50:24');
+INSERT INTO `sys_log_operate` VALUES (1005, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 2, '2024-05-24 10:50:25');
+INSERT INTO `sys_log_operate` VALUES (1006, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 21, '2024-05-24 10:50:27');
+INSERT INTO `sys_log_operate` VALUES (1007, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 10:50:28');
+INSERT INTO `sys_log_operate` VALUES (1008, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 3, '2024-05-24 10:50:29');
+INSERT INTO `sys_log_operate` VALUES (1009, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 21, '2024-05-24 10:50:29');
+INSERT INTO `sys_log_operate` VALUES (1010, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 10:50:30');
+INSERT INTO `sys_log_operate` VALUES (1011, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 10:50:34');
+INSERT INTO `sys_log_operate` VALUES (1012, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 17, '2024-05-24 10:50:34');
+INSERT INTO `sys_log_operate` VALUES (1013, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 5665, '2024-05-24 10:50:53');
+INSERT INTO `sys_log_operate` VALUES (1014, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 2270, '2024-05-24 10:50:57');
+INSERT INTO `sys_log_operate` VALUES (1015, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 16, '2024-05-24 10:51:22');
+INSERT INTO `sys_log_operate` VALUES (1016, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 18, '2024-05-24 10:51:23');
+INSERT INTO `sys_log_operate` VALUES (1017, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 3, '2024-05-24 10:51:24');
+INSERT INTO `sys_log_operate` VALUES (1018, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 3, '2024-05-24 10:51:25');
+INSERT INTO `sys_log_operate` VALUES (1019, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 10:51:25');
+INSERT INTO `sys_log_operate` VALUES (1020, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 20, '2024-05-24 10:51:30');
+INSERT INTO `sys_log_operate` VALUES (1021, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 4, '2024-05-24 10:51:31');
+INSERT INTO `sys_log_operate` VALUES (1022, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 16, '2024-05-24 10:51:43');
+INSERT INTO `sys_log_operate` VALUES (1023, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 15, '2024-05-24 10:51:51');
+INSERT INTO `sys_log_operate` VALUES (1024, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 8, '2024-05-24 10:51:52');
+INSERT INTO `sys_log_operate` VALUES (1025, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 10:51:53');
+INSERT INTO `sys_log_operate` VALUES (1026, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 10:51:53');
+INSERT INTO `sys_log_operate` VALUES (1027, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 10:52:30');
+INSERT INTO `sys_log_operate` VALUES (1028, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 24, '2024-05-24 10:55:36');
+INSERT INTO `sys_log_operate` VALUES (1029, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 16, '2024-05-24 10:55:41');
+INSERT INTO `sys_log_operate` VALUES (1030, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 10:55:42');
+INSERT INTO `sys_log_operate` VALUES (1031, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 10:55:43');
+INSERT INTO `sys_log_operate` VALUES (1032, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 15, '2024-05-24 10:55:44');
+INSERT INTO `sys_log_operate` VALUES (1033, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 6, '2024-05-24 10:55:44');
+INSERT INTO `sys_log_operate` VALUES (1034, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 6, '2024-05-24 10:55:45');
+INSERT INTO `sys_log_operate` VALUES (1035, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 28, '2024-05-24 10:55:45');
+INSERT INTO `sys_log_operate` VALUES (1036, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 6, '2024-05-24 10:55:46');
+INSERT INTO `sys_log_operate` VALUES (1037, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 15873, '2024-05-24 10:56:21');
+INSERT INTO `sys_log_operate` VALUES (1038, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 10:56:59');
+INSERT INTO `sys_log_operate` VALUES (1039, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 355, '2024-05-24 10:57:38');
+INSERT INTO `sys_log_operate` VALUES (1040, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 15175, '2024-05-24 10:58:02');
+INSERT INTO `sys_log_operate` VALUES (1041, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 40, '2024-05-24 10:58:06');
+INSERT INTO `sys_log_operate` VALUES (1042, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 17, '2024-05-24 10:58:07');
+INSERT INTO `sys_log_operate` VALUES (1043, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 10:58:08');
+INSERT INTO `sys_log_operate` VALUES (1044, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 15, '2024-05-24 10:58:09');
+INSERT INTO `sys_log_operate` VALUES (1045, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 16, '2024-05-24 10:58:10');
+INSERT INTO `sys_log_operate` VALUES (1046, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 20, '2024-05-24 10:58:10');
+INSERT INTO `sys_log_operate` VALUES (1047, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 10:58:11');
+INSERT INTO `sys_log_operate` VALUES (1048, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 10:58:12');
+INSERT INTO `sys_log_operate` VALUES (1049, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 14, '2024-05-24 10:58:12');
+INSERT INTO `sys_log_operate` VALUES (1050, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-24 10:58:13');
+INSERT INTO `sys_log_operate` VALUES (1051, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 10:58:15');
+INSERT INTO `sys_log_operate` VALUES (1052, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 9, '2024-05-24 10:58:15');
+INSERT INTO `sys_log_operate` VALUES (1053, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 10:58:17');
+INSERT INTO `sys_log_operate` VALUES (1054, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 5, '2024-05-24 10:58:17');
+INSERT INTO `sys_log_operate` VALUES (1055, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-24 10:58:18');
+INSERT INTO `sys_log_operate` VALUES (1056, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-24 10:58:19');
+INSERT INTO `sys_log_operate` VALUES (1057, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-24 10:58:28');
+INSERT INTO `sys_log_operate` VALUES (1058, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 14, '2024-05-24 10:59:10');
+INSERT INTO `sys_log_operate` VALUES (1059, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 10:59:11');
+INSERT INTO `sys_log_operate` VALUES (1060, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 21, '2024-05-24 10:59:12');
+INSERT INTO `sys_log_operate` VALUES (1061, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 9, '2024-05-24 10:59:12');
+INSERT INTO `sys_log_operate` VALUES (1062, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 10:59:13');
+INSERT INTO `sys_log_operate` VALUES (1063, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 4121, '2024-05-24 10:59:19');
+INSERT INTO `sys_log_operate` VALUES (1064, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 25, '2024-05-24 10:59:20');
+INSERT INTO `sys_log_operate` VALUES (1065, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 8, '2024-05-24 10:59:21');
+INSERT INTO `sys_log_operate` VALUES (1066, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 6, '2024-05-24 10:59:21');
+INSERT INTO `sys_log_operate` VALUES (1067, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 10:59:22');
+INSERT INTO `sys_log_operate` VALUES (1068, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 14, '2024-05-24 10:59:24');
+INSERT INTO `sys_log_operate` VALUES (1069, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 20, '2024-05-24 11:00:29');
+INSERT INTO `sys_log_operate` VALUES (1070, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 13, '2024-05-24 11:00:33');
+INSERT INTO `sys_log_operate` VALUES (1071, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 19, '2024-05-24 11:00:33');
+INSERT INTO `sys_log_operate` VALUES (1072, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 2, '2024-05-24 11:00:35');
+INSERT INTO `sys_log_operate` VALUES (1073, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 8, '2024-05-24 11:00:37');
+INSERT INTO `sys_log_operate` VALUES (1074, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 11, '2024-05-24 11:00:37');
+INSERT INTO `sys_log_operate` VALUES (1075, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 8, '2024-05-24 11:00:40');
+INSERT INTO `sys_log_operate` VALUES (1076, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 46, '2024-05-24 11:00:40');
+INSERT INTO `sys_log_operate` VALUES (1077, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 12, '2024-05-24 11:00:43');
+INSERT INTO `sys_log_operate` VALUES (1078, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 8, '2024-05-24 11:00:43');
+INSERT INTO `sys_log_operate` VALUES (1079, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 8, '2024-05-24 11:00:46');
+INSERT INTO `sys_log_operate` VALUES (1080, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 11, '2024-05-24 11:00:46');
+INSERT INTO `sys_log_operate` VALUES (1081, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 4, '2024-05-24 11:00:49');
+INSERT INTO `sys_log_operate` VALUES (1082, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 9, '2024-05-24 11:00:49');
+INSERT INTO `sys_log_operate` VALUES (1083, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 8, '2024-05-24 11:00:52');
+INSERT INTO `sys_log_operate` VALUES (1084, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 11, '2024-05-24 11:00:52');
+INSERT INTO `sys_log_operate` VALUES (1085, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 18, '2024-05-24 11:00:54');
+INSERT INTO `sys_log_operate` VALUES (1086, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 12, '2024-05-24 11:00:54');
+INSERT INTO `sys_log_operate` VALUES (1087, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 8, '2024-05-24 11:00:57');
+INSERT INTO `sys_log_operate` VALUES (1088, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 9, '2024-05-24 11:00:57');
+INSERT INTO `sys_log_operate` VALUES (1089, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 12, '2024-05-24 11:00:59');
+INSERT INTO `sys_log_operate` VALUES (1090, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 10, '2024-05-24 11:00:59');
+INSERT INTO `sys_log_operate` VALUES (1091, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 2, '2024-05-24 11:01:02');
+INSERT INTO `sys_log_operate` VALUES (1092, 'admin', '1', NULL, '192.168.50.45', '/system/role/add', 'com.newbie.controller.system.SysRoleController.add', 'POST', 10, '2024-05-24 11:01:04');
+INSERT INTO `sys_log_operate` VALUES (1093, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 10, '2024-05-24 11:01:04');
+INSERT INTO `sys_log_operate` VALUES (1094, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 12, '2024-05-24 11:01:06');
+INSERT INTO `sys_log_operate` VALUES (1095, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 12, '2024-05-24 11:01:09');
+INSERT INTO `sys_log_operate` VALUES (1096, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 9, '2024-05-24 11:01:12');
+INSERT INTO `sys_log_operate` VALUES (1097, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 15, '2024-05-24 11:01:15');
+INSERT INTO `sys_log_operate` VALUES (1098, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 10, '2024-05-24 11:01:16');
+INSERT INTO `sys_log_operate` VALUES (1099, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 14, '2024-05-24 11:01:21');
+INSERT INTO `sys_log_operate` VALUES (1100, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 13, '2024-05-24 11:01:25');
+INSERT INTO `sys_log_operate` VALUES (1101, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 13, '2024-05-24 11:01:26');
+INSERT INTO `sys_log_operate` VALUES (1102, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 10, '2024-05-24 11:01:28');
+INSERT INTO `sys_log_operate` VALUES (1103, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 13, '2024-05-24 11:01:30');
+INSERT INTO `sys_log_operate` VALUES (1104, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 23, '2024-05-24 11:01:30');
+INSERT INTO `sys_log_operate` VALUES (1105, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 12, '2024-05-24 11:01:32');
+INSERT INTO `sys_log_operate` VALUES (1106, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 11:01:33');
+INSERT INTO `sys_log_operate` VALUES (1107, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 12, '2024-05-24 11:01:33');
+INSERT INTO `sys_log_operate` VALUES (1108, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 15, '2024-05-24 11:01:53');
+INSERT INTO `sys_log_operate` VALUES (1109, 'admin', '1', NULL, '192.168.50.45', '/system/role/deleteBatch', 'com.newbie.controller.system.SysRoleController.deleteBatch', 'POST', 45, '2024-05-24 11:01:58');
+INSERT INTO `sys_log_operate` VALUES (1110, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 16, '2024-05-24 11:01:58');
+INSERT INTO `sys_log_operate` VALUES (1111, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 9, '2024-05-24 11:02:00');
+INSERT INTO `sys_log_operate` VALUES (1112, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 9, '2024-05-24 11:02:01');
+INSERT INTO `sys_log_operate` VALUES (1113, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 11, '2024-05-24 11:02:01');
+INSERT INTO `sys_log_operate` VALUES (1114, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 5, '2024-05-24 11:02:01');
+INSERT INTO `sys_log_operate` VALUES (1115, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 8, '2024-05-24 11:02:01');
+INSERT INTO `sys_log_operate` VALUES (1116, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 6, '2024-05-24 11:02:02');
+INSERT INTO `sys_log_operate` VALUES (1117, 'admin', '1', NULL, '192.168.50.45', '/system/role_menu/listByRoleId', 'com.newbie.controller.system.SysRoleMenuController.menuIdsByRoleId', 'GET', 5, '2024-05-24 11:02:05');
+INSERT INTO `sys_log_operate` VALUES (1118, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 13, '2024-05-24 11:02:05');
+INSERT INTO `sys_log_operate` VALUES (1119, 'admin', '1', NULL, '192.168.50.45', '/system/user_role/queryUnUserByRoleId/173', 'com.newbie.controller.system.SysUserRoleController.queryUnUserByRoleId', 'GET', 40, '2024-05-24 11:02:07');
+INSERT INTO `sys_log_operate` VALUES (1120, 'admin', '1', NULL, '192.168.50.45', '/system/user_role/queryUserByRoleId/173', 'com.newbie.controller.system.SysUserRoleController.queryUserByRoleId', 'GET', 40, '2024-05-24 11:02:07');
+INSERT INTO `sys_log_operate` VALUES (1121, 'admin', '1', NULL, '192.168.50.45', '/system/role_menu/listByRoleId', 'com.newbie.controller.system.SysRoleMenuController.menuIdsByRoleId', 'GET', 3, '2024-05-24 11:02:09');
+INSERT INTO `sys_log_operate` VALUES (1122, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 10, '2024-05-24 11:02:09');
+INSERT INTO `sys_log_operate` VALUES (1123, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 15, '2024-05-24 11:02:13');
+INSERT INTO `sys_log_operate` VALUES (1124, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 23, '2024-05-24 11:02:13');
+INSERT INTO `sys_log_operate` VALUES (1125, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 13, '2024-05-24 11:02:13');
+INSERT INTO `sys_log_operate` VALUES (1126, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:02:15');
+INSERT INTO `sys_log_operate` VALUES (1127, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 8, '2024-05-24 11:02:15');
+INSERT INTO `sys_log_operate` VALUES (1128, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:02:16');
+INSERT INTO `sys_log_operate` VALUES (1129, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 11:02:16');
+INSERT INTO `sys_log_operate` VALUES (1130, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:02:17');
+INSERT INTO `sys_log_operate` VALUES (1131, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 11:02:17');
+INSERT INTO `sys_log_operate` VALUES (1132, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:02:18');
+INSERT INTO `sys_log_operate` VALUES (1133, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 7, '2024-05-24 11:02:18');
+INSERT INTO `sys_log_operate` VALUES (1134, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:02:19');
+INSERT INTO `sys_log_operate` VALUES (1135, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 11:02:20');
+INSERT INTO `sys_log_operate` VALUES (1136, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 11:03:06');
+INSERT INTO `sys_log_operate` VALUES (1137, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 13, '2024-05-24 11:03:08');
+INSERT INTO `sys_log_operate` VALUES (1138, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-24 11:03:09');
+INSERT INTO `sys_log_operate` VALUES (1139, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:03:10');
+INSERT INTO `sys_log_operate` VALUES (1140, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-24 11:03:12');
+INSERT INTO `sys_log_operate` VALUES (1141, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:03:13');
+INSERT INTO `sys_log_operate` VALUES (1142, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 9, '2024-05-24 11:03:13');
+INSERT INTO `sys_log_operate` VALUES (1143, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 11:03:14');
+INSERT INTO `sys_log_operate` VALUES (1144, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 11:03:14');
+INSERT INTO `sys_log_operate` VALUES (1145, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:03:15');
+INSERT INTO `sys_log_operate` VALUES (1146, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/deleteBatch', 'com.newbie.controller.system.SysLogLoginController.deleteBatch', 'POST', 14, '2024-05-24 11:05:56');
+INSERT INTO `sys_log_operate` VALUES (1147, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 11:05:56');
+INSERT INTO `sys_log_operate` VALUES (1148, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 6, '2024-05-24 11:05:58');
+INSERT INTO `sys_log_operate` VALUES (1149, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 3, '2024-05-24 11:06:01');
+INSERT INTO `sys_log_operate` VALUES (1150, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:08:12');
+INSERT INTO `sys_log_operate` VALUES (1151, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/deleteBeforeData', 'com.newbie.controller.system.SysLogLoginController.deleteBeforeData', 'GET', 4, '2024-05-24 11:08:18');
+INSERT INTO `sys_log_operate` VALUES (1152, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 2, '2024-05-24 11:08:18');
+INSERT INTO `sys_log_operate` VALUES (1153, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 3, '2024-05-24 11:08:21');
+INSERT INTO `sys_log_operate` VALUES (1154, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 4, '2024-05-24 11:08:21');
+INSERT INTO `sys_log_operate` VALUES (1155, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:08:22');
+INSERT INTO `sys_log_operate` VALUES (1156, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:08:22');
+INSERT INTO `sys_log_operate` VALUES (1157, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 11:08:23');
+INSERT INTO `sys_log_operate` VALUES (1158, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 11:08:24');
+INSERT INTO `sys_log_operate` VALUES (1159, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:08:24');
+INSERT INTO `sys_log_operate` VALUES (1160, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/deleteBatch', 'com.newbie.controller.system.SysLogLoginController.deleteBatch', 'POST', 6, '2024-05-24 11:08:29');
+INSERT INTO `sys_log_operate` VALUES (1161, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:08:29');
+INSERT INTO `sys_log_operate` VALUES (1162, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:08:29');
+INSERT INTO `sys_log_operate` VALUES (1163, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/deleteBatch', 'com.newbie.controller.system.SysLogLoginController.deleteBatch', 'POST', 9, '2024-05-24 11:08:34');
+INSERT INTO `sys_log_operate` VALUES (1164, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 11:08:34');
+INSERT INTO `sys_log_operate` VALUES (1165, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 17, '2024-05-24 11:08:39');
+INSERT INTO `sys_log_operate` VALUES (1166, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 11:08:40');
+INSERT INTO `sys_log_operate` VALUES (1167, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 21, '2024-05-24 11:08:41');
+INSERT INTO `sys_log_operate` VALUES (1168, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:08:42');
+INSERT INTO `sys_log_operate` VALUES (1169, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 2, '2024-05-24 11:08:42');
+INSERT INTO `sys_log_operate` VALUES (1170, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 11:08:43');
+INSERT INTO `sys_log_operate` VALUES (1171, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 18, '2024-05-24 11:08:43');
+INSERT INTO `sys_log_operate` VALUES (1172, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 2, '2024-05-24 11:08:51');
+INSERT INTO `sys_log_operate` VALUES (1173, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:08:51');
+INSERT INTO `sys_log_operate` VALUES (1174, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 11, '2024-05-24 11:11:59');
+INSERT INTO `sys_log_operate` VALUES (1175, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 10, '2024-05-24 11:12:06');
+INSERT INTO `sys_log_operate` VALUES (1176, 'admin', '1', NULL, '192.168.50.45', '/system/menu/add', 'com.newbie.controller.system.SysMenuController.add', 'POST', 19, '2024-05-24 11:12:15');
+INSERT INTO `sys_log_operate` VALUES (1177, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 8, '2024-05-24 11:12:15');
+INSERT INTO `sys_log_operate` VALUES (1178, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 5, '2024-05-24 11:12:38');
+INSERT INTO `sys_log_operate` VALUES (1179, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 6, '2024-05-24 11:12:38');
+INSERT INTO `sys_log_operate` VALUES (1180, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 8, '2024-05-24 11:12:38');
+INSERT INTO `sys_log_operate` VALUES (1181, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 8, '2024-05-24 11:12:39');
+INSERT INTO `sys_log_operate` VALUES (1182, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 12, '2024-05-24 11:12:48');
+INSERT INTO `sys_log_operate` VALUES (1183, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 7, '2024-05-24 11:13:08');
+INSERT INTO `sys_log_operate` VALUES (1184, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 13, '2024-05-24 11:13:24');
+INSERT INTO `sys_log_operate` VALUES (1185, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 18, '2024-05-24 11:13:24');
+INSERT INTO `sys_log_operate` VALUES (1186, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:13:25');
+INSERT INTO `sys_log_operate` VALUES (1187, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:13:54');
+INSERT INTO `sys_log_operate` VALUES (1188, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 18, '2024-05-24 11:15:23');
+INSERT INTO `sys_log_operate` VALUES (1189, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 11:15:30');
+INSERT INTO `sys_log_operate` VALUES (1190, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:15:32');
+INSERT INTO `sys_log_operate` VALUES (1191, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:15:34');
+INSERT INTO `sys_log_operate` VALUES (1192, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:15:36');
+INSERT INTO `sys_log_operate` VALUES (1193, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 11:15:39');
+INSERT INTO `sys_log_operate` VALUES (1194, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:15:41');
+INSERT INTO `sys_log_operate` VALUES (1195, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 11:15:57');
+INSERT INTO `sys_log_operate` VALUES (1196, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 15, '2024-05-24 11:15:57');
+INSERT INTO `sys_log_operate` VALUES (1197, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 15, '2024-05-24 11:15:58');
+INSERT INTO `sys_log_operate` VALUES (1198, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 5, '2024-05-24 11:15:58');
+INSERT INTO `sys_log_operate` VALUES (1199, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 12, '2024-05-24 11:15:59');
+INSERT INTO `sys_log_operate` VALUES (1200, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 14, '2024-05-24 11:15:59');
+INSERT INTO `sys_log_operate` VALUES (1201, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-24 11:16:01');
+INSERT INTO `sys_log_operate` VALUES (1202, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:16:02');
+INSERT INTO `sys_log_operate` VALUES (1203, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 16, '2024-05-24 11:16:38');
+INSERT INTO `sys_log_operate` VALUES (1204, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 10, '2024-05-24 11:16:38');
+INSERT INTO `sys_log_operate` VALUES (1205, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 6, '2024-05-24 11:16:39');
+INSERT INTO `sys_log_operate` VALUES (1206, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 11, '2024-05-24 11:17:03');
+INSERT INTO `sys_log_operate` VALUES (1207, 'admin', '1', NULL, '192.168.50.45', '/system/menu/update', 'com.newbie.controller.system.SysMenuController.update', 'POST', 17, '2024-05-24 11:17:16');
+INSERT INTO `sys_log_operate` VALUES (1208, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 8, '2024-05-24 11:17:16');
+INSERT INTO `sys_log_operate` VALUES (1209, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 8, '2024-05-24 11:17:19');
+INSERT INTO `sys_log_operate` VALUES (1210, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 11:17:24');
+INSERT INTO `sys_log_operate` VALUES (1211, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 16, '2024-05-24 11:17:24');
+INSERT INTO `sys_log_operate` VALUES (1212, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 15, '2024-05-24 11:17:25');
+INSERT INTO `sys_log_operate` VALUES (1213, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 9, '2024-05-24 11:20:13');
+INSERT INTO `sys_log_operate` VALUES (1214, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:20:20');
+INSERT INTO `sys_log_operate` VALUES (1215, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:20:22');
+INSERT INTO `sys_log_operate` VALUES (1216, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 13, '2024-05-24 11:20:26');
+INSERT INTO `sys_log_operate` VALUES (1217, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 15, '2024-05-24 11:20:46');
+INSERT INTO `sys_log_operate` VALUES (1218, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 17, '2024-05-24 11:21:04');
+INSERT INTO `sys_log_operate` VALUES (1219, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:21:18');
+INSERT INTO `sys_log_operate` VALUES (1220, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 11:21:27');
+INSERT INTO `sys_log_operate` VALUES (1221, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 18, '2024-05-24 11:21:27');
+INSERT INTO `sys_log_operate` VALUES (1222, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:22:01');
+INSERT INTO `sys_log_operate` VALUES (1223, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 20, '2024-05-24 11:22:03');
+INSERT INTO `sys_log_operate` VALUES (1224, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:22:07');
+INSERT INTO `sys_log_operate` VALUES (1225, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 7, '2024-05-24 11:22:09');
+INSERT INTO `sys_log_operate` VALUES (1226, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 4, '2024-05-24 11:22:19');
+INSERT INTO `sys_log_operate` VALUES (1227, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 35, '2024-05-24 11:23:01');
+INSERT INTO `sys_log_operate` VALUES (1228, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:23:02');
+INSERT INTO `sys_log_operate` VALUES (1229, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 18, '2024-05-24 11:23:23');
+INSERT INTO `sys_log_operate` VALUES (1230, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 33, '2024-05-24 11:23:25');
+INSERT INTO `sys_log_operate` VALUES (1231, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 13, '2024-05-24 11:23:27');
+INSERT INTO `sys_log_operate` VALUES (1232, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 17, '2024-05-24 11:23:28');
+INSERT INTO `sys_log_operate` VALUES (1233, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 14, '2024-05-24 11:25:04');
+INSERT INTO `sys_log_operate` VALUES (1234, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 9, '2024-05-24 11:25:06');
+INSERT INTO `sys_log_operate` VALUES (1235, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 13, '2024-05-24 11:25:07');
+INSERT INTO `sys_log_operate` VALUES (1236, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-24 11:25:08');
+INSERT INTO `sys_log_operate` VALUES (1237, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 11, '2024-05-24 11:26:00');
+INSERT INTO `sys_log_operate` VALUES (1238, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 17, '2024-05-24 11:27:08');
+INSERT INTO `sys_log_operate` VALUES (1239, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 10, '2024-05-24 11:27:09');
+INSERT INTO `sys_log_operate` VALUES (1240, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 10, '2024-05-24 11:27:09');
+INSERT INTO `sys_log_operate` VALUES (1241, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 11:27:09');
+INSERT INTO `sys_log_operate` VALUES (1242, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 6, '2024-05-24 11:27:11');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -238,7 +639,7 @@ CREATE TABLE `sys_menu`  (
   `transition` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '切换动画',
   `fixed_tab` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '是否固定在tabs（1是 0否）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3067 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3068 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -256,7 +657,7 @@ INSERT INTO `sys_menu` VALUES (2071, '部门管理', 2008, 6, '1', '/system/dept
 INSERT INTO `sys_menu` VALUES (2072, '文档', 0, 22, '1', '/docs', '', '', '', 'admin', '2023-11-19 00:04:13', 'admin', '2023-11-28 20:58:16', '0', '1', '0', '', 'EpSetting', '0', '', '0', '', '0');
 INSERT INTO `sys_menu` VALUES (3009, '字典分类', 2008, 10, '1', '/system/dict/type', 'SysDeptType', 'system/dictType/index', '', 'admin', '2023-11-19 22:33:46', 'admin', '2024-04-23 19:01:22', '0', '1', '1', 'sys.dict.type', 'MingcuteBook5Line', '0', '', '0', '', '0');
 INSERT INTO `sys_menu` VALUES (3010, '字典管理', 2008, 11, '1', '/system/dict/data', 'SysDictData', 'system/dictData/index', '', 'admin', '2024-02-20 11:29:06', 'admin', '2024-04-23 19:01:48', '0', '1', '0', 'sys.dict.data', 'SolarNotebookMinimalisticLinear', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3015, '个人中心', 0, 99, '1', '/personal-center', 'PersonalCenter', 'system/personalCenter/index', '', 'admin', '2024-03-22 12:38:00', 'admin', '2024-04-18 16:05:27', '0', '1', '0', '', 'CarbonUserRole', '0', '', '0', '', '0');
+INSERT INTO `sys_menu` VALUES (3015, '个人中心', 0, 99, '1', '/personal-center', 'PersonalCenter', 'personalCenter/index', '', 'admin', '2024-03-22 12:38:00', 'admin', '2024-05-24 11:17:16', '0', '1', '0', '', 'CarbonUserRole', '0', '', '0', '', '0');
 INSERT INTO `sys_menu` VALUES (3038, '新增', 2009, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:10', NULL, NULL, '0', '0', '0', 'sys.user.add', NULL, '0', NULL, '0', NULL, '0');
 INSERT INTO `sys_menu` VALUES (3039, '修改', 2009, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:22', 'admin', '2024-04-18 16:07:44', '0', '0', '0', 'sys.user.update', NULL, '0', NULL, '0', NULL, '0');
 INSERT INTO `sys_menu` VALUES (3040, '删除', 2009, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:34', NULL, NULL, '0', '0', '0', 'sys.user.del', NULL, '0', NULL, '0', NULL, '0');
@@ -279,8 +680,9 @@ INSERT INTO `sys_menu` VALUES (3056, '默认', 3010, 4, '1', NULL, NULL, NULL, '
 INSERT INTO `sys_menu` VALUES (3059, '演示', 0, 98, '1', '/demo', '', '', '', 'admin', '2024-04-30 15:06:58', 'admin', '2024-05-18 17:11:44', '0', '1', '0', '', 'MingcuteDepartmentLine', '0', '', '0', '', '0');
 INSERT INTO `sys_menu` VALUES (3060, '上传下载', 3059, 1, '1', '/uploadtest', 'UploadTest', 'demo/UploadTest', '', 'admin', '2024-04-30 15:08:16', NULL, NULL, '0', '1', '0', '', '', '0', '', '0', '', '0');
 INSERT INTO `sys_menu` VALUES (3064, '操作日志', 2008, 20, '1', '/system/operatelog', 'SysLogOperate', 'system/logOperate/index', '', 'admin', '2024-05-18 21:03:59', 'admin', '2024-05-19 21:29:07', '0', '1', '0', 'sys.log.operate', 'MaterialSymbolsDataInfoAlertRounded', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3065, '登录日志', 2008, 30, '1', '/system/loginlog', '', '', '', 'admin', '2024-05-18 21:18:26', NULL, NULL, '0', '1', '0', '', 'CarbonCloudMonitoring', '0', '', '0', '', '0');
+INSERT INTO `sys_menu` VALUES (3065, '登录日志', 2008, 30, '1', '/system/loginlog', 'SysLogLogin', 'system/logLogin/index', '', 'admin', '2024-05-18 21:18:26', 'admin', '2024-05-24 10:37:20', '0', '1', '0', 'sys.log.login', 'CarbonCloudMonitoring', '0', '', '0', '', '0');
 INSERT INTO `sys_menu` VALUES (3066, '删除', 3064, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-19 21:21:05', NULL, NULL, '0', '0', '0', 'sys.log.operate.del', NULL, '0', NULL, '0', NULL, '0');
+INSERT INTO `sys_menu` VALUES (3067, '删除', 3065, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-24 11:12:15', NULL, NULL, '0', '0', '0', 'sys.log.login.del', NULL, '0', NULL, '0', NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -299,7 +701,7 @@ CREATE TABLE `sys_role`  (
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新者',
   `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 175 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 186 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role
@@ -363,13 +765,13 @@ CREATE TABLE `sys_user`  (
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改者',
   `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统用户' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统用户' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (52, 272, 'test1', '$2a$10$3sFeXxGHsTI4jwIjzxjfI.kzTl52cywiKfkoUxJ7j0I0UDP4jurZC', '测试用户1', NULL, '', '32132132131', '3213213213211', '1', '1', '', 3, 'admin', '2024-04-18 15:51:03', 'test1', '2024-05-02 15:48:27');
-INSERT INTO `sys_user` VALUES (56, NULL, 'admin', '$2a$10$Tmyn6gY/bfA5wp6FVMPETOlPByeMEajJ2pAeAzNZh4kOIaxv76Tde', '系统管理员', NULL, NULL, NULL, NULL, '2', '1', NULL, 0, NULL, '2024-04-23 15:54:10', NULL, NULL);
+INSERT INTO `sys_user` VALUES (57, NULL, 'admin', '$2a$10$8SuoD/GHrv2Me451gsq.ieo5zYDARyP76zYkZRNSxxHT7/Br.kz3C', '系统管理员', NULL, NULL, NULL, NULL, '2', '1', NULL, 0, NULL, '2024-05-24 09:15:38', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_role
