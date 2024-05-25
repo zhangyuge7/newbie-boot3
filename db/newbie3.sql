@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 24/05/2024 11:27:29
+ Date: 25/05/2024 14:37:45
 */
 
 SET NAMES utf8mb4;
@@ -35,9 +35,9 @@ CREATE TABLE `sys_dept`  (
   `home_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '首页路由地址',
   `remark` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建者',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新者',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 320 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '部门表' ROW_FORMAT = DYNAMIC;
 
@@ -71,9 +71,9 @@ CREATE TABLE `sys_dict_data`  (
   `sort` int NULL DEFAULT 0 COMMENT '排序字段',
   `remark` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建者',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改者',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 92 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典数据' ROW_FORMAT = DYNAMIC;
 
@@ -105,9 +105,9 @@ CREATE TABLE `sys_dict_type`  (
   `sort` int NULL DEFAULT 0 COMMENT '排序字段',
   `remark` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建者',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改者',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `type_code`(`type_code` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典类型' ROW_FORMAT = DYNAMIC;
@@ -137,7 +137,7 @@ CREATE TABLE `sys_log_login`  (
   `login_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '1 登入，0 登出',
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统登录日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统登录日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log_login
@@ -160,6 +160,65 @@ INSERT INTO `sys_log_login` VALUES (44, '0', '192.168.50.45', 'username', '验�
 INSERT INTO `sys_log_login` VALUES (45, '0', '192.168.50.45', 'username', '密码错误', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 92, '2024-05-24 09:12:41', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (46, '0', '192.168.50.45', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 2, '2024-05-24 09:13:30', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (47, '0', '192.168.50.45', 'username', '密码错误', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 111, '2024-05-24 09:13:34', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (54, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 78, '2024-05-24 14:25:14', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (55, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 124, '2024-05-24 14:25:18', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (56, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 82, '2024-05-24 14:50:24', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (57, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 77, '2024-05-24 14:50:36', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (58, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 76, '2024-05-24 14:51:08', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (59, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 0, '2024-05-24 14:51:49', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (60, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 81, '2024-05-24 14:51:53', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (61, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 0, '2024-05-24 14:52:15', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (62, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 79, '2024-05-24 14:52:18', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (63, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-24 14:52:24', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (64, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 74, '2024-05-24 14:52:26', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (65, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 9, '2024-05-24 15:05:36', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (66, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 79, '2024-05-24 15:05:39', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (67, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 9, '2024-05-24 15:05:47', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (68, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 70, '2024-05-24 15:05:49', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (69, '0', '192.168.50.45', 'username', '密码错误', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1026, '2024-05-24 15:23:27', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (70, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 489, '2024-05-24 15:23:35', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (71, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 8, '2024-05-24 15:24:04', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (72, '0', '192.168.50.45', 'username', '验证码不正确', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1, '2024-05-24 15:24:06', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (73, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 101, '2024-05-24 15:24:10', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (74, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 10, '2024-05-24 15:24:37', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (75, '0', '192.168.50.45', 'username', '密码错误', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 101, '2024-05-24 15:24:50', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (76, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 109, '2024-05-24 15:24:54', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (77, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 6, '2024-05-24 15:25:28', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (78, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 159, '2024-05-24 15:25:30', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (79, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 16, '2024-05-24 15:25:40', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (80, '0', '192.168.50.45', 'username', '验证码不正确', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1, '2024-05-24 15:25:42', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (81, '0', '192.168.50.45', 'username', '验证码不正确', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 2, '2024-05-24 15:25:44', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (82, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 110, '2024-05-24 15:25:47', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (83, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-24 15:26:13', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (84, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 103, '2024-05-24 15:26:19', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (85, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 42, '2024-05-24 15:55:52', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (86, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 122, '2024-05-24 15:55:54', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (87, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-24 15:56:29', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (88, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 80, '2024-05-24 15:56:32', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (89, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 18, '2024-05-24 17:24:55', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (90, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 179, '2024-05-24 17:24:58', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (91, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 4, '2024-05-24 17:35:58', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (92, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 107, '2024-05-24 17:36:00', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (93, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 6, '2024-05-24 17:36:29', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (94, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 150, '2024-05-24 17:36:33', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (95, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 21, '2024-05-24 17:46:53', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (96, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 150, '2024-05-24 17:46:56', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (97, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-24 17:47:17', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (98, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 132, '2024-05-24 17:47:19', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (99, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 7, '2024-05-24 17:47:43', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (100, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 110, '2024-05-24 17:47:46', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (101, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1236, '2024-05-25 09:35:05', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (102, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 329, '2024-05-25 09:57:03', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (103, '0', '192.168.50.45', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 403, '2024-05-25 10:05:32', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (104, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 683, '2024-05-25 10:05:36', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (105, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 9, '2024-05-25 10:06:42', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (106, '0', '192.168.50.45', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 515, '2024-05-25 10:09:27', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (107, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 543, '2024-05-25 10:09:31', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (108, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 9, '2024-05-25 10:09:46', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (109, '0', '192.168.50.45', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 293, '2024-05-25 10:20:12', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (110, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 457, '2024-05-25 10:20:17', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (111, '0', '192.168.50.45', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 25, '2024-05-25 11:12:11', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (112, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 384, '2024-05-25 11:13:04', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for sys_log_operate
@@ -175,9 +234,9 @@ CREATE TABLE `sys_log_operate`  (
   `target_fun` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '执行的类方法',
   `method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '请求方式',
   `cost_time` bigint NULL DEFAULT NULL COMMENT '消耗时长，毫秒',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1243 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统操作日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1268 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统操作日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log_operate
@@ -609,6 +668,31 @@ INSERT INTO `sys_log_operate` VALUES (1239, 'admin', '1', NULL, '192.168.50.45',
 INSERT INTO `sys_log_operate` VALUES (1240, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 10, '2024-05-24 11:27:09');
 INSERT INTO `sys_log_operate` VALUES (1241, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 5, '2024-05-24 11:27:09');
 INSERT INTO `sys_log_operate` VALUES (1242, 'admin', '1', NULL, '192.168.50.45', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 6, '2024-05-24 11:27:11');
+INSERT INTO `sys_log_operate` VALUES (1243, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 21, '2024-05-24 11:28:46');
+INSERT INTO `sys_log_operate` VALUES (1244, 'admin', '1', NULL, '192.168.50.45', '/file/download', 'com.newbie.controller.file.FileController.download', 'GET', 4, '2024-05-24 11:29:20');
+INSERT INTO `sys_log_operate` VALUES (1245, 'admin', '1', NULL, '192.168.50.45', '/file/download', 'com.newbie.controller.file.FileController.download', 'GET', 10, '2024-05-24 11:29:30');
+INSERT INTO `sys_log_operate` VALUES (1246, 'admin', '1', NULL, '192.168.50.45', '/file/download', 'com.newbie.controller.file.FileController.download', 'GET', 5, '2024-05-24 11:29:36');
+INSERT INTO `sys_log_operate` VALUES (1247, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 3, '2024-05-24 11:29:40');
+INSERT INTO `sys_log_operate` VALUES (1248, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 17, '2024-05-24 11:29:40');
+INSERT INTO `sys_log_operate` VALUES (1249, 'admin', '1', NULL, '192.168.50.45', '/system/role/paging', 'com.newbie.controller.system.SysRoleController.paging', 'GET', 11, '2024-05-24 11:29:41');
+INSERT INTO `sys_log_operate` VALUES (1250, 'admin', '1', NULL, '192.168.50.45', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 3, '2024-05-24 11:29:42');
+INSERT INTO `sys_log_operate` VALUES (1251, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 13, '2024-05-24 11:29:42');
+INSERT INTO `sys_log_operate` VALUES (1252, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 20, '2024-05-24 11:29:43');
+INSERT INTO `sys_log_operate` VALUES (1253, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 14, '2024-05-24 11:29:46');
+INSERT INTO `sys_log_operate` VALUES (1254, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 15, '2024-05-24 11:29:46');
+INSERT INTO `sys_log_operate` VALUES (1255, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 13, '2024-05-24 11:29:47');
+INSERT INTO `sys_log_operate` VALUES (1256, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 16, '2024-05-24 11:29:47');
+INSERT INTO `sys_log_operate` VALUES (1257, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 19, '2024-05-24 11:29:47');
+INSERT INTO `sys_log_operate` VALUES (1258, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 12, '2024-05-24 11:29:48');
+INSERT INTO `sys_log_operate` VALUES (1259, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 21, '2024-05-24 11:29:49');
+INSERT INTO `sys_log_operate` VALUES (1260, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 10, '2024-05-24 11:29:49');
+INSERT INTO `sys_log_operate` VALUES (1261, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 15, '2024-05-24 11:29:50');
+INSERT INTO `sys_log_operate` VALUES (1262, 'admin', '1', NULL, '192.168.50.45', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 12, '2024-05-24 11:29:50');
+INSERT INTO `sys_log_operate` VALUES (1263, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 10, '2024-05-24 11:29:54');
+INSERT INTO `sys_log_operate` VALUES (1264, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-24 11:29:55');
+INSERT INTO `sys_log_operate` VALUES (1265, 'admin', '1', NULL, '192.168.50.45', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 10, '2024-05-24 11:29:56');
+INSERT INTO `sys_log_operate` VALUES (1266, 'admin', '1', NULL, '192.168.50.45', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 11, '2024-05-24 11:29:56');
+INSERT INTO `sys_log_operate` VALUES (1267, 'admin', '1', NULL, '192.168.50.45', '/system/log/login/paging', 'com.newbie.controller.system.SysLogLoginController.paging', 'GET', 12, '2024-05-24 11:29:58');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -625,9 +709,9 @@ CREATE TABLE `sys_menu`  (
   `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '组件路径',
   `remark` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建者',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新者',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   `is_keep` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '是否缓存组件（1缓存 0不缓存）',
   `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '1' COMMENT '菜单类型（1菜单 0按钮）',
   `is_hide` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '是否隐藏菜单（1是 0否 ）',
@@ -639,7 +723,7 @@ CREATE TABLE `sys_menu`  (
   `transition` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '切换动画',
   `fixed_tab` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '是否固定在tabs（1是 0否）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3068 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3069 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -683,6 +767,7 @@ INSERT INTO `sys_menu` VALUES (3064, '操作日志', 2008, 20, '1', '/system/ope
 INSERT INTO `sys_menu` VALUES (3065, '登录日志', 2008, 30, '1', '/system/loginlog', 'SysLogLogin', 'system/logLogin/index', '', 'admin', '2024-05-18 21:18:26', 'admin', '2024-05-24 10:37:20', '0', '1', '0', 'sys.log.login', 'CarbonCloudMonitoring', '0', '', '0', '', '0');
 INSERT INTO `sys_menu` VALUES (3066, '删除', 3064, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-19 21:21:05', NULL, NULL, '0', '0', '0', 'sys.log.operate.del', NULL, '0', NULL, '0', NULL, '0');
 INSERT INTO `sys_menu` VALUES (3067, '删除', 3065, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-24 11:12:15', NULL, NULL, '0', '0', '0', 'sys.log.login.del', NULL, '0', NULL, '0', NULL, '0');
+INSERT INTO `sys_menu` VALUES (3068, 'API文档', 2072, 1, '1', 'http://localhost:8080/swagger-ui/index.html,_blank', '', '', '', 'admin', '2024-05-25 14:33:52', 'admin', '2024-05-25 14:35:04', '0', '1', '0', '', 'SolarNotebookMinimalisticLinear', '0', '', '0', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -697,9 +782,9 @@ CREATE TABLE `sys_role`  (
   `home_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '首页路由地址',
   `remark` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建者',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新者',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 186 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色表' ROW_FORMAT = DYNAMIC;
 
@@ -717,9 +802,9 @@ CREATE TABLE `sys_role_menu`  (
   `role_id` bigint NOT NULL COMMENT '角色ID',
   `menu_id` bigint NOT NULL COMMENT '菜单ID',
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建者',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改者',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1127 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关系表' ROW_FORMAT = DYNAMIC;
 
@@ -761,9 +846,9 @@ CREATE TABLE `sys_user`  (
   `remark` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建者',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改者',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统用户' ROW_FORMAT = DYNAMIC;
 
@@ -771,7 +856,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (52, 272, 'test1', '$2a$10$3sFeXxGHsTI4jwIjzxjfI.kzTl52cywiKfkoUxJ7j0I0UDP4jurZC', '测试用户1', NULL, '', '32132132131', '3213213213211', '1', '1', '', 3, 'admin', '2024-04-18 15:51:03', 'test1', '2024-05-02 15:48:27');
-INSERT INTO `sys_user` VALUES (57, NULL, 'admin', '$2a$10$8SuoD/GHrv2Me451gsq.ieo5zYDARyP76zYkZRNSxxHT7/Br.kz3C', '系统管理员', NULL, NULL, NULL, NULL, '2', '1', NULL, 0, NULL, '2024-05-24 09:15:38', NULL, NULL);
+INSERT INTO `sys_user` VALUES (57, NULL, 'admin', '$2a$10$Jc9ytizwSRL/nVR6.NGDfOpTgAl0Kwh8BhPhM7/1BmbKLtnsjgOFa', '系统管理员', 'public/2024/05/24/hbg0276.jpg', NULL, '18800000000', '32132@qq.com', '1', '1', NULL, 0, NULL, '2024-05-24 09:15:38', 'admin', '2024-05-24 17:47:42');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -782,9 +867,9 @@ CREATE TABLE `sys_user_role`  (
   `user_id` bigint NOT NULL COMMENT '用户ID',
   `role_id` bigint NOT NULL COMMENT '角色ID',
   `create_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建者',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '修改者',
-  `update_time` timestamp NULL DEFAULT NULL COMMENT '修改时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 237 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户和角色关系表' ROW_FORMAT = DYNAMIC;
 

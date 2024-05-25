@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.domain.entity.SysDictData;
 import com.newbie.common.util.R;
 import com.newbie.system.service.SysDictDataService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StringUtils;
@@ -18,9 +20,11 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/system/dict/data")
 @RequiredArgsConstructor
+@Tag(name = "字典数据")
 public class SysDictDataController {
     private final SysDictDataService sysDictDataService;
 
+    @Operation(summary ="获取分页数据")
     @SaCheckPermission("sys.dict.data")
     @GetMapping("/paging")
     public R<IPage<SysDictData>> paging(Page<SysDictData> page, SysDictData sysDictData) {
@@ -36,6 +40,7 @@ public class SysDictDataController {
         return R.ok(pageData);
     }
 
+    @Operation(summary ="新增")
     @SaCheckPermission("sys.dict.data.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysDictData sysDictData) {
@@ -61,6 +66,7 @@ public class SysDictDataController {
         return R.ok().setMsg("保存成功");
     }
 
+    @Operation(summary ="修改")
     @SaCheckPermission("sys.dict.data.update")
     @PostMapping("/update")
     public R<Object> update(@RequestBody SysDictData sysDictData) {
@@ -85,6 +91,7 @@ public class SysDictDataController {
         return R.ok().setMsg("修改成功");
     }
 
+    @Operation(summary ="批量删除")
     @SaCheckPermission("sys.dict.data.del")
     @PostMapping("/deleteBatch")
     public R<Object> deleteBatch(@RequestBody Long[] ids) {
@@ -99,6 +106,7 @@ public class SysDictDataController {
      * @param id 字典数据ID
      * @return
      */
+    @Operation(summary ="设置默认")
     @PostMapping("/updateDictDataAsDefault/{id}")
     public R<Object> updateDictDataAsDefault(@PathVariable Long id) {
         sysDictDataService.updateDictDataAsDefault(id);
@@ -111,6 +119,7 @@ public class SysDictDataController {
      * @param typeCode 字典类型编码
      * @return
      */
+    @Operation(summary ="根据字典类型编码查询字典数据")
     @Cacheable("dict")
     @GetMapping("/getDictDataListByTypeCode/{typeCode}")
     public R<List<SysDictData>> getDictDataListByTypeCode(@PathVariable("typeCode") String typeCode) {

@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.domain.entity.SysLogOperate;
 import com.newbie.common.util.R;
 import com.newbie.system.service.SysLogOperateService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +27,12 @@ import java.util.Date;
 @RestController
 @RequestMapping("/system/log/operate")
 @RequiredArgsConstructor
+@Tag(name = "操作日志")
 public class SysLogOperateController {
 
     private final SysLogOperateService sysLogOperateService;
 
+    @Operation(summary ="查询分页数据")
     @SaCheckPermission("sys.log.operate")
     @GetMapping("/paging")
     public R<IPage<SysLogOperate>> paging(Page<SysLogOperate> page, SysLogOperate sysLogOperate) {
@@ -46,7 +50,7 @@ public class SysLogOperateController {
         return R.ok(pageData);
     }
 
-
+    @Operation(summary ="批量删除")
     @SaCheckPermission("sys.log.operate.del")
     @PostMapping("/deleteBatch")
     public R<Object> deleteBatch(@RequestBody Long[] ids) {
@@ -55,6 +59,7 @@ public class SysLogOperateController {
         return R.ok().setMsg("删除成功");
     }
 
+    @Operation(summary ="删除i天前数据")
     @SaCheckPermission("sys.log.operate.del")
     @GetMapping("/deleteBeforeData")
     public R<Object> deleteBeforeData(Integer i) {

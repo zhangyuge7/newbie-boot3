@@ -20,7 +20,7 @@ spring:
       max-file-size: 200MB
       maxRequestSize: 200MB
   profiles:
-    active: dev,datasource
+    active: dev,datasource,apidoc
   web:
     resources:
       static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, file:${newbie.file.file-location}

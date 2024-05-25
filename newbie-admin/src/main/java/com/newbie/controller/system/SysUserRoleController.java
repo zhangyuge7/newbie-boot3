@@ -10,6 +10,8 @@ import com.newbie.common.exception.NewbieException;
 import com.newbie.common.util.R;
 import com.newbie.system.domain.body.SysUserRoleBody;
 import com.newbie.system.service.SysUserRoleService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +22,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/user_role")
 @RequiredArgsConstructor
+@Tag(name = "用户角色关系")
 public class SysUserRoleController {
     private final SysUserRoleService sysUserRoleService;
 
-    /**
-     * 增量关联
-     */
+    @Operation(summary ="增量关联用户角色关系")
     @SaCheckPermission("sys.role.user")
     @PostMapping("/append")
     public R<Object> append(@RequestBody SysUserRoleBody sysUserRoleBody) {
@@ -34,9 +35,7 @@ public class SysUserRoleController {
         return R.ok().setMsg("关联成功");
     }
 
-    /**
-     * 批量清楚关联
-     */
+    @Operation(summary ="批量清除用户角色关系")
     @SaCheckPermission("sys.role.user")
     @PostMapping("/cancelBatch")
     public R<Object> batchDel(@RequestBody SysUserRoleBody sysUserRoleBody) {
@@ -80,14 +79,8 @@ public class SysUserRoleController {
         return list;
     }
 
-    /**
-     * 根据角色ID查询已分配的用户
-     *
-     * @param page    分页参数对象
-     * @param sysUser 筛选条件对象
-     * @param roleId  角色ID
-     * @return
-     */
+
+    @Operation(summary ="根据角色ID查询已分配的用户")
     @SaCheckPermission("sys.role.user")
     @GetMapping("/queryUserByRoleId/{roleId}")
     public R<IPage<SysUser>> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
@@ -95,14 +88,8 @@ public class SysUserRoleController {
         return R.ok(pageInfo);
     }
 
-    /**
-     * 根据角色ID查询未分配的用户
-     *
-     * @param page    分页参数对象
-     * @param sysUser 筛选条件对象
-     * @param roleId  角色ID
-     * @return
-     */
+
+    @Operation(summary ="根据角色ID查询未分配的用户")
     @SaCheckPermission("sys.role.user")
     @GetMapping("/queryUnUserByRoleId/{roleId}")
     public R<IPage<SysUser>> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {

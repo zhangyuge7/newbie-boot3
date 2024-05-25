@@ -14,6 +14,11 @@ import com.newbie.security.domain.vo.Captcha;
 import com.newbie.security.service.CaptchaService;
 import com.newbie.security.service.SecurityService;
 import com.newbie.system.service.SysLogLoginService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -32,26 +37,28 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/security")
 @RequiredArgsConstructor
+@Tag(name = "安全控制")
 public class SecurityController {
 
     private final SecurityService securityService;
     private final CaptchaService captchaService;
     private final SysLogLoginService sysLogLoginService;
 
-    @IgnoreWebLog
-    @GetMapping("/imageCaptcha")
-    public R<Captcha> imageCaptcha(String key) {
 
-        /*
-        为了节省资源
-        建议重新生成验证码时，提供之前获取验证码的key
-        * */
+    @IgnoreWebLog
+    @Operation(summary ="图片验证码")
+    @Parameters({
+            @Parameter(name="key",description="为了节省资源，建议重新生成验证码时，传入上一次获取验证码的key")
+    })
+    @GetMapping("/imageCaptcha")
+    public R<Captcha> imageCaptcha(@Nullable String key) {
         if (!StringUtils.hasLength(key)) {
             key = "captcha:" + UUID.randomUUID();
         }
         return R.ok(captchaService.create(key));
     }
 
+    @Operation(summary ="初始化超级管理员")
     @PostMapping("/initAdmin")
     public R<Object> initAdmin(@RequestBody PasswordBody passwordBody) {
         securityService.initAdmin(passwordBody);
@@ -59,6 +66,7 @@ public class SecurityController {
     }
 
     @IgnoreWebLog
+    @Operation(summary ="登录")
     @PostMapping("/login")
     public R<SaTokenInfo> login(@RequestBody LoginBody loginBody) {
         long startTimeMillis = System.currentTimeMillis();
@@ -75,6 +83,7 @@ public class SecurityController {
     }
 
     @IgnoreWebLog
+    @Operation(summary ="登出")
     @PostMapping("/logout")
     public R<Object> logout() {
         long startTimeMillis = System.currentTimeMillis();
@@ -92,11 +101,13 @@ public class SecurityController {
     }
 
     @IgnoreWebLog
+    @Operation(summary ="当前登录的用户信息")
     @GetMapping("/userInfo")
     public R<Object> userInfo() {
         return R.ok(SecurityUtils.getCurrentLoginUser());
     }
 
+    @Operation(summary ="修改密码")
     @PostMapping("/updatePassword")
     public R<Object> updatePassword(@RequestBody PasswordBody passwordBody) {
         securityService.updatePassword(passwordBody);
@@ -104,6 +115,7 @@ public class SecurityController {
     }
 
     @IgnoreWebLog
+    @Operation(summary ="菜单列表")
     @GetMapping("/menus")
     public R<List<Route>> menus() {
         return R.ok(securityService.getMenuList());

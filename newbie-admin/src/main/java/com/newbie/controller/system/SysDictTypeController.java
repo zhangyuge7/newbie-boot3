@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.domain.entity.SysDictType;
 import com.newbie.common.util.R;
 import com.newbie.system.service.SysDictTypeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -16,9 +18,11 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/system/dict/type")
 @RequiredArgsConstructor
+@Tag(name = "字典类型")
 public class SysDictTypeController {
     private final SysDictTypeService sysDictTypeService;
 
+    @Operation(summary ="查询分页数据")
     @SaCheckPermission("sys.dict.type")
     @GetMapping("/paging")
     public R<Page<SysDictType>> paging(Page<SysDictType> page, SysDictType sysDictType) {
@@ -34,6 +38,7 @@ public class SysDictTypeController {
         return R.ok(pageData);
     }
 
+    @Operation(summary ="新增")
     @SaCheckPermission("sys.dict.type.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysDictType sysDictType) {
@@ -54,6 +59,7 @@ public class SysDictTypeController {
         return R.ok().setMsg("保存成功");
     }
 
+    @Operation(summary ="修改")
     @SaCheckPermission("sys.dict.type.update")
     @PostMapping("/update")
     public R<Object> update(@RequestBody SysDictType sysDictType) {
@@ -78,6 +84,7 @@ public class SysDictTypeController {
         return R.ok().setMsg("修改成功");
     }
 
+    @Operation(summary ="批量删除")
     @SaCheckPermission("sys.dict.type.del")
     @PostMapping("/deleteBatch")
     @Transactional

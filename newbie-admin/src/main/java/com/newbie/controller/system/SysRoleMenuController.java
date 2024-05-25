@@ -6,6 +6,8 @@ import com.newbie.common.domain.entity.SysRoleMenu;
 import com.newbie.common.util.R;
 import com.newbie.system.domain.body.SysRoleMenuBody;
 import com.newbie.system.service.SysRoleMenuService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +18,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/role_menu")
 @RequiredArgsConstructor
+@Tag(name = "角色菜单关系")
 public class SysRoleMenuController {
     private final SysRoleMenuService sysRoleMenuService;
 
+    @Operation(summary ="根据角色id删除角色与权限关系并重新保存")
     @SaCheckPermission("sys.role.perm")
     @PostMapping("/removeAndSaveByRoleId")
     @Transactional
@@ -50,6 +54,7 @@ public class SysRoleMenuController {
      * @param roleId 角色ID
      * @return 角色权限关系列表
      */
+    @Operation(summary ="根据角色ID获取权限关系列表")
     @SaCheckPermission("sys.role.perm")
     @GetMapping("/listByRoleId")
     public R<List<SysRoleMenu>> menuIdsByRoleId(Long roleId) {

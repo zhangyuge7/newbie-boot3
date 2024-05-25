@@ -20,6 +20,7 @@ newbie:
       secret-key: NZvAgDfqr58OvcUrW9G942kmv4MSX40QTIuxTX0f
       bucket: files
 sa-token:
+  #  白名单
   white-list: /security/login, /security/initAdmin, /security/imageCaptcha, /public/**, /file/download
   # jwt秘钥
   jwt-secret-key: bsdasdasifhueuiwyurfewbfjsdafjg

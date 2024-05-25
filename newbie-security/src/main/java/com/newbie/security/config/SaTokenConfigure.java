@@ -23,9 +23,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Data
 @ConfigurationProperties(prefix = "sa-token")
 public class SaTokenConfigure implements WebMvcConfigurer {
-    public static final String[] STATIC_LIST = {"/**/error", "/**/favicon.ico"};
+    public static final String[] STATIC_LIST = {"/**/error", "/**/favicon.ico","/**/*.html","/**/*.css","/**/*.js"};
 
     private String[] whiteList = {"/security/login", "/security/initAdmin", "/security/imageCaptcha", "/public/**", "/file/download"};
+
+    private static final String[] API_DOC = {"/v3/api-docs/**","/swagger-ui/**"};
 
     /**
      * 注册拦截器
@@ -38,7 +40,8 @@ public class SaTokenConfigure implements WebMvcConfigurer {
         registry.addInterceptor(new SaInterceptor(handler -> StpUtil.checkLogin()))
                 .addPathPatterns("/**")
                 .excludePathPatterns(STATIC_LIST)
-                .excludePathPatterns(this.whiteList);
+                .excludePathPatterns(this.whiteList)
+                .excludePathPatterns(API_DOC);
     }
 
     // Sa-Token 整合 jwt

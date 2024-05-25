@@ -5,6 +5,8 @@ import com.newbie.file.domain.vo.FileVO;
 import com.newbie.common.exception.NewbieException;
 import com.newbie.file.service.FileService;
 import com.newbie.common.util.R;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.CollectionUtils;
@@ -25,6 +27,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/file")
 @RequiredArgsConstructor
+@Tag(name = "文件服务")
 public class FileController {
     private final FileService fileService;
 
@@ -34,6 +37,7 @@ public class FileController {
      * @param fileBody 文件对象
      * @return 文件路径数组
      */
+    @Operation(summary ="上传")
     @PostMapping("/upload")
     public R<List<FileVO>> upload(FileBody fileBody) {
         List<MultipartFile> files = fileBody.getFile();
@@ -48,12 +52,14 @@ public class FileController {
      *
      * @param filePath     文件的路径
      */
+    @Operation(summary ="下载")
     @GetMapping("/download")
     public void download(String filePath, HttpServletResponse response) {
         fileService.download(filePath,response);
     }
 
 
+    @Operation(summary ="删除")
     @GetMapping("/remove")
     public R<Object> remove(String filePath) {
         if(!StringUtils.hasLength(filePath)){

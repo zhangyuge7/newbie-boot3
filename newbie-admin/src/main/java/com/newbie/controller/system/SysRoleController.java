@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.domain.entity.SysRole;
 import com.newbie.common.util.R;
 import com.newbie.system.service.SysRoleService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,11 @@ import java.util.Arrays;
 @RestController
 @RequestMapping("/system/role")
 @RequiredArgsConstructor
+@Tag(name = "角色管理")
 public class SysRoleController {
     private final SysRoleService sysRoleService;
 
+    @Operation(summary ="查询分页数据")
     @SaCheckPermission("sys.role")
     @GetMapping("/paging")
     public R<IPage<SysRole>> paging(Page<SysRole> page, SysRole sysRole) {
@@ -35,6 +39,7 @@ public class SysRoleController {
         return R.ok(pageInfo);
     }
 
+    @Operation(summary ="新增")
     @SaCheckPermission("sys.role.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysRole sysRole) {
@@ -49,6 +54,7 @@ public class SysRoleController {
         return R.ok().setMsg("添加成功");
     }
 
+    @Operation(summary ="修改")
     @SaCheckPermission("sys.role.update")
     @PostMapping("/update")
     public R<Object> update(@RequestBody SysRole sysRole) {
@@ -67,6 +73,7 @@ public class SysRoleController {
         return R.ok().setMsg("修改成功");
     }
 
+    @Operation(summary ="批量删除")
     @SaCheckPermission("sys.role.del")
     @PostMapping("/deleteBatch")
     public R<Object> deleteBatch(@RequestBody Long[] ids) {

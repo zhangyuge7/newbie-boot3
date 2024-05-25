@@ -8,6 +8,8 @@ import com.newbie.common.domain.entity.SysLogLogin;
 import com.newbie.common.util.R;
 import com.newbie.common.util.SecurityUtils;
 import com.newbie.system.service.SysLogLoginService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +28,11 @@ import java.util.Date;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/system/log/login")
+@Tag(name = "登录日志")
 public class SysLogLoginController {
     private final SysLogLoginService sysLogLoginService;
 
+    @Operation(summary ="查询分页数据")
     @SaCheckPermission("sys.log.login")
     @GetMapping("/paging")
     public R<IPage<SysLogLogin>> paging(Page<SysLogLogin> page, SysLogLogin sysLogLogin) {
@@ -42,6 +46,7 @@ public class SysLogLoginController {
         return R.ok(pageData);
     }
 
+    @Operation(summary ="查询当前用户的登录日志分页数据")
     @GetMapping("/pagingByCurrUser")
     public R<IPage<SysLogLogin>> pagingByCurrUser(Page<SysLogLogin> page, SysLogLogin sysLogLogin) {
         String username = SecurityUtils.getCurrentLoginUser().getUsername();
@@ -55,6 +60,7 @@ public class SysLogLoginController {
     }
 
 
+    @Operation(summary ="批量删除")
     @SaCheckPermission("sys.log.login.del")
     @PostMapping("/deleteBatch")
     public R<Object> deleteBatch(@RequestBody Long[] ids) {
@@ -63,6 +69,7 @@ public class SysLogLoginController {
         return R.ok().setMsg("删除成功");
     }
 
+    @Operation(summary ="删除i天前数据")
     @SaCheckPermission("sys.log.login.del")
     @GetMapping("/deleteBeforeData")
     public R<Object> deleteBeforeData(Integer i) {

@@ -1,0 +1,16 @@
+# springdoc-openapi项目配置
+springdoc:
+  api-docs:
+    enabled: true
+  group-configs:
+    - group: '文件服务'
+#      paths-to-match: '/file/**'
+      packages-to-scan: com.newbie.controller.file
+    - group: '系统管理'
+      packages-to-scan: com.newbie.controller.system
+    - group: '安全控制'
+      packages-to-scan: com.newbie.controller.security
+
+# knife4j的增强配置，不需要增强可以不配
+knife4j:
+  enable: false
