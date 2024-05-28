@@ -19,7 +19,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param userId 用户ID
      * @return 角色列表
      */
-    List<SysRole> selectListByUserId(Long userId);
+    List<SysRole> selectListByUserId(String userId);
 }
 
 

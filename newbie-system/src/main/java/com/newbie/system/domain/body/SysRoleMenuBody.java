@@ -6,6 +6,6 @@ import java.util.List;
 
 @Data
 public class SysRoleMenuBody {
-    private Long roleId;
-    private List<Long> menuIds;
+    private String roleId;
+    private List<String> menuIds;
 }

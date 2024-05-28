@@ -30,14 +30,14 @@ public interface SecurityMapper {
      * @param userId 用户ID
      * @return 菜单列表
      */
-    List<SysMenu> selectMenuListByUserId(@Param("userId") Long userId,@Param("menuType") String menuType);
+    List<SysMenu> selectMenuListByUserId(@Param("userId") String userId,@Param("menuType") String menuType);
 
     /**
      * 根据用户ID查询角色列表
      * @param userId 用户ID
      * @return 角色列表
      */
-    List<SysRole> selectRoleListByUserId(Long userId);
+    List<SysRole> selectRoleListByUserId(String userId);
 
     /**
      * 初始化管理员用户
@@ -69,5 +69,5 @@ public interface SecurityMapper {
      * @param deptId 部门ID
      * @return
      */
-    SysDept selectDeptByDeptId(Long deptId);
+    SysDept selectDeptByDeptId(String deptId);
 }

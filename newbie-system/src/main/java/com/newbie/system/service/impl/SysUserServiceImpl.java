@@ -41,7 +41,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
     @Override
     public IPage<SysUser> queryPage(Page<SysUser> page, SysUser sysUser) {
-        Long deptId = sysUser.getDeptId();
+        String deptId = sysUser.getDeptId();
         String username = sysUser.getUsername();
         String nickName = sysUser.getNickName();
 
@@ -97,7 +97,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
     @Override
     @Transactional
-    public boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword, Boolean immediatelyKick) {
+    public boolean updateUserPassword(String userId, String newPassword, String confirmNewPassword, Boolean immediatelyKick) {
         if (userId == null) throw new NewbieException("用户ID为空");
         if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码为空");
         if (!newPassword.equals(confirmNewPassword)) throw new NewbieException("两次输入密码不一致");
@@ -123,7 +123,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
     @Override
     @Transactional
-    public void deleteBatch(List<Long> idList) {
+    public void deleteBatch(List<String> idList) {
         // 是否有admin用户
         if (hasAdminByIdList(idList))
             throw new NewbieException("不可以删除admin系统管理员");
@@ -132,15 +132,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         if (sysUserRoleMapper.selectCount(new LambdaQueryWrapper<SysUserRole>().in(SysUserRole::getUserId, idList)) > 0)
             throw new NewbieException("请先解除用户与角色的关联后再次尝试");
 
-        idList.forEach(StpUtil::logout); // 被删除用户下线
-
         sysUserMapper.deleteBatchIds(idList);
+        idList.forEach(StpUtil::logout); // 被删除用户下线
     }
 
     @Override
     public void updateByCurr(SysUser sysUser) {
         if (!StringUtils.hasLength(sysUser.getNickName())) throw new NewbieException("昵称不能为空");
-        sysUser.setId(StpUtil.getLoginIdAsLong());
+        sysUser.setId(StpUtil.getLoginIdAsString());
         sysUserMapper.updateById(sysUser);
     }
 
@@ -149,7 +148,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
      *
      * @param userId 用户ID
      */
-    private boolean isAdminById(Long userId) {
+    private boolean isAdminById(String userId) {
         return sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>()
                 .eq(SysUser::getId, userId)
                 .eq(SysUser::getUsername, SecurityConstant.ADMIN_USER_NAME)) > 0;
@@ -160,7 +159,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
      *
      * @param userIdList 用户ID列表
      */
-    private boolean hasAdminByIdList(List<Long> userIdList) {
+    private boolean hasAdminByIdList(List<String> userIdList) {
         return sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>()
                 .in(SysUser::getId, userIdList)
                 .eq(SysUser::getUsername, SecurityConstant.ADMIN_USER_NAME)) > 0;

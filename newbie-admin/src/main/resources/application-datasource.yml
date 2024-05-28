@@ -10,7 +10,7 @@ spring:
 #    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://localhost:5432/user_JNcKh5
 #    username: user_JNcKh5
-#    password: password_teMfrW
+#    password: root
 #    Oracle
 #    driverClassName: oracle.jdbc.driver.OracleDriver
 #    url: jdbc:oracle:thin:@localhost:1521/xe

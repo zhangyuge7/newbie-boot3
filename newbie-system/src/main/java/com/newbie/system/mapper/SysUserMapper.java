@@ -14,9 +14,9 @@ import org.apache.ibatis.annotations.Param;
 * @Entity generator.domain.SysUser
 */
 public interface SysUserMapper extends BaseMapper<SysUser> {
-    IPage<SysUser> queryUserByRoleId(@Param("page") Page<SysUser> page, @Param("sysUser") SysUser sysUser, @Param("roleId") Long roleId);
+    IPage<SysUser> queryUserByRoleId(@Param("page") Page<SysUser> page, @Param("sysUser") SysUser sysUser, @Param("roleId") String roleId);
 
-    IPage<SysUser> queryUnUserByRoleId(@Param("page") Page<SysUser> page,@Param("sysUser") SysUser sysUser, @Param("roleId") Long roleId);
+    IPage<SysUser> queryUnUserByRoleId(@Param("page") Page<SysUser> page,@Param("sysUser") SysUser sysUser, @Param("roleId") String roleId);
 }
 
 

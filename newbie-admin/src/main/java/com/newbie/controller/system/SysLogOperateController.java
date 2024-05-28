@@ -53,7 +53,7 @@ public class SysLogOperateController {
     @Operation(summary ="批量删除")
     @SaCheckPermission("sys.log.operate.del")
     @PostMapping("/deleteBatch")
-    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+    public R<Object> deleteBatch(@RequestBody String[] ids) {
         if (ids == null || ids.length == 0) return R.error("日志ID为空");
         sysLogOperateService.removeBatchByIds(Arrays.asList(ids));
         return R.ok().setMsg("删除成功");

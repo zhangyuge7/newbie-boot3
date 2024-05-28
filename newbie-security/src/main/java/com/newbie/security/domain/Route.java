@@ -23,8 +23,8 @@ public class Route {
     private RouteMeta meta; // 路由元信息
 
     @JsonIgnore
-    private Long id;
+    private String id;
     @JsonIgnore
-    private Long pid;
+    private String pid;
     private List<Route> children;
 }

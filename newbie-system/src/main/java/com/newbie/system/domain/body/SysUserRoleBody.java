@@ -6,6 +6,6 @@ import java.util.List;
 
 @Data
 public class SysUserRoleBody {
-    private List<Long> userIds;
-    private List<Long> roleIds;
+    private List<String> userIds;
+    private List<String> roleIds;
 }

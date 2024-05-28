@@ -1,7 +1,5 @@
 package com.newbie.common.domain.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,11 +12,6 @@ import lombok.EqualsAndHashCode;
 @TableName(value ="sys_dept")
 @Data
 public class SysDept extends BaseEntity{
-    /**
-     * 主键
-     */
-    @TableId(type = IdType.AUTO)
-    private Long id;
 
     /**
      * 部门名称
@@ -29,7 +22,7 @@ public class SysDept extends BaseEntity{
     /**
      * 父级id
      */
-    private Long parentId;
+    private String parentId;
 
     /**
      * 祖级列表

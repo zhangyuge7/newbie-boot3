@@ -28,7 +28,7 @@ public class SysDictDataController {
     @SaCheckPermission("sys.dict.data")
     @GetMapping("/paging")
     public R<IPage<SysDictData>> paging(Page<SysDictData> page, SysDictData sysDictData) {
-        Long typeId = sysDictData.getTypeId();
+        String typeId = sysDictData.getTypeId();
         String label = sysDictData.getLabel();
         String status = sysDictData.getStatus();
         Page<SysDictData> pageData = sysDictDataService.lambdaQuery()
@@ -48,7 +48,7 @@ public class SysDictDataController {
         if (Objects.isNull(sysDictData.getLabel())) return R.error("字典数据名称不能为空");
         if (Objects.isNull(sysDictData.getValue())) return R.error("字典数据值不能为空");
 
-        Long dictDataId = sysDictData.getId();
+        String dictDataId = sysDictData.getId();
         if (dictDataId != null) {
             return R.error("请检查此数据是否已存在,dictDataId=" + dictDataId);
         }
@@ -94,7 +94,7 @@ public class SysDictDataController {
     @Operation(summary ="批量删除")
     @SaCheckPermission("sys.dict.data.del")
     @PostMapping("/deleteBatch")
-    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+    public R<Object> deleteBatch(@RequestBody String[] ids) {
         if (Objects.isNull(ids) || ids.length == 0) return R.error("字典数据ID不能为空");
         sysDictDataService.removeBatchByIds(Arrays.asList(ids));
         return R.ok().setMsg("删除成功");
@@ -108,7 +108,7 @@ public class SysDictDataController {
      */
     @Operation(summary ="设置默认")
     @PostMapping("/updateDictDataAsDefault/{id}")
-    public R<Object> updateDictDataAsDefault(@PathVariable Long id) {
+    public R<Object> updateDictDataAsDefault(@PathVariable String id) {
         sysDictDataService.updateDictDataAsDefault(id);
         return R.ok().setMsg("修改成功");
     }

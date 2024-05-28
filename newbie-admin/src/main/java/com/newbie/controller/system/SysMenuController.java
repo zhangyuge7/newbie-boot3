@@ -8,6 +8,7 @@ import com.newbie.system.service.SysMenuService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -32,10 +33,10 @@ public class SysMenuController {
     @SaCheckPermission("sys.menu.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysMenu sysMenu) {
-        Long menuId = sysMenu.getId();
-        if (menuId != null) {
+        String menuId = sysMenu.getId();
+        if (StringUtils.hasLength(menuId))
             return R.error("请检查此数据是否已存在,menuId=" + menuId);
-        }
+
         return sysMenuService.addData(sysMenu) ? R.ok().setMsg("新增成功") : R.error("新增失败");
     }
 
@@ -52,7 +53,7 @@ public class SysMenuController {
     @Operation(summary ="批量删除")
     @SaCheckPermission("sys.menu.del")
     @PostMapping("/deleteBatch")
-    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+    public R<Object> deleteBatch(@RequestBody String[] ids) {
         if (ids == null || ids.length == 0) return R.error("菜单ID为空");
         sysMenuService.deleteBatch(Arrays.asList(ids));
         return R.ok().setMsg("删除成功");

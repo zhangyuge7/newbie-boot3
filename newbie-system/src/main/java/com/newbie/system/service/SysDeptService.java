@@ -39,5 +39,5 @@ public interface SysDeptService extends IService<SysDept> {
      * 批量删除部门
      * @param idList 部门ID列表
      */
-    void deleteBatch(List<Long> idList);
+    void deleteBatch(List<String> idList);
 }

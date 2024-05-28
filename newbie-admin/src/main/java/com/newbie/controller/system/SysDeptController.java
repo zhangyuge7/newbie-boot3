@@ -32,7 +32,7 @@ public class SysDeptController {
     @SaCheckPermission("sys.dept.add")
     @PostMapping("/add")
     public R<Object> addDept(@RequestBody SysDept sysDept) {
-        Long deptId = sysDept.getId();
+        String deptId = sysDept.getId();
         if (deptId != null) {
             return R.error("请检查此数据是否已存在,deptId=" + deptId);
         }
@@ -52,7 +52,7 @@ public class SysDeptController {
     @Operation(summary ="批量删除部门")
     @SaCheckPermission("sys.dept.del")
     @PostMapping("/deleteBatch")
-    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+    public R<Object> deleteBatch(@RequestBody String[] ids) {
         if (ids == null || ids.length == 0) return R.error("部门ID为空");
         sysDeptService.deleteBatch(Arrays.asList(ids));
         return R.ok().setMsg("删除成功");

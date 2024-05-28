@@ -1,7 +1,5 @@
 package com.newbie.common.domain.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,11 +12,7 @@ import lombok.EqualsAndHashCode;
 @TableName(value ="sys_dict_data")
 @Data
 public class SysDictData extends BaseEntity {
-    /**
-     * 主键
-     */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+
 
     /**
      * 标签
@@ -33,7 +27,7 @@ public class SysDictData extends BaseEntity {
     /**
      * 字典类型ID
      */
-    private Long typeId;
+    private String typeId;
 
     /**
      * 元素类型

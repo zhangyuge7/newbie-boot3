@@ -36,5 +36,5 @@ public interface SysMenuService extends IService<SysMenu> {
      * 批量删除数据
      * @param idList 菜单ID列表
      */
-    void deleteBatch(List<Long> idList);
+    void deleteBatch(List<String> idList);
 }

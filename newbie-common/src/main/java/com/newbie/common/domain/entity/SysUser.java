@@ -1,7 +1,5 @@
 package com.newbie.common.domain.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,16 +12,12 @@ import lombok.EqualsAndHashCode;
 @TableName(value ="sys_user")
 @Data
 public class SysUser extends BaseEntity {
-    /**
-     * 主键
-     */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+
 
     /**
      * 部门ID
      */
-    private Long deptId;
+    private String deptId;
 
     /**
      * 用户名

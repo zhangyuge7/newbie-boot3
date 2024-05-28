@@ -16,7 +16,7 @@ public interface SysDictDataService extends IService<SysDictData> {
      * 根据数据ID修改此数据为默认，此数据同分类下其它数据取消默认
      * @param id 数据ID
      */
-    void updateDictDataAsDefault(Long id);
+    void updateDictDataAsDefault(String id);
 
     /**
      * 根据分类编码获取数据列表

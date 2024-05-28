@@ -16,5 +16,5 @@ public interface SysRoleService extends IService<SysRole> {
      * 批量删除
      * @param idList ID列表
      */
-    void deleteBatch(List<Long> idList);
+    void deleteBatch(List<String> idList);
 }

@@ -11,5 +11,5 @@ import java.util.List;
 @Data
 public class SysUserBody extends SysUser {
     private String loginPwd;
-    private List<Long> rolesIds;
+    private List<String> rolesIds;
 }

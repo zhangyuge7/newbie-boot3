@@ -23,13 +23,13 @@ public interface SysDictDataMapper extends BaseMapper<SysDictData> {
      * 清除字典类型下的默认字典数据
      * @param typeId 字典类型id
      */
-    void clearDefault(Long typeId);
+    void clearDefault(String typeId);
 
     /**
      * 设置字典数据为默认字典数据
      * @param id 字典数据id
      */
-    void setDefault(Long id);
+    void setDefault(String id);
 }
 
 

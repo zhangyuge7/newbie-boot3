@@ -27,8 +27,8 @@ public class SysRoleMenuController {
     @PostMapping("/removeAndSaveByRoleId")
     @Transactional
     public R<Object> removeAndSaveByRoleId(@RequestBody SysRoleMenuBody sysRoleMenuBody) {
-        Long roleId = sysRoleMenuBody.getRoleId();
-        List<Long> menuIds = sysRoleMenuBody.getMenuIds();
+        String roleId = sysRoleMenuBody.getRoleId();
+        List<String> menuIds = sysRoleMenuBody.getMenuIds();
         if (roleId == null || menuIds == null) return R.error("角色ID或菜单ID列表为空");
 
         // 根据 roleId 删除已有的权限信息
@@ -57,7 +57,7 @@ public class SysRoleMenuController {
     @Operation(summary ="根据角色ID获取权限关系列表")
     @SaCheckPermission("sys.role.perm")
     @GetMapping("/listByRoleId")
-    public R<List<SysRoleMenu>> menuIdsByRoleId(Long roleId) {
+    public R<List<SysRoleMenu>> menuIdsByRoleId(String roleId) {
         List<SysRoleMenu> list = sysRoleMenuService
                 .lambdaQuery()
                 .eq(SysRoleMenu::getRoleId, roleId)

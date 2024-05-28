@@ -1,13 +1,12 @@
 package com.newbie.common.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
+import org.springframework.util.StringUtils;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
-
-import lombok.Data;
-import org.springframework.util.StringUtils;
 
 /**
  * 系统操作日志
@@ -20,8 +19,8 @@ public class SysLogOperate implements Serializable {
     /**
      * 主键
      */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+    @TableId(type = IdType.ASSIGN_ID)
+    private String id;
 
     /**
      * 用户名

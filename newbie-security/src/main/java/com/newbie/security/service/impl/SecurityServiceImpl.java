@@ -104,7 +104,7 @@ public class SecurityServiceImpl implements SecurityService {
         return loginUser;
     }
 
-    private List<String> getPermissions(Long userId) {
+    private List<String> getPermissions(String userId) {
         List<SysMenu> menuList = securityMapper.selectMenuListByUserId(userId,null);
         return menuList.stream()
                 .map(SysMenu::getPerm)
@@ -112,7 +112,7 @@ public class SecurityServiceImpl implements SecurityService {
                 .toList();
     }
 
-    private List<String> getRoleCodes(Long userId) {
+    private List<String> getRoleCodes(String userId) {
         List<SysRole> roleList = securityMapper.selectRoleListByUserId(userId);
         return roleList.stream().map(SysRole::getRoleCode).toList();
     }

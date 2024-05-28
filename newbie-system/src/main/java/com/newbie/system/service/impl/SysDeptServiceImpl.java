@@ -101,7 +101,7 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept>
 
     @Override
     @Transactional
-    public void deleteBatch(List<Long> idList) {
+    public void deleteBatch(List<String> idList) {
         if (sysDeptMapper.selectCount(new LambdaQueryWrapper<SysDept>()
                 .in(SysDept::getParentId, idList)
                 .notIn(SysDept::getId,idList)) > 0) {

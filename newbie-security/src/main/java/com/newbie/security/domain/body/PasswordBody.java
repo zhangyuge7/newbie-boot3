@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @Data
 public class PasswordBody {
-    private Long userId; // 用户ID
+    private String userId; // 用户ID
     private String oldPassword; // 原密码
     private String newPassword; // 新密码
     private String confirmPassword; // 确认密码

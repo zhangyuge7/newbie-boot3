@@ -29,7 +29,7 @@ public class SysDictTypeServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDi
 
     @Override
     @Transactional
-    public void deleteBatch(List<Long> idList) {
+    public void deleteBatch(List<String> idList) {
         // 查询字典类型下的字典数据
         List<SysDictData> dictDataList = sysDictDataMapper.selectList(new LambdaQueryWrapper<SysDictData>()
                 .in(SysDictData::getTypeId, idList));

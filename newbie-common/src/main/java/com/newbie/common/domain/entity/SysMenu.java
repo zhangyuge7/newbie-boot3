@@ -13,11 +13,7 @@ import lombok.EqualsAndHashCode;
 @TableName(value ="sys_menu")
 @Data
 public class SysMenu extends BaseEntity {
-    /**
-     * 菜单ID
-     */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+
 
     /**
      * 菜单标题
@@ -27,7 +23,7 @@ public class SysMenu extends BaseEntity {
     /**
      * 父菜单ID
      */
-    private Long parentId;
+    private String parentId;
 
     /**
      * 排序

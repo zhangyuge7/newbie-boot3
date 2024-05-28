@@ -20,14 +20,14 @@ public interface SysUserRoleService extends IService<SysUserRole> {
      * @param userId 用户ID
      * @param roleIds 角色ID列表
      */
-    void removeByUserIdAndRoleIds(Long userId, List<Long> roleIds);
+    void removeByUserIdAndRoleIds(String userId, List<String> roleIds);
 
     /**
      * 根据 角色ID 及 用户ID列表 删除数据
      * @param roleId 角色ID
      * @param userIds 用户ID列表
      */
-    void removeByRoleIdAndUserIds(Long roleId, List<Long> userIds);
+    void removeByRoleIdAndUserIds(String roleId, List<String> userIds);
 
     /**
      * 根据角色ID查询已分配的用户
@@ -37,7 +37,7 @@ public interface SysUserRoleService extends IService<SysUserRole> {
      * @param roleId  角色ID
      * @return
      */
-    IPage<SysUser> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId);
+    IPage<SysUser> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, String roleId);
 
     /**
      * 根据角色ID查询未分配的用户
@@ -47,6 +47,6 @@ public interface SysUserRoleService extends IService<SysUserRole> {
      * @param roleId  角色ID
      * @return
      */
-    IPage<SysUser> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId);
+    IPage<SysUser> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, String roleId);
 
 }

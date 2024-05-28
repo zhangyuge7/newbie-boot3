@@ -16,5 +16,5 @@ public interface SysDictTypeService extends IService<SysDictType> {
      * 批量删除字典类型
      * @param idList 字典类型ID列表
      */
-    void deleteBatch(List<Long> idList);
+    void deleteBatch(List<String> idList);
 }

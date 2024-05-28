@@ -45,13 +45,13 @@ public interface SysUserService extends IService<SysUser> {
      * @param immediatelyKick 修改成功后是否强制下线
      * @return 是否成功
      */
-    boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword,Boolean immediatelyKick);
+    boolean updateUserPassword(String userId, String newPassword, String confirmNewPassword,Boolean immediatelyKick);
 
     /**
      * 批量删除
      * @param idList ID列表
      */
-    void deleteBatch(List<Long> idList);
+    void deleteBatch(List<String> idList);
 
     /**
      * 修改当前用户基本信息

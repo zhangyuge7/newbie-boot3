@@ -12,5 +12,5 @@ public class SysRoleVO extends SysRole {
     /**
      * 菜单 id 列表
      */
-    private List<Long> menuIds;
+    private List<String> menuIds;
 }

@@ -42,16 +42,10 @@ public class SysDictTypeController {
     @SaCheckPermission("sys.dict.type.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysDictType sysDictType) {
-        Long dictTypeId = sysDictType.getId();
-        if (dictTypeId != null) {
-            return R.error("请检查此数据是否已存在,dictTypeId=" + dictTypeId);
-        }
-        if (!StringUtils.hasLength(sysDictType.getTypeName())) {
-            return R.error("名称不能为空");
-        }
-        if (!StringUtils.hasLength(sysDictType.getTypeCode())) {
-            return R.error("编码不能为空");
-        }
+        String dictTypeId = sysDictType.getId();
+        if (StringUtils.hasLength(dictTypeId))  return R.error("请检查此数据是否已存在,dictTypeId=" + dictTypeId);
+        if (!StringUtils.hasLength(sysDictType.getTypeName())) return R.error("名称不能为空");
+        if (!StringUtils.hasLength(sysDictType.getTypeCode()))  return R.error("编码不能为空");
         if (Objects.nonNull(sysDictTypeService.lambdaQuery().eq(SysDictType::getTypeCode, sysDictType.getTypeCode()).one()))
             return R.error(sysDictType.getTypeCode() + "已存在");
 
@@ -88,7 +82,7 @@ public class SysDictTypeController {
     @SaCheckPermission("sys.dict.type.del")
     @PostMapping("/deleteBatch")
     @Transactional
-    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+    public R<Object> deleteBatch(@RequestBody String[] ids) {
         if (Objects.isNull(ids) || ids.length == 0) return R.error("id不能为空");
         sysDictTypeService.deleteBatch(Arrays.asList(ids));
         return R.ok().setMsg("删除成功");

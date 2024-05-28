@@ -43,8 +43,8 @@ public class SysRoleController {
     @SaCheckPermission("sys.role.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysRole sysRole) {
-        Long roleId = sysRole.getId();
-        if (roleId != null) return R.error("添加失败，请检查此数据是否已存在,roleId=" + roleId);
+        String roleId = sysRole.getId();
+        if (StringUtils.hasLength(roleId)) return R.error("添加失败，请检查此数据是否已存在,roleId=" + roleId);
         // 查询角色编码唯一
         if (sysRoleService.lambdaQuery().eq(SysRole::getRoleCode, sysRole.getRoleCode()).count() > 0)
             return R.error("角色编码已存在");
@@ -76,7 +76,7 @@ public class SysRoleController {
     @Operation(summary ="批量删除")
     @SaCheckPermission("sys.role.del")
     @PostMapping("/deleteBatch")
-    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+    public R<Object> deleteBatch(@RequestBody String[] ids) {
         if (ids == null || ids.length == 0) return R.error("角色ID为空");
         sysRoleService.deleteBatch(Arrays.asList(ids));
         return R.ok().setMsg("删除成功");

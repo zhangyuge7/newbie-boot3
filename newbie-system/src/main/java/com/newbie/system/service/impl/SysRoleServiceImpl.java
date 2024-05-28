@@ -32,7 +32,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
 
     @Override
     @Transactional
-    public void deleteBatch(List<Long> idList) {
+    public void deleteBatch(List<String> idList) {
         // 查询用户角色关系
         if (sysUserRoleMapper.selectCount(new LambdaQueryWrapper<SysUserRole>()
         .in(SysUserRole::getRoleId, idList)) > 0)  throw new NewbieException("请先解除用户与角色的关联后再次尝试");

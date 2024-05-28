@@ -14,9 +14,9 @@ import java.util.List;
 * @Entity generator.domain.SysUserRole
 */
 public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
-    void removeByUserIdAndRoleIds(@Param("userId") Long userId, @Param("roleIds") List<Long> roleIds);
+    void removeByUserIdAndRoleIds(@Param("userId") String userId, @Param("roleIds") List<String> roleIds);
 
-    void removeByRoleIdAndUserIds(@Param("roleId") Long roleId, @Param("userIds") List<Long> userIds);
+    void removeByRoleIdAndUserIds(@Param("roleId") String roleId, @Param("userIds") List<String> userIds);
 }
 
 

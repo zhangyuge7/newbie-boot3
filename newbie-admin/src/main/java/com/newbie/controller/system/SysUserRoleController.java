@@ -39,8 +39,8 @@ public class SysUserRoleController {
     @SaCheckPermission("sys.role.user")
     @PostMapping("/cancelBatch")
     public R<Object> batchDel(@RequestBody SysUserRoleBody sysUserRoleBody) {
-        List<Long> userIds = sysUserRoleBody.getUserIds();
-        List<Long> roleIds = sysUserRoleBody.getRoleIds();
+        List<String> userIds = sysUserRoleBody.getUserIds();
+        List<String> roleIds = sysUserRoleBody.getRoleIds();
         if (CollectionUtils.isEmpty(roleIds) || CollectionUtils.isEmpty(userIds)) {
             return R.error("用户ID或角色ID不能为空");
 
@@ -58,8 +58,8 @@ public class SysUserRoleController {
     }
 
     private List<SysUserRole> bodyToSysUserRole(SysUserRoleBody sysUserRoleBody) {
-        List<Long> userIds = sysUserRoleBody.getUserIds();
-        List<Long> roleIds = sysUserRoleBody.getRoleIds();
+        List<String> userIds = sysUserRoleBody.getUserIds();
+        List<String> roleIds = sysUserRoleBody.getRoleIds();
         if (CollectionUtils.isEmpty(roleIds) || CollectionUtils.isEmpty(userIds)) {
             throw new NewbieException("用户ID或角色ID不能为空");
         }
@@ -83,7 +83,7 @@ public class SysUserRoleController {
     @Operation(summary ="根据角色ID查询已分配的用户")
     @SaCheckPermission("sys.role.user")
     @GetMapping("/queryUserByRoleId/{roleId}")
-    public R<IPage<SysUser>> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
+    public R<IPage<SysUser>> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") String roleId) {
         IPage<SysUser> pageInfo = sysUserRoleService.queryUserByRoleId(page, sysUser, roleId);
         return R.ok(pageInfo);
     }
@@ -92,7 +92,7 @@ public class SysUserRoleController {
     @Operation(summary ="根据角色ID查询未分配的用户")
     @SaCheckPermission("sys.role.user")
     @GetMapping("/queryUnUserByRoleId/{roleId}")
-    public R<IPage<SysUser>> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") Long roleId) {
+    public R<IPage<SysUser>> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, @PathVariable("roleId") String roleId) {
         IPage<SysUser> pageInfo = sysUserRoleService.queryUnUserByRoleId(page, sysUser, roleId);
         return R.ok(pageInfo);
     }

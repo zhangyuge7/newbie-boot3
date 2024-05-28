@@ -28,23 +28,23 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUs
 
     @Transactional
     @Override
-    public void removeByUserIdAndRoleIds(Long userId, List<Long> roleIds) {
+    public void removeByUserIdAndRoleIds(String userId, List<String> roleIds) {
         sysUserRoleMapper.removeByUserIdAndRoleIds(userId,roleIds);
     }
 
     @Transactional
     @Override
-    public void removeByRoleIdAndUserIds(Long roleId, List<Long> userIds) {
+    public void removeByRoleIdAndUserIds(String roleId, List<String> userIds) {
         sysUserRoleMapper.removeByRoleIdAndUserIds(roleId,userIds);
 
     }
     @Override
-    public IPage<SysUser> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId) {
+    public IPage<SysUser> queryUserByRoleId(Page<SysUser> page, SysUser sysUser, String roleId) {
         return sysUserMapper.queryUserByRoleId(page, sysUser, roleId);
     }
 
     @Override
-    public IPage<SysUser> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, Long roleId) {
+    public IPage<SysUser> queryUnUserByRoleId(Page<SysUser> page, SysUser sysUser, String roleId) {
         return sysUserMapper.queryUnUserByRoleId(page, sysUser, roleId);
     }
 }

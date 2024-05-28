@@ -1,7 +1,5 @@
 package com.newbie.common.domain.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,11 +12,7 @@ import lombok.EqualsAndHashCode;
 @TableName(value ="sys_role")
 @Data
 public class SysRole extends BaseEntity {
-    /**
-     * 主键
-     */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+
 
     /**
      * 角色名称

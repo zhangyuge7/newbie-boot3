@@ -1,7 +1,9 @@
 package com.newbie.common.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serial;
@@ -20,6 +22,12 @@ import java.util.Date;
 public abstract class BaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 主键
+     */
+    @TableId(type = IdType.ASSIGN_ID)
+    private String id;
 
     /**
      * 创建时间

@@ -103,7 +103,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
 
     @Override
     @Transactional
-    public void deleteBatch(List<Long> idList) {
+    public void deleteBatch(List<String> idList) {
         // 查找子数据
         if (sysMenuMapper.selectCount(new LambdaQueryWrapper<SysMenu>()
                 .in(SysMenu::getParentId, idList)

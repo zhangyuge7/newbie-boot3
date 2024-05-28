@@ -10,6 +10,7 @@ import com.newbie.system.service.SysUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -34,8 +35,8 @@ public class SysUserController {
     @SaCheckPermission("sys.user.add")
     @PostMapping("/add")
     public R<Object> add(@RequestBody SysUser sysUser) {
-        Long userId = sysUser.getId();
-        if (userId != null)  return R.error("请检查此数据是否已存在,userId=" + userId);
+        String userId = sysUser.getId();
+        if (StringUtils.hasLength(userId))  return R.error("请检查此数据是否已存在,userId=" + userId);
         sysUserService.saveUser(sysUser);
         return R.ok().setMsg("添加成功");
     }
@@ -52,7 +53,7 @@ public class SysUserController {
     @Operation(summary ="批量删除")
     @SaCheckPermission("sys.user.del")
     @PostMapping("/deleteBatch")
-    public R<Object> deleteBatch(@RequestBody Long[] ids) {
+    public R<Object> deleteBatch(@RequestBody String[] ids) {
         if(ids==null || ids.length==0) return R.error("用户ID为空");
         sysUserService.deleteBatch(Arrays.asList(ids));
         return  R.ok().setMsg("删除成功");

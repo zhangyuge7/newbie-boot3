@@ -23,7 +23,7 @@ public class SysDictDataServiceImpl extends ServiceImpl<SysDictDataMapper, SysDi
 
     @Override
     @Transactional
-    public void updateDictDataAsDefault(Long id) {
+    public void updateDictDataAsDefault(String id) {
         // 根据id查询
         SysDictData dictData = getById(id);
         // 取消默认

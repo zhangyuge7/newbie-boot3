@@ -5,10 +5,10 @@
 <mapper namespace="com.newbie.system.mapper.SysDictDataMapper">
 
     <resultMap id="BaseResultMap" type="com.newbie.common.domain.entity.SysDictData">
-            <id property="id" column="id" jdbcType="BIGINT"/>
+            <id property="id" column="id" jdbcType="VARCHAR"/>
             <result property="label" column="label" jdbcType="VARCHAR"/>
             <result property="value" column="value" jdbcType="VARCHAR"/>
-            <result property="typeId" column="type_id" jdbcType="BIGINT"/>
+            <result property="typeId" column="type_id" jdbcType="VARCHAR"/>
             <result property="eleType" column="ele_type" jdbcType="VARCHAR"/>
             <result property="eleClass" column="ele_class" jdbcType="VARCHAR"/>
             <result property="status" column="status" jdbcType="CHAR"/>
