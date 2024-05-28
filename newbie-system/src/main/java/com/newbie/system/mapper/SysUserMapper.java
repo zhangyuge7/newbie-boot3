@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.newbie.common.domain.entity.SysUser;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -13,6 +14,7 @@ import org.apache.ibatis.annotations.Param;
 * @createDate 2024-04-16 15:12:01
 * @Entity generator.domain.SysUser
 */
+@Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
     IPage<SysUser> queryUserByRoleId(@Param("page") Page<SysUser> page, @Param("sysUser") SysUser sysUser, @Param("roleId") String roleId);
 

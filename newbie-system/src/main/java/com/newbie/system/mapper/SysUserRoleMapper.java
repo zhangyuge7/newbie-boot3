@@ -3,6 +3,7 @@ package com.newbie.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.newbie.common.domain.entity.SysUserRole;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 * @createDate 2024-04-16 15:12:01
 * @Entity generator.domain.SysUserRole
 */
+@Mapper
 public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
     void removeByUserIdAndRoleIds(@Param("userId") String userId, @Param("roleIds") List<String> roleIds);
 

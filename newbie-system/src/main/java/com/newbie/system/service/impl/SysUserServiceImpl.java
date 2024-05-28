@@ -47,7 +47,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
         List<SysDept> sysDepts = new ArrayList<>();
         // 如果有部门ID，则查询此部门及子部门所有用户
-        if (Objects.nonNull(deptId)) {
+        if (StringUtils.hasLength(deptId)) {
             sysDepts = sysDeptMapper.selectList(
                     new LambdaQueryWrapper<SysDept>()
                             .like(SysDept::getAncestors, deptId + ",")

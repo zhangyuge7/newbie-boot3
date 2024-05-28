@@ -4,6 +4,7 @@ import com.newbie.common.domain.entity.SysDept;
 import com.newbie.common.domain.entity.SysMenu;
 import com.newbie.common.domain.entity.SysRole;
 import com.newbie.common.domain.entity.SysUser;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * @Date: 2024/4/16 19:44
  * @Descriptions: unknown
  */
+@Mapper
 public interface SecurityMapper {
 
     /**

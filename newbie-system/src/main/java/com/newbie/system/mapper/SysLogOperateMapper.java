@@ -2,6 +2,7 @@ package com.newbie.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.newbie.common.domain.entity.SysLogOperate;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author 39869
@@ -9,6 +10,7 @@ import com.newbie.common.domain.entity.SysLogOperate;
 * @createDate 2024-05-18 18:03:34
 * @Entity generator.domain.SysLogOperat
 */
+@Mapper
 public interface SysLogOperateMapper extends BaseMapper<SysLogOperate> {
 
 }

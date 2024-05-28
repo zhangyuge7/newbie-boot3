@@ -2,6 +2,7 @@ package com.newbie.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.newbie.common.domain.entity.SysDept;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author 39869
@@ -9,6 +10,7 @@ import com.newbie.common.domain.entity.SysDept;
 * @createDate 2024-04-16 23:21:27
 * @Entity generator.domain.SysDept
 */
+@Mapper
 public interface SysDeptMapper extends BaseMapper<SysDept> {
 
 }

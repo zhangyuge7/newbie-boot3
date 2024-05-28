@@ -2,6 +2,7 @@ package com.newbie.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.newbie.common.domain.entity.SysDictData;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
 * @createDate 2024-04-16 23:21:27
 * @Entity generator.domain.SysDictData
 */
+@Mapper
 public interface SysDictDataMapper extends BaseMapper<SysDictData> {
     /**
      * 根据字典类型编码查询字典数据

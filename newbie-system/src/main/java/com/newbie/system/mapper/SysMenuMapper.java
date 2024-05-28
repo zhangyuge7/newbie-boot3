@@ -3,6 +3,7 @@ package com.newbie.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.newbie.common.domain.entity.SysMenu;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author 39869
@@ -10,7 +11,7 @@ import com.newbie.common.domain.entity.SysMenu;
 * @createDate 2024-04-16 15:12:01
 * @Entity generator.domain.SysMenu
 */
-
+@Mapper
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
 }
