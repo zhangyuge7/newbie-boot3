@@ -1,4 +1,4 @@
-package com.newbie.controller.system;
+package com.newbie.controller.monitor;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -25,7 +25,7 @@ import java.util.Date;
  * @Descriptions: 系统操作日志
  */
 @RestController
-@RequestMapping("/system/log/operate")
+@RequestMapping("/monitor/log/operate")
 @RequiredArgsConstructor
 @Tag(name = "操作日志")
 public class SysLogOperateController {

@@ -10,7 +10,7 @@
  Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 28/05/2024 17:06:14
+ Date: 28/05/2024 20:18:16
 */
 
 SET NAMES utf8mb4;
@@ -200,6 +200,11 @@ CREATE TABLE `sys_menu`  (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
+INSERT INTO `sys_menu` VALUES ('1795419039163936769', '系统监控', '0', 3, '1', '/monitor', NULL, NULL, NULL, 'admin', '2024-05-28 19:37:10', 'admin', '2024-05-28 19:42:41', '0', '1', '0', NULL, 'CarbonCloudMonitoring', '0', NULL, '0', NULL, '0', '1795419039163936769', 1);
+INSERT INTO `sys_menu` VALUES ('1795424113898455041', '操作日志', '1795419039163936769', 20, '1', '/monitor/operatelog', 'SysLogOperate', 'monitor/logOperate/index', NULL, 'admin', '2024-05-28 19:57:20', 'admin', '2024-05-28 20:06:45', '0', '1', '0', 'sys.log.operate', 'MaterialSymbolsDataInfoAlertRounded', '0', NULL, '0', NULL, '0', '1795419039163936769,1795424113898455041', 2);
+INSERT INTO `sys_menu` VALUES ('1795426597572345858', '删除', '1795424113898455041', 10, '1', NULL, NULL, NULL, NULL, 'admin', '2024-05-28 20:07:12', 'admin', '2024-05-28 20:07:12', NULL, '0', NULL, 'sys.log.operate.del', NULL, NULL, NULL, NULL, NULL, NULL, '1795419039163936769,1795424113898455041,1795426597572345858', 3);
+INSERT INTO `sys_menu` VALUES ('1795426808940101633', '登录日志', '1795419039163936769', 30, '1', '/monitor/loginlog', 'SysLogLogin', 'monitor/logLogin/index', NULL, 'admin', '2024-05-28 20:08:03', 'admin', '2024-05-28 20:08:43', '0', '1', '0', 'sys.log.login', 'MaterialSymbolsDataInfoAlertRounded', '0', NULL, '0', NULL, '0', '1795419039163936769,1795426808940101633', 2);
+INSERT INTO `sys_menu` VALUES ('1795427077400723458', '删除', '1795426808940101633', 10, '1', NULL, NULL, NULL, NULL, 'admin', '2024-05-28 20:09:07', 'admin', '2024-05-28 20:09:07', NULL, '0', NULL, 'sys.log.login.del', NULL, NULL, NULL, NULL, NULL, NULL, '1795419039163936769,1795426808940101633,1795427077400723458', 3);
 INSERT INTO `sys_menu` VALUES ('2008', '系统管理', '0', 2, '1', '/system', 'System', '', NULL, 'admin', '2023-02-26 01:31:55', 'admin', '2023-11-28 20:58:16', '0', '1', '0', 'sys', 'TdesignSystemSetting', '0', '', '0', NULL, '0', '2008', 1);
 INSERT INTO `sys_menu` VALUES ('2009', '用户管理', '2008', 1, '1', '/system/user', 'SysUser', 'system/user/index', NULL, 'admin', '2023-02-26 01:49:34', 'admin', '2024-04-23 19:04:05', '0', '1', '0', 'sys.user', 'MaterialSymbolsManageAccountsOutlineRounded', '0', '', '0', NULL, '0', '2008,2009', 2);
 INSERT INTO `sys_menu` VALUES ('2010', '角色管理', '2008', 2, '1', '/system/role', 'SysRole', 'system/role/index', NULL, 'admin', '2023-02-26 02:31:10', 'admin', '2024-05-02 14:45:13', '0', '1', '0', 'sys.role', 'CarbonUserRole', '0', '', '0', '', '0', '2008,2010', 2);
@@ -235,10 +240,6 @@ INSERT INTO `sys_menu` VALUES ('3055', '删除', '3010', 3, '1', NULL, NULL, NUL
 INSERT INTO `sys_menu` VALUES ('3056', '默认', '3010', 4, '1', NULL, NULL, NULL, '字典数据设置默认的按钮', 'admin', '2024-04-18 18:08:52', NULL, NULL, '0', '0', '0', 'sys.dict.data.def', NULL, '0', NULL, '0', NULL, '0', '2008,3010,3056', 3);
 INSERT INTO `sys_menu` VALUES ('3059', '演示', '0', 98, '1', '/demo', '', '', '', 'admin', '2024-04-30 15:06:58', 'admin', '2024-05-18 17:11:44', '0', '1', '0', '', 'MingcuteDepartmentLine', '0', '', '0', '', '0', '3059', 1);
 INSERT INTO `sys_menu` VALUES ('3060', '上传下载', '3059', 1, '1', '/uploadtest', 'UploadTest', 'demo/UploadTest', '', 'admin', '2024-04-30 15:08:16', NULL, NULL, '0', '1', '0', '', '', '0', '', '0', '', '0', '3059,3060', 2);
-INSERT INTO `sys_menu` VALUES ('3064', '操作日志', '2008', 20, '1', '/system/operatelog', 'SysLogOperate', 'system/logOperate/index', '', 'admin', '2024-05-18 21:03:59', 'admin', '2024-05-19 21:29:07', '0', '1', '0', 'sys.log.operate', 'MaterialSymbolsDataInfoAlertRounded', '0', '', '0', '', '0', '2008,3064', 2);
-INSERT INTO `sys_menu` VALUES ('3065', '登录日志', '2008', 30, '1', '/system/loginlog', 'SysLogLogin', 'system/logLogin/index', '', 'admin', '2024-05-18 21:18:26', 'admin', '2024-05-24 10:37:20', '0', '1', '0', 'sys.log.login', 'CarbonCloudMonitoring', '0', '', '0', '', '0', '2008,3065', 2);
-INSERT INTO `sys_menu` VALUES ('3066', '删除', '3064', 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-19 21:21:05', NULL, NULL, '0', '0', '0', 'sys.log.operate.del', NULL, '0', NULL, '0', NULL, '0', '2008,3064,3066', 3);
-INSERT INTO `sys_menu` VALUES ('3067', '删除', '3065', 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-24 11:12:15', NULL, NULL, '0', '0', '0', 'sys.log.login.del', NULL, '0', NULL, '0', NULL, '0', '2008,3065,3067', 3);
 INSERT INTO `sys_menu` VALUES ('3068', 'API文档', '2072', 1, '1', 'http://localhost:8080/swagger-ui/index.html,_blank', '', '', '', 'admin', '2024-05-25 14:33:52', 'admin', '2024-05-25 14:35:04', '0', '1', '0', '', 'SolarNotebookMinimalisticLinear', '0', '', '0', '', '0', '2072,3068', 2);
 
 -- ----------------------------
