@@ -46,10 +46,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         String nickName = sysUser.getNickName();
 
         List<SysDept> sysDepts = new ArrayList<>();
+        // 如果有部门ID，则查询此部门及子部门所有用户
         if (Objects.nonNull(deptId)) {
-            SysDept sysDept = new SysDept();
-            sysDept.setId(deptId);
-            sysDepts = sysDeptMapper.selectDeptList(sysDept);
+            sysDepts = sysDeptMapper.selectList(
+                    new LambdaQueryWrapper<SysDept>()
+                            .like(SysDept::getAncestors, deptId + ",")
+                            .or()
+                            .eq(SysDept::getId, deptId)
+            );
         }
         return lambdaQuery()
                 .ne(SysUser::getUsername, SecurityConstant.ADMIN_USER_NAME)
@@ -67,8 +71,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         if (!StringUtils.hasLength(sysUser.getUsername())) throw new NewbieException("用户名不能为空");
         if (!StringUtils.hasLength(sysUser.getPassword())) throw new NewbieException("登录密码不能为空");
         if (!StringUtils.hasLength(sysUser.getNickName())) throw new NewbieException("用户昵称不能为空");
-        if(SecurityConstant.ADMIN_USER_NAME.equals(sysUser.getUsername())) throw new NewbieException("用户名不能为admin");
-        if (sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername,sysUser.getUsername())) > 0)
+        if (SecurityConstant.ADMIN_USER_NAME.equals(sysUser.getUsername()))
+            throw new NewbieException("用户名不能为admin");
+        if (sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername, sysUser.getUsername())) > 0)
             throw new NewbieException("用户名已存在，请勿重复添加");
 
         sysUser.setPassword(SecurityUtils.encodePassword(sysUser.getPassword()));
@@ -92,7 +97,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
     @Override
     @Transactional
-    public boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword,Boolean immediatelyKick) {
+    public boolean updateUserPassword(Long userId, String newPassword, String confirmNewPassword, Boolean immediatelyKick) {
         if (userId == null) throw new NewbieException("用户ID为空");
         if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码为空");
         if (!newPassword.equals(confirmNewPassword)) throw new NewbieException("两次输入密码不一致");
@@ -124,7 +129,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
             throw new NewbieException("不可以删除admin系统管理员");
 
         // 查询用户角色关系
-        if (sysUserRoleMapper.selectCount(new LambdaQueryWrapper<SysUserRole>().in(SysUserRole::getUserId,idList)) > 0)
+        if (sysUserRoleMapper.selectCount(new LambdaQueryWrapper<SysUserRole>().in(SysUserRole::getUserId, idList)) > 0)
             throw new NewbieException("请先解除用户与角色的关联后再次尝试");
 
         idList.forEach(StpUtil::logout); // 被删除用户下线
@@ -141,22 +146,24 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
 
     /**
      * 根据用户ID判断是否为admin系统管理员
+     *
      * @param userId 用户ID
      */
     private boolean isAdminById(Long userId) {
         return sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>()
                 .eq(SysUser::getId, userId)
-                .eq(SysUser::getUsername,SecurityConstant.ADMIN_USER_NAME)) > 0;
+                .eq(SysUser::getUsername, SecurityConstant.ADMIN_USER_NAME)) > 0;
     }
 
     /**
      * 根据用户ID列表判断是否有admin系统管理员
+     *
      * @param userIdList 用户ID列表
      */
     private boolean hasAdminByIdList(List<Long> userIdList) {
         return sysUserMapper.selectCount(new LambdaQueryWrapper<SysUser>()
                 .in(SysUser::getId, userIdList)
-                .eq(SysUser::getUsername,SecurityConstant.ADMIN_USER_NAME)) > 0;
+                .eq(SysUser::getUsername, SecurityConstant.ADMIN_USER_NAME)) > 0;
     }
 
 }

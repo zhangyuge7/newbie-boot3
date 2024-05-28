@@ -2,6 +2,7 @@ package com.newbie.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.newbie.common.domain.entity.SysDept;
 import com.newbie.common.domain.entity.SysMenu;
 import com.newbie.common.domain.entity.SysRoleMenu;
 import com.newbie.common.exception.NewbieException;
@@ -19,6 +20,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -36,8 +38,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
     @Override
     public List<SysMenuVO> menuTree(SysMenu sysMenu) {
         // 查询数据
-        List<SysMenu> menuList = sysMenuMapper.selectMenuList(sysMenu);
-
+        List<SysMenu> menuList = this.lambdaQuery()
+                .like(StringUtils.hasLength(sysMenu.getTitle()),SysMenu::getTitle,sysMenu.getTitle())
+                .like(StringUtils.hasLength(sysMenu.getRoutePath()),SysMenu::getRoutePath,sysMenu.getRoutePath())
+                .like(StringUtils.hasLength(sysMenu.getComponent()),SysMenu::getComponent,sysMenu.getComponent())
+                .eq(StringUtils.hasLength(sysMenu.getType()),SysMenu::getType,sysMenu.getType())
+                .orderByAsc(SysMenu::getSort)
+                .list();
         // 对象转换
         List<SysMenuVO> menuTrees = new ArrayList<>();
         SysMenuVO sysMenuVO;
@@ -46,8 +53,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
             BeanUtils.copyProperties(menu, sysMenuVO);
             menuTrees.add(sysMenuVO);
         }
-
-
         // 组装树结构并返回数据
         menuTrees =  TreeUtils.listToTree(menuTrees, SysMenuVO::getId, SysMenuVO::getParentId,
                 SysMenuVO::getChildren,SysMenuVO::setChildren);
@@ -61,24 +66,36 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         this.verifyMenu(sysMenu);
 
         // 新增数据
-        int count = sysMenuMapper.insert(sysMenu);
-        return count == 1;
+        int insertCount = sysMenuMapper.insert(sysMenu);
+        // 获取父级部门
+        SysMenu parent =
+                this.lambdaQuery()
+                        .eq(SysMenu::getId, sysMenu.getParentId())
+                        .one();
+
+        // 祖籍赋值
+        sysMenu.setAncestors(
+                parent == null
+                        ? String.valueOf(sysMenu.getId())
+                        : parent.getAncestors() + "," + sysMenu.getId()
+        );
+        // 层级赋值
+        sysMenu.setTier(sysMenu.getAncestors().split(",").length);
+        // 执行修改
+        int updateCount = sysMenuMapper.updateById(sysMenu);
+
+        return insertCount == 1 && updateCount==1;
     }
     @Override
     @Transactional
     public boolean updateData(SysMenu sysMenu){
         // 校验数据
         this.verifyMenu(sysMenu);
-        // 根据 menuId 获取菜单及子级菜单列表
-        SysMenu params = new SysMenu();
-        params.setId(sysMenu.getId());
-        List<SysMenu> sysMenus = sysMenuMapper.selectMenuList(params);
-        // 判断列表中是否包含需要修改的菜单的父级菜单，如果有抛出异常
-        List<SysMenu> ls = sysMenus.stream().filter(item -> item.getId().equals(sysMenu.getParentId())).collect(Collectors.toList());
-        if (!ls.isEmpty()) {
-            throw new NewbieException("上级不能为自己或自己的子级");
+        // 检查是否修改节点位置
+        SysMenu rawMenu = sysMenuMapper.selectById(sysMenu.getId());
+        if (!Objects.equals(rawMenu.getParentId(),sysMenu.getParentId())) {
+            throw new NewbieException("不允许修改节点位置");
         }
-
         // 修改数据
         int count = sysMenuMapper.updateById(sysMenu);
         return count == 1;
@@ -108,20 +125,14 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param menu 菜单数据
      */
     private void verifyMenu(SysMenu menu) {
-        if (!StringUtils.hasLength(menu.getTitle())) {
-            throw new NewbieException("标题不可以为空");
-        }
+        if (!StringUtils.hasLength(menu.getTitle())) throw new NewbieException("标题不可以为空");
+        if (Objects.isNull(menu.getParentId())) throw new NewbieException("父级部门ID为空");
         if (SysMenuConstant.MENU_TYPE_MENU.equals(menu.getType())) {
-            if (!StringUtils.hasLength(menu.getRoutePath())) {
-                throw new NewbieException("路由地址不可以为空");
-            }
-            if (!menu.getRoutePath().startsWith("/") && !menu.getRoutePath().startsWith("http:") && !menu.getRoutePath().startsWith("https:")) {
+            if (!StringUtils.hasLength(menu.getRoutePath())) throw new NewbieException("路由地址不可以为空");
+            if (!menu.getRoutePath().startsWith("/") && !menu.getRoutePath().startsWith("http:") && !menu.getRoutePath().startsWith("https:"))
                 throw new NewbieException("路由地址必须以 / 开头，外链必须以 http[s]: 开头");
-            }
-            if(StringUtils.hasLength(menu.getComponent()) && menu.getComponent().startsWith("/")){
+            if(StringUtils.hasLength(menu.getComponent()) && menu.getComponent().startsWith("/"))
                 throw new NewbieException("组件路径不需要以 / 开头");
-            }
-
         }
     }
 }

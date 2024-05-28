@@ -32,8 +32,13 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept>
     @Override
     public List<SysDeptVO> getDeptTree(SysDept sysDept) {
         // 查询数据
-        List<SysDept> list = sysDeptMapper.selectDeptList(sysDept);
-
+        List<SysDept> list = this.lambdaQuery()
+                .like(StringUtils.hasLength(sysDept.getDeptName()), SysDept::getDeptName, sysDept.getDeptName())
+                .like(StringUtils.hasLength(sysDept.getLeader()), SysDept::getLeader, sysDept.getLeader())
+                .like(StringUtils.hasLength(sysDept.getPhone()), SysDept::getPhone, sysDept.getPhone())
+                .eq(StringUtils.hasLength(sysDept.getStatus()), SysDept::getStatus, sysDept.getStatus())
+                .orderByAsc(SysDept::getSort)
+                .list();
         // 对象转换
         List<SysDeptVO> tree = new ArrayList<>();
         SysDeptVO target;

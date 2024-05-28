@@ -108,4 +108,14 @@ public class SysMenu extends BaseEntity {
      * 是否固定在tabs（1是 0否）
      */
     private String fixedTab;
+
+    /**
+     * 祖级列表
+     */
+    private String ancestors;
+
+    /**
+     * 层级
+     */
+    private Integer tier;
 }

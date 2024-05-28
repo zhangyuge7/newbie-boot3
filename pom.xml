@@ -26,6 +26,8 @@
         <module>newbie-admin</module>
         <!-- web日志服务  -->
         <module>newbie-weblog</module>
+        <!-- 代码生成器 -->
+        <module>newbie-generator</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -66,6 +68,11 @@
             <dependency>
                 <groupId>com.newbie</groupId>
                 <artifactId>newbie-weblog</artifactId>
+                <version>${newbie.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.newbie</groupId>
+                <artifactId>newbie-generator</artifactId>
                 <version>${newbie.version}</version>
             </dependency>
             <!-- 子模块结束 -->
@@ -111,10 +118,23 @@
                 <artifactId>minio</artifactId>
                 <version>${minio.version}</version>
             </dependency>
+            <!-- knife4j -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>4.4.0</version>
+            </dependency>
+            <!-- mybatis-plus代码生成器 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>3.5.6</version>
+            </dependency>
+            <!-- 模板引擎 -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>2.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

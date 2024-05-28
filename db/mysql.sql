@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : mysql
+ Source Server         : alimysql
  Source Server Type    : MySQL
- Source Server Version : 80036 (8.0.36)
- Source Host           : localhost:3306
+ Source Server Version : 80200 (8.2.0)
+ Source Host           : 47.94.76.140:3306
  Source Schema         : newbie3
 
  Target Server Type    : MySQL
- Target Server Version : 80036 (8.0.36)
+ Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 25/05/2024 14:37:45
+ Date: 28/05/2024 14:22:15
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,7 @@ CREATE TABLE `sys_dept`  (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
   `dept_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '部门名称',
   `parent_id` bigint NULL DEFAULT 0 COMMENT '父级id',
-  `ancestors` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '祖级列表',
+  `ancestors` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '祖级列表',
   `sort` int NULL DEFAULT 1 COMMENT '显示顺序',
   `leader` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '负责人',
   `phone` char(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '联系电话',
@@ -137,19 +137,11 @@ CREATE TABLE `sys_log_login`  (
   `login_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '1 登入，0 登出',
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统登录日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 121 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统登录日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_log_login
 -- ----------------------------
-INSERT INTO `sys_log_login` VALUES (30, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 673, '2024-05-20 18:36:45', '1', 'admin');
-INSERT INTO `sys_log_login` VALUES (31, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 10, '2024-05-20 18:36:59', '0', 'admin');
-INSERT INTO `sys_log_login` VALUES (32, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 78, '2024-05-20 18:37:08', '1', 'admin');
-INSERT INTO `sys_log_login` VALUES (33, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 5, '2024-05-20 18:37:13', '0', 'admin');
-INSERT INTO `sys_log_login` VALUES (34, '0', '192.168.2.102', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 300, '2024-05-20 18:38:16', '1', 'admin');
-INSERT INTO `sys_log_login` VALUES (35, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1276, '2024-05-20 18:39:01', '1', 'admin');
-INSERT INTO `sys_log_login` VALUES (36, '1', '192.168.2.102', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 24, '2024-05-20 18:42:48', '0', 'admin');
-INSERT INTO `sys_log_login` VALUES (37, '1', '192.168.124.27', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 2000, '2024-05-21 09:38:51', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (38, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1827, '2024-05-23 14:08:28', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (39, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 46, '2024-05-24 09:10:32', '0', 'admin');
 INSERT INTO `sys_log_login` VALUES (40, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 135, '2024-05-24 09:10:35', '1', 'admin');
@@ -219,6 +211,14 @@ INSERT INTO `sys_log_login` VALUES (109, '0', '192.168.50.45', 'username', '验�
 INSERT INTO `sys_log_login` VALUES (110, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 457, '2024-05-25 10:20:17', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (111, '0', '192.168.50.45', 'username', '验证码已失效', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 25, '2024-05-25 11:12:11', '1', 'admin');
 INSERT INTO `sys_log_login` VALUES (112, '1', '192.168.50.45', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 384, '2024-05-25 11:13:04', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (113, '1', '192.168.31.157', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 212, '2024-05-27 18:33:01', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (114, '1', '192.168.31.157', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 628, '2024-05-27 18:33:07', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (115, '0', '192.168.50.45', 'username', 'Redis exception', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 287, '2024-05-28 10:26:58', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (116, '0', '192.168.50.45', 'username', 'Redis command timed out', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 10050, '2024-05-28 10:27:11', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (117, '0', '192.168.50.45', 'username', 'Redis command timed out', 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 10028, '2024-05-28 10:29:14', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (118, '1', '192.168.31.157', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 794, '2024-05-28 10:29:41', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES (119, '1', '192.168.31.157', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 184, '2024-05-28 10:46:44', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES (120, '1', '192.168.31.157', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 630, '2024-05-28 10:46:47', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for sys_log_operate
@@ -236,50 +236,11 @@ CREATE TABLE `sys_log_operate`  (
   `cost_time` bigint NULL DEFAULT NULL COMMENT '消耗时长，毫秒',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1268 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统操作日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1268 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统操作日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_log_operate
 -- ----------------------------
-INSERT INTO `sys_log_operate` VALUES (616, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 15, '2024-05-19 21:11:43');
-INSERT INTO `sys_log_operate` VALUES (617, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/deleteBatch', 'com.newbie.controller.system.SysLogOperateController.deleteBatch', 'POST', 14, '2024-05-19 21:11:46');
-INSERT INTO `sys_log_operate` VALUES (618, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-19 21:11:46');
-INSERT INTO `sys_log_operate` VALUES (619, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 6, '2024-05-19 21:11:51');
-INSERT INTO `sys_log_operate` VALUES (620, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 12, '2024-05-19 21:11:54');
-INSERT INTO `sys_log_operate` VALUES (621, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 0, '2024-05-19 21:12:11');
-INSERT INTO `sys_log_operate` VALUES (622, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-19 21:12:12');
-INSERT INTO `sys_log_operate` VALUES (623, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 19, '2024-05-19 21:12:37');
-INSERT INTO `sys_log_operate` VALUES (624, 'admin', '1', NULL, '192.168.2.104', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 12, '2024-05-19 21:12:51');
-INSERT INTO `sys_log_operate` VALUES (625, 'admin', '1', NULL, '192.168.2.104', '/system/user/paging', 'com.newbie.controller.system.SysUserController.paging', 'GET', 25, '2024-05-19 21:12:51');
-INSERT INTO `sys_log_operate` VALUES (626, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-19 21:12:52');
-INSERT INTO `sys_log_operate` VALUES (627, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 7, '2024-05-19 21:13:05');
-INSERT INTO `sys_log_operate` VALUES (628, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 11, '2024-05-19 21:13:07');
-INSERT INTO `sys_log_operate` VALUES (629, 'admin', '1', NULL, '192.168.2.104', '/security/userInfo', 'com.newbie.controller.security.SecurityController.userInfo', 'GET', 347, '2024-05-19 21:19:44');
-INSERT INTO `sys_log_operate` VALUES (630, 'admin', '1', NULL, '192.168.2.104', '/security/menus', 'com.newbie.controller.security.SecurityController.menus', 'GET', 154, '2024-05-19 21:19:45');
-INSERT INTO `sys_log_operate` VALUES (631, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 122, '2024-05-19 21:20:01');
-INSERT INTO `sys_log_operate` VALUES (632, 'admin', '1', NULL, '192.168.2.104', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 21, '2024-05-19 21:20:29');
-INSERT INTO `sys_log_operate` VALUES (633, 'admin', '1', NULL, '192.168.2.104', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 14, '2024-05-19 21:20:33');
-INSERT INTO `sys_log_operate` VALUES (634, 'admin', '1', NULL, '192.168.2.104', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 10, '2024-05-19 21:20:37');
-INSERT INTO `sys_log_operate` VALUES (635, 'admin', '1', NULL, '192.168.2.104', '/system/menu/add', 'com.newbie.controller.system.SysMenuController.add', 'POST', 23, '2024-05-19 21:21:05');
-INSERT INTO `sys_log_operate` VALUES (636, 'admin', '1', NULL, '192.168.2.104', '/system/menu/tree', 'com.newbie.controller.system.SysMenuController.tree', 'GET', 14, '2024-05-19 21:21:05');
-INSERT INTO `sys_log_operate` VALUES (637, 'admin', '1', NULL, '192.168.2.104', '/system/dept/tree', 'com.newbie.controller.system.SysDeptController.getDeptTree', 'GET', 28, '2024-05-19 21:26:45');
-INSERT INTO `sys_log_operate` VALUES (638, 'admin', '1', NULL, '192.168.2.104', '/system/dict/type/paging', 'com.newbie.controller.system.SysDictTypeController.paging', 'GET', 17, '2024-05-19 21:26:46');
-INSERT INTO `sys_log_operate` VALUES (639, 'admin', '1', NULL, '192.168.2.104', '/system/dict/data/paging', 'com.newbie.controller.system.SysDictDataController.paging', 'GET', 23, '2024-05-19 21:26:46');
-INSERT INTO `sys_log_operate` VALUES (640, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 21, '2024-05-19 21:26:46');
-INSERT INTO `sys_log_operate` VALUES (641, 'admin', '1', NULL, '192.168.2.104', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 31, '2024-05-19 21:26:47');
-INSERT INTO `sys_log_operate` VALUES (842, '#', '0', '用户不存在', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 9, '2024-05-20 16:01:52');
-INSERT INTO `sys_log_operate` VALUES (843, '#', '0', '验证码已失效', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 1, '2024-05-20 16:01:54');
-INSERT INTO `sys_log_operate` VALUES (844, '#', '0', '密码错误', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 108, '2024-05-20 16:01:59');
-INSERT INTO `sys_log_operate` VALUES (845, '#', '0', '密码错误', '192.168.50.45', '/security/login', 'com.newbie.controller.security.SecurityController.login', 'POST', 86, '2024-05-20 16:02:05');
-INSERT INTO `sys_log_operate` VALUES (846, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 179, '2024-05-21 09:42:41');
-INSERT INTO `sys_log_operate` VALUES (847, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 23, '2024-05-21 09:42:52');
-INSERT INTO `sys_log_operate` VALUES (848, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 21, '2024-05-21 09:42:52');
-INSERT INTO `sys_log_operate` VALUES (849, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 16, '2024-05-21 09:43:22');
-INSERT INTO `sys_log_operate` VALUES (850, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/deleteBeforeData', 'com.newbie.controller.system.SysLogOperateController.deleteBeforeData', 'GET', 19, '2024-05-21 09:43:38');
-INSERT INTO `sys_log_operate` VALUES (851, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-21 09:43:38');
-INSERT INTO `sys_log_operate` VALUES (852, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 16, '2024-05-21 09:43:51');
-INSERT INTO `sys_log_operate` VALUES (853, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-21 09:43:54');
-INSERT INTO `sys_log_operate` VALUES (854, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 13, '2024-05-21 09:47:44');
 INSERT INTO `sys_log_operate` VALUES (855, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 158, '2024-05-23 14:18:56');
 INSERT INTO `sys_log_operate` VALUES (856, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 8, '2024-05-23 14:19:02');
 INSERT INTO `sys_log_operate` VALUES (857, 'admin', '1', NULL, '192.168.50.45', '/system/log/operate/paging', 'com.newbie.controller.system.SysLogOperateController.paging', 'GET', 10, '2024-05-23 14:19:08');
@@ -722,52 +683,54 @@ CREATE TABLE `sys_menu`  (
   `is_outer` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '是否在layout外显示（1是 0否）',
   `transition` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '切换动画',
   `fixed_tab` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '是否固定在tabs（1是 0否）',
+  `ancestors` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '祖级列表',
+  `tier` int NULL DEFAULT NULL COMMENT '层级',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3069 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES (2008, '系统管理', 0, 2, '1', '/system', 'System', '', NULL, 'admin', '2023-02-26 01:31:55', 'admin', '2023-11-28 20:58:16', '0', '1', '0', 'sys', 'TdesignSystemSetting', '0', '', '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (2009, '用户管理', 2008, 1, '1', '/system/user', 'SysUser', 'system/user/index', NULL, 'admin', '2023-02-26 01:49:34', 'admin', '2024-04-23 19:04:05', '0', '1', '0', 'sys.user', 'MaterialSymbolsManageAccountsOutlineRounded', '0', '', '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (2010, '角色管理', 2008, 2, '1', '/system/role', 'SysRole', 'system/role/index', NULL, 'admin', '2023-02-26 02:31:10', 'admin', '2024-05-02 14:45:13', '0', '1', '0', 'sys.role', 'CarbonUserRole', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (2013, '菜单管理', 2008, 3, '1', '/system/menu', 'SysMenu', 'system/menu/index', NULL, 'admin', '2023-02-26 23:11:00', 'admin', '2024-04-23 19:00:35', '0', '1', '0', 'sys.menu', 'FluentTextBulletListTree16Regular', '0', '', '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (2042, '首页', 0, 0, '1', '/home', '', 'home/index', '', 'admin', '2023-07-31 05:37:08', 'admin', '2024-04-18 19:56:32', '0', '1', '0', '', 'ep:home-filled', '0', '', '0', NULL, '1');
-INSERT INTO `sys_menu` VALUES (2050, '新增', 2013, 1, '1', NULL, NULL, NULL, '菜单新增按钮', 'admin', '2023-08-27 15:54:22', 'admin', '2024-04-18 16:04:23', '0', '0', '0', 'sys.menu.add', NULL, NULL, '', '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (2051, '修改', 2013, 2, '1', NULL, NULL, NULL, '菜单编辑按钮', 'admin', '2023-08-27 15:54:58', 'admin', '2024-04-18 18:04:41', '0', '0', '0', 'sys.menu.update', NULL, NULL, '', '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (2052, '删除', 2013, 3, '1', NULL, NULL, NULL, '菜单删除按钮', 'admin', '2023-08-27 15:55:21', 'admin', '2024-04-18 16:04:54', '0', '0', '0', 'sys.menu.del', NULL, NULL, '', '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (2069, '前端文档', 2072, 98, '1', 'https://zhangyuge7.github.io/preview/five-admin-v2-docs/', '', '', '', 'admin', '2023-11-10 15:03:57', 'admin', '2024-05-18 17:13:56', '0', '1', '0', '', 'ep:document', '0', '', '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (2071, '部门管理', 2008, 6, '1', '/system/dept', 'SysDept', 'system/dept/index', '', 'admin', '2023-11-18 22:46:58', 'admin', '2024-04-23 19:00:55', '0', '1', '0', 'sys.dept', 'MingcuteDepartmentLine', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (2072, '文档', 0, 22, '1', '/docs', '', '', '', 'admin', '2023-11-19 00:04:13', 'admin', '2023-11-28 20:58:16', '0', '1', '0', '', 'EpSetting', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3009, '字典分类', 2008, 10, '1', '/system/dict/type', 'SysDeptType', 'system/dictType/index', '', 'admin', '2023-11-19 22:33:46', 'admin', '2024-04-23 19:01:22', '0', '1', '1', 'sys.dict.type', 'MingcuteBook5Line', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3010, '字典管理', 2008, 11, '1', '/system/dict/data', 'SysDictData', 'system/dictData/index', '', 'admin', '2024-02-20 11:29:06', 'admin', '2024-04-23 19:01:48', '0', '1', '0', 'sys.dict.data', 'SolarNotebookMinimalisticLinear', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3015, '个人中心', 0, 99, '1', '/personal-center', 'PersonalCenter', 'personalCenter/index', '', 'admin', '2024-03-22 12:38:00', 'admin', '2024-05-24 11:17:16', '0', '1', '0', '', 'CarbonUserRole', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3038, '新增', 2009, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:10', NULL, NULL, '0', '0', '0', 'sys.user.add', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3039, '修改', 2009, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:22', 'admin', '2024-04-18 16:07:44', '0', '0', '0', 'sys.user.update', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3040, '删除', 2009, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:34', NULL, NULL, '0', '0', '0', 'sys.user.del', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3041, '修改密码', 2009, 4, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:07:24', NULL, NULL, '0', '0', '0', 'sys.user.update.password', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3042, '新增', 2010, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:09:31', NULL, NULL, '0', '0', '0', 'sys.role.add', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3043, '修改', 2010, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:09:46', NULL, NULL, '0', '0', '0', 'sys.role.update', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3044, '删除', 2010, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:02:04', NULL, NULL, '0', '0', '0', 'sys.role.del', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3045, '权限', 2010, 4, '1', NULL, NULL, NULL, '分配权限按钮', 'admin', '2024-04-18 18:03:10', NULL, NULL, '0', '0', '0', 'sys.role.perm', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3046, '用户', 2010, 5, '1', NULL, NULL, NULL, '分配用户按钮', 'admin', '2024-04-18 18:03:35', NULL, NULL, '0', '0', '0', 'sys.role.user', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3047, '新增', 2071, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:04:07', NULL, NULL, '0', '0', '0', 'sys.dept.add', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3048, '修改', 2071, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:04:25', NULL, NULL, '0', '0', '0', 'sys.dept.update', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3049, '删除', 2071, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:04:57', NULL, NULL, '0', '0', '0', 'sys.dept.del', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3050, '新增', 3009, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:05:37', 'admin', '2024-04-18 18:05:53', '0', '0', '0', 'sys.dict.type.add', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3051, '修改', 3009, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:06:25', NULL, NULL, '0', '0', '0', 'sys.dict.type.update', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3052, '删除', 3009, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:06:40', NULL, NULL, '0', '0', '0', 'sys.dict.type.del', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3053, '新增', 3010, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:07:10', NULL, NULL, '0', '0', '0', 'sys.dict.data.add', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3054, '修改', 3010, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:07:25', NULL, NULL, '0', '0', '0', 'sys.dict.data.update', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3055, '删除', 3010, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:07:48', NULL, NULL, '0', '0', '0', 'sys.dict.data.del', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3056, '默认', 3010, 4, '1', NULL, NULL, NULL, '字典数据设置默认的按钮', 'admin', '2024-04-18 18:08:52', NULL, NULL, '0', '0', '0', 'sys.dict.data.def', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3059, '演示', 0, 98, '1', '/demo', '', '', '', 'admin', '2024-04-30 15:06:58', 'admin', '2024-05-18 17:11:44', '0', '1', '0', '', 'MingcuteDepartmentLine', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3060, '上传下载', 3059, 1, '1', '/uploadtest', 'UploadTest', 'demo/UploadTest', '', 'admin', '2024-04-30 15:08:16', NULL, NULL, '0', '1', '0', '', '', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3064, '操作日志', 2008, 20, '1', '/system/operatelog', 'SysLogOperate', 'system/logOperate/index', '', 'admin', '2024-05-18 21:03:59', 'admin', '2024-05-19 21:29:07', '0', '1', '0', 'sys.log.operate', 'MaterialSymbolsDataInfoAlertRounded', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3065, '登录日志', 2008, 30, '1', '/system/loginlog', 'SysLogLogin', 'system/logLogin/index', '', 'admin', '2024-05-18 21:18:26', 'admin', '2024-05-24 10:37:20', '0', '1', '0', 'sys.log.login', 'CarbonCloudMonitoring', '0', '', '0', '', '0');
-INSERT INTO `sys_menu` VALUES (3066, '删除', 3064, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-19 21:21:05', NULL, NULL, '0', '0', '0', 'sys.log.operate.del', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3067, '删除', 3065, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-24 11:12:15', NULL, NULL, '0', '0', '0', 'sys.log.login.del', NULL, '0', NULL, '0', NULL, '0');
-INSERT INTO `sys_menu` VALUES (3068, 'API文档', 2072, 1, '1', 'http://localhost:8080/swagger-ui/index.html,_blank', '', '', '', 'admin', '2024-05-25 14:33:52', 'admin', '2024-05-25 14:35:04', '0', '1', '0', '', 'SolarNotebookMinimalisticLinear', '0', '', '0', '', '0');
+INSERT INTO `sys_menu` VALUES (2008, '系统管理', 0, 2, '1', '/system', 'System', '', NULL, 'admin', '2023-02-26 01:31:55', 'admin', '2023-11-28 20:58:16', '0', '1', '0', 'sys', 'TdesignSystemSetting', '0', '', '0', NULL, '0', '2008', 1);
+INSERT INTO `sys_menu` VALUES (2009, '用户管理', 2008, 1, '1', '/system/user', 'SysUser', 'system/user/index', NULL, 'admin', '2023-02-26 01:49:34', 'admin', '2024-04-23 19:04:05', '0', '1', '0', 'sys.user', 'MaterialSymbolsManageAccountsOutlineRounded', '0', '', '0', NULL, '0', '2008,2009', 2);
+INSERT INTO `sys_menu` VALUES (2010, '角色管理', 2008, 2, '1', '/system/role', 'SysRole', 'system/role/index', NULL, 'admin', '2023-02-26 02:31:10', 'admin', '2024-05-02 14:45:13', '0', '1', '0', 'sys.role', 'CarbonUserRole', '0', '', '0', '', '0', '2008,2010', 2);
+INSERT INTO `sys_menu` VALUES (2013, '菜单管理', 2008, 3, '1', '/system/menu', 'SysMenu', 'system/menu/index', NULL, 'admin', '2023-02-26 23:11:00', 'admin', '2024-04-23 19:00:35', '0', '1', '0', 'sys.menu', 'FluentTextBulletListTree16Regular', '0', '', '0', NULL, '0', '2008,2013', 2);
+INSERT INTO `sys_menu` VALUES (2042, '首页', 0, 0, '1', '/home', '', 'home/index', '', 'admin', '2023-07-31 05:37:08', 'admin', '2024-04-18 19:56:32', '0', '1', '0', '', 'ep:home-filled', '0', '', '0', NULL, '1', '2042', 1);
+INSERT INTO `sys_menu` VALUES (2050, '新增', 2013, 1, '1', NULL, NULL, NULL, '菜单新增按钮', 'admin', '2023-08-27 15:54:22', 'admin', '2024-04-18 16:04:23', '0', '0', '0', 'sys.menu.add', NULL, NULL, '', '0', NULL, '0', '2008,2013,2050', 3);
+INSERT INTO `sys_menu` VALUES (2051, '修改', 2013, 2, '1', NULL, NULL, NULL, '菜单编辑按钮', 'admin', '2023-08-27 15:54:58', 'admin', '2024-04-18 18:04:41', '0', '0', '0', 'sys.menu.update', NULL, NULL, '', '0', NULL, '0', '2008,2013,2051', 3);
+INSERT INTO `sys_menu` VALUES (2052, '删除', 2013, 3, '1', NULL, NULL, NULL, '菜单删除按钮', 'admin', '2023-08-27 15:55:21', 'admin', '2024-04-18 16:04:54', '0', '0', '0', 'sys.menu.del', NULL, NULL, '', '0', NULL, '0', '2008,2013,2052', 3);
+INSERT INTO `sys_menu` VALUES (2069, '前端文档', 2072, 98, '1', 'https://zhangyuge7.github.io/preview/five-admin-v2-docs/', '', '', '', 'admin', '2023-11-10 15:03:57', 'admin', '2024-05-18 17:13:56', '0', '1', '0', '', 'ep:document', '0', '', '0', NULL, '0', '2072,2069', 2);
+INSERT INTO `sys_menu` VALUES (2071, '部门管理', 2008, 6, '1', '/system/dept', 'SysDept', 'system/dept/index', '', 'admin', '2023-11-18 22:46:58', 'admin', '2024-04-23 19:00:55', '0', '1', '0', 'sys.dept', 'MingcuteDepartmentLine', '0', '', '0', '', '0', '2008,2071', 2);
+INSERT INTO `sys_menu` VALUES (2072, '文档', 0, 22, '1', '/docs', '', '', '', 'admin', '2023-11-19 00:04:13', 'admin', '2023-11-28 20:58:16', '0', '1', '0', '', 'EpSetting', '0', '', '0', '', '0', '2072', 1);
+INSERT INTO `sys_menu` VALUES (3009, '字典分类', 2008, 10, '1', '/system/dict/type', 'SysDeptType', 'system/dictType/index', '', 'admin', '2023-11-19 22:33:46', 'admin', '2024-04-23 19:01:22', '0', '1', '1', 'sys.dict.type', 'MingcuteBook5Line', '0', '', '0', '', '0', '2008,3009', 2);
+INSERT INTO `sys_menu` VALUES (3010, '字典管理', 2008, 11, '1', '/system/dict/data', 'SysDictData', 'system/dictData/index', '', 'admin', '2024-02-20 11:29:06', 'admin', '2024-04-23 19:01:48', '0', '1', '0', 'sys.dict.data', 'SolarNotebookMinimalisticLinear', '0', '', '0', '', '0', '2008,3010', 2);
+INSERT INTO `sys_menu` VALUES (3015, '个人中心', 0, 99, '1', '/personal-center', 'PersonalCenter', 'personalCenter/index', '', 'admin', '2024-03-22 12:38:00', 'admin', '2024-05-24 11:17:16', '0', '1', '0', '', 'CarbonUserRole', '0', '', '0', '', '0', '3015', 1);
+INSERT INTO `sys_menu` VALUES (3038, '新增', 2009, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:10', NULL, NULL, '0', '0', '0', 'sys.user.add', NULL, '0', NULL, '0', NULL, '0', '2008,2009,3038', 3);
+INSERT INTO `sys_menu` VALUES (3039, '修改', 2009, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:22', 'admin', '2024-04-18 16:07:44', '0', '0', '0', 'sys.user.update', NULL, '0', NULL, '0', NULL, '0', '2008,2009,3039', 3);
+INSERT INTO `sys_menu` VALUES (3040, '删除', 2009, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:06:34', NULL, NULL, '0', '0', '0', 'sys.user.del', NULL, '0', NULL, '0', NULL, '0', '2008,2009,3040', 3);
+INSERT INTO `sys_menu` VALUES (3041, '修改密码', 2009, 4, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:07:24', NULL, NULL, '0', '0', '0', 'sys.user.update.password', NULL, '0', NULL, '0', NULL, '0', '2008,2009,3041', 3);
+INSERT INTO `sys_menu` VALUES (3042, '新增', 2010, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:09:31', NULL, NULL, '0', '0', '0', 'sys.role.add', NULL, '0', NULL, '0', NULL, '0', '2008,2010,3042', 3);
+INSERT INTO `sys_menu` VALUES (3043, '修改', 2010, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 16:09:46', NULL, NULL, '0', '0', '0', 'sys.role.update', NULL, '0', NULL, '0', NULL, '0', '2008,2010,3043', 3);
+INSERT INTO `sys_menu` VALUES (3044, '删除', 2010, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:02:04', NULL, NULL, '0', '0', '0', 'sys.role.del', NULL, '0', NULL, '0', NULL, '0', '2008,2010,3044', 3);
+INSERT INTO `sys_menu` VALUES (3045, '权限', 2010, 4, '1', NULL, NULL, NULL, '分配权限按钮', 'admin', '2024-04-18 18:03:10', NULL, NULL, '0', '0', '0', 'sys.role.perm', NULL, '0', NULL, '0', NULL, '0', '2008,2010,3045', 3);
+INSERT INTO `sys_menu` VALUES (3046, '用户', 2010, 5, '1', NULL, NULL, NULL, '分配用户按钮', 'admin', '2024-04-18 18:03:35', NULL, NULL, '0', '0', '0', 'sys.role.user', NULL, '0', NULL, '0', NULL, '0', '2008,2010,3046', 3);
+INSERT INTO `sys_menu` VALUES (3047, '新增', 2071, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:04:07', NULL, NULL, '0', '0', '0', 'sys.dept.add', NULL, '0', NULL, '0', NULL, '0', '2008,2071,3047', 3);
+INSERT INTO `sys_menu` VALUES (3048, '修改', 2071, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:04:25', NULL, NULL, '0', '0', '0', 'sys.dept.update', NULL, '0', NULL, '0', NULL, '0', '2008,2071,3048', 3);
+INSERT INTO `sys_menu` VALUES (3049, '删除', 2071, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:04:57', NULL, NULL, '0', '0', '0', 'sys.dept.del', NULL, '0', NULL, '0', NULL, '0', '2008,2071,3049', 3);
+INSERT INTO `sys_menu` VALUES (3050, '新增', 3009, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:05:37', 'admin', '2024-04-18 18:05:53', '0', '0', '0', 'sys.dict.type.add', NULL, '0', NULL, '0', NULL, '0', '2008,3009,3050', 3);
+INSERT INTO `sys_menu` VALUES (3051, '修改', 3009, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:06:25', NULL, NULL, '0', '0', '0', 'sys.dict.type.update', NULL, '0', NULL, '0', NULL, '0', '2008,3009,3051', 3);
+INSERT INTO `sys_menu` VALUES (3052, '删除', 3009, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:06:40', NULL, NULL, '0', '0', '0', 'sys.dict.type.del', NULL, '0', NULL, '0', NULL, '0', '2008,3009,3052', 3);
+INSERT INTO `sys_menu` VALUES (3053, '新增', 3010, 1, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:07:10', NULL, NULL, '0', '0', '0', 'sys.dict.data.add', NULL, '0', NULL, '0', NULL, '0', '2008,3010,3053', 3);
+INSERT INTO `sys_menu` VALUES (3054, '修改', 3010, 2, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:07:25', NULL, NULL, '0', '0', '0', 'sys.dict.data.update', NULL, '0', NULL, '0', NULL, '0', '2008,3010,3054', 3);
+INSERT INTO `sys_menu` VALUES (3055, '删除', 3010, 3, '1', NULL, NULL, NULL, '', 'admin', '2024-04-18 18:07:48', NULL, NULL, '0', '0', '0', 'sys.dict.data.del', NULL, '0', NULL, '0', NULL, '0', '2008,3010,3055', 3);
+INSERT INTO `sys_menu` VALUES (3056, '默认', 3010, 4, '1', NULL, NULL, NULL, '字典数据设置默认的按钮', 'admin', '2024-04-18 18:08:52', NULL, NULL, '0', '0', '0', 'sys.dict.data.def', NULL, '0', NULL, '0', NULL, '0', '2008,3010,3056', 3);
+INSERT INTO `sys_menu` VALUES (3059, '演示', 0, 98, '1', '/demo', '', '', '', 'admin', '2024-04-30 15:06:58', 'admin', '2024-05-18 17:11:44', '0', '1', '0', '', 'MingcuteDepartmentLine', '0', '', '0', '', '0', '3059', 1);
+INSERT INTO `sys_menu` VALUES (3060, '上传下载', 3059, 1, '1', '/uploadtest', 'UploadTest', 'demo/UploadTest', '', 'admin', '2024-04-30 15:08:16', NULL, NULL, '0', '1', '0', '', '', '0', '', '0', '', '0', '3059,3060', 2);
+INSERT INTO `sys_menu` VALUES (3064, '操作日志', 2008, 20, '1', '/system/operatelog', 'SysLogOperate', 'system/logOperate/index', '', 'admin', '2024-05-18 21:03:59', 'admin', '2024-05-19 21:29:07', '0', '1', '0', 'sys.log.operate', 'MaterialSymbolsDataInfoAlertRounded', '0', '', '0', '', '0', '2008,3064', 2);
+INSERT INTO `sys_menu` VALUES (3065, '登录日志', 2008, 30, '1', '/system/loginlog', 'SysLogLogin', 'system/logLogin/index', '', 'admin', '2024-05-18 21:18:26', 'admin', '2024-05-24 10:37:20', '0', '1', '0', 'sys.log.login', 'CarbonCloudMonitoring', '0', '', '0', '', '0', '2008,3065', 2);
+INSERT INTO `sys_menu` VALUES (3066, '删除', 3064, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-19 21:21:05', NULL, NULL, '0', '0', '0', 'sys.log.operate.del', NULL, '0', NULL, '0', NULL, '0', '2008,3064,3066', 3);
+INSERT INTO `sys_menu` VALUES (3067, '删除', 3065, 10, '1', NULL, NULL, NULL, '', 'admin', '2024-05-24 11:12:15', NULL, NULL, '0', '0', '0', 'sys.log.login.del', NULL, '0', NULL, '0', NULL, '0', '2008,3065,3067', 3);
+INSERT INTO `sys_menu` VALUES (3068, 'API文档', 2072, 1, '1', 'http://localhost:8080/swagger-ui/index.html,_blank', '', '', '', 'admin', '2024-05-25 14:33:52', 'admin', '2024-05-25 14:35:04', '0', '1', '0', '', 'SolarNotebookMinimalisticLinear', '0', '', '0', '', '0', '2072,3068', 2);
 
 -- ----------------------------
 -- Table structure for sys_role
