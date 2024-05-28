@@ -1,17 +1,17 @@
 spring:
   # 数据源配置
   datasource:
-#    Mysql
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/newbie3?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8&allowMultiQueries=true
-    username: root
-    password: root
-#    Pgsql
+#    ==============Mysql==============
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/newbie3?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8&allowMultiQueries=true
+#    username: root
+#    password: root
+#    ==============Pgsql==============
 #    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://localhost:5432/user_JNcKh5
 #    username: user_JNcKh5
 #    password: root
-#    Oracle
+#    ==============Oracle==============
 #    driverClassName: oracle.jdbc.driver.OracleDriver
 #    url: jdbc:oracle:thin:@localhost:1521/xe
 #    username: newbieboot

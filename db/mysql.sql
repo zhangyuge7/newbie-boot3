@@ -4,14 +4,13 @@
  Source Server         : alimysql
  Source Server Type    : MySQL
  Source Server Version : 80200 (8.2.0)
- Source Host           : 47.94.76.140:3306
  Source Schema         : newbie3
 
  Target Server Type    : MySQL
  Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 28/05/2024 16:28:46
+ Date: 28/05/2024 17:06:14
 */
 
 SET NAMES utf8mb4;
@@ -63,7 +62,7 @@ CREATE TABLE `sys_dict_data`  (
   `id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '主键',
   `label` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '标签',
   `value` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '值',
-  `type_id` bigint NULL DEFAULT NULL COMMENT '字典类型ID',
+  `type_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '字典类型ID',
   `ele_type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '元素类型',
   `ele_class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '元素样式类名',
   `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '1' COMMENT '状态（1正常 0禁用）',
@@ -80,18 +79,18 @@ CREATE TABLE `sys_dict_data`  (
 -- ----------------------------
 -- Records of sys_dict_data
 -- ----------------------------
-INSERT INTO `sys_dict_data` VALUES ('16', '女', '0', 33, 'danger', NULL, '1', 'N', 1, '', NULL, '2024-02-21 17:10:58', NULL, '2024-03-09 22:38:57');
-INSERT INTO `sys_dict_data` VALUES ('19', '男', '1', 33, 'primary', NULL, '1', 'N', 2, '', NULL, '2024-03-09 13:28:37', NULL, '2024-03-09 23:16:49');
-INSERT INTO `sys_dict_data` VALUES ('20', '正常', '1', 35, 'primary', NULL, '1', 'Y', 1, '', NULL, '2024-03-09 21:02:49', NULL, '2024-03-09 23:16:45');
-INSERT INTO `sys_dict_data` VALUES ('21', '锁定', '0', 35, 'info', NULL, '1', 'N', 2, '', NULL, '2024-03-09 21:02:59', NULL, '2024-03-09 22:36:03');
-INSERT INTO `sys_dict_data` VALUES ('22', '正常', '1', 37, 'primary', 'status-enable status-box', '1', 'Y', 1, '', NULL, '2024-03-09 21:34:07', 'admin', '2024-04-18 14:55:10');
-INSERT INTO `sys_dict_data` VALUES ('23', '禁用', '0', 37, 'info', 'status-disabled status-box', '1', 'N', 2, '', NULL, '2024-03-09 21:34:15', NULL, '2024-03-21 18:14:12');
-INSERT INTO `sys_dict_data` VALUES ('25', '未知', '2', 33, 'warning', NULL, '1', 'Y', 3, '', NULL, '2024-03-09 22:24:30', NULL, '2024-03-09 22:37:53');
-INSERT INTO `sys_dict_data` VALUES ('26', 'primary', 'primary', 38, 'primary', '', '1', 'Y', 1, '', NULL, '2024-03-09 22:53:21', 'admin', '2024-04-18 14:48:24');
-INSERT INTO `sys_dict_data` VALUES ('27', 'success', 'success', 38, 'success', '', '1', 'N', 2, '', NULL, '2024-03-09 22:53:30', NULL, '2024-03-09 23:17:28');
-INSERT INTO `sys_dict_data` VALUES ('28', 'info', 'info', 38, 'info', '', '1', 'N', 3, '', NULL, '2024-03-09 22:53:39', NULL, '2024-03-09 23:17:33');
-INSERT INTO `sys_dict_data` VALUES ('29', 'warning', 'warning', 38, 'warning', '', '1', 'N', 4, '', NULL, '2024-03-09 22:53:46', NULL, '2024-03-09 23:17:36');
-INSERT INTO `sys_dict_data` VALUES ('30', 'danger', 'danger', 38, 'danger', '', '1', 'N', 5, '', NULL, '2024-03-09 22:53:54', NULL, '2024-03-09 23:17:40');
+INSERT INTO `sys_dict_data` VALUES ('16', '女', '0', '33', 'danger', NULL, '1', 'N', 1, '', NULL, '2024-02-21 17:10:58', NULL, '2024-03-09 22:38:57');
+INSERT INTO `sys_dict_data` VALUES ('19', '男', '1', '33', 'primary', NULL, '1', 'N', 2, '', NULL, '2024-03-09 13:28:37', NULL, '2024-03-09 23:16:49');
+INSERT INTO `sys_dict_data` VALUES ('20', '正常', '1', '35', 'primary', NULL, '1', 'Y', 1, '', NULL, '2024-03-09 21:02:49', NULL, '2024-03-09 23:16:45');
+INSERT INTO `sys_dict_data` VALUES ('21', '锁定', '0', '35', 'info', NULL, '1', 'N', 2, '', NULL, '2024-03-09 21:02:59', NULL, '2024-03-09 22:36:03');
+INSERT INTO `sys_dict_data` VALUES ('22', '正常', '1', '37', 'primary', 'status-enable status-box', '1', 'Y', 1, '', NULL, '2024-03-09 21:34:07', 'admin', '2024-04-18 14:55:10');
+INSERT INTO `sys_dict_data` VALUES ('23', '禁用', '0', '37', 'info', 'status-disabled status-box', '1', 'N', 2, '', NULL, '2024-03-09 21:34:15', NULL, '2024-03-21 18:14:12');
+INSERT INTO `sys_dict_data` VALUES ('25', '未知', '2', '33', 'warning', NULL, '1', 'Y', 3, '', NULL, '2024-03-09 22:24:30', NULL, '2024-03-09 22:37:53');
+INSERT INTO `sys_dict_data` VALUES ('26', 'primary', 'primary', '38', 'primary', '', '1', 'Y', 1, '', NULL, '2024-03-09 22:53:21', 'admin', '2024-04-18 14:48:24');
+INSERT INTO `sys_dict_data` VALUES ('27', 'success', 'success', '38', 'success', '', '1', 'N', 2, '', NULL, '2024-03-09 22:53:30', NULL, '2024-03-09 23:17:28');
+INSERT INTO `sys_dict_data` VALUES ('28', 'info', 'info', '38', 'info', '', '1', 'N', 3, '', NULL, '2024-03-09 22:53:39', NULL, '2024-03-09 23:17:33');
+INSERT INTO `sys_dict_data` VALUES ('29', 'warning', 'warning', '38', 'warning', '', '1', 'N', 4, '', NULL, '2024-03-09 22:53:46', NULL, '2024-03-09 23:17:36');
+INSERT INTO `sys_dict_data` VALUES ('30', 'danger', 'danger', '38', 'danger', '', '1', 'N', 5, '', NULL, '2024-03-09 22:53:54', NULL, '2024-03-09 23:17:40');
 
 -- ----------------------------
 -- Table structure for sys_dict_type
@@ -328,7 +327,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('52', '272', 'test1', '$2a$10$3sFeXxGHsTI4jwIjzxjfI.kzTl52cywiKfkoUxJ7j0I0UDP4jurZC', '测试用户1', NULL, '', '32132132131', '3213213213211', '1', '1', '', 3, 'admin', '2024-04-18 15:51:03', 'test1', '2024-05-02 15:48:27');
+INSERT INTO `sys_user` VALUES ('52', '272', 'test1', '$2a$10$gVF8Cmb5f4TKcbBuiLsnJOz3K2vNFJj5dUWYs2iyMulNn65Ka3BlC', '测试用户1', NULL, '', '32132132131', '3213213213211', '1', '1', '', 3, 'admin', '2024-04-18 15:51:03', 'admin', '2024-05-28 16:52:23');
 INSERT INTO `sys_user` VALUES ('57', NULL, 'admin', '$2a$10$Jc9ytizwSRL/nVR6.NGDfOpTgAl0Kwh8BhPhM7/1BmbKLtnsjgOFa', '系统管理员', 'public/2024/05/24/hbg0276.jpg', NULL, '18800000000', '32132@qq.com', '1', '1', NULL, 0, NULL, '2024-05-24 09:15:38', 'admin', '2024-05-24 17:47:42');
 
 -- ----------------------------

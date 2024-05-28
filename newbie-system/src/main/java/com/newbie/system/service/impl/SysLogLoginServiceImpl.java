@@ -49,7 +49,6 @@ public class SysLogLoginServiceImpl extends ServiceImpl<SysLogLoginMapper, SysLo
         sysLogLogin.setBrowser(browserInfo);
         sysLogLogin.setLoginType(type);
         sysLogLogin.setCostTime(System.currentTimeMillis() - startTimeMillis);
-        System.out.println(Thread.currentThread().getName());
         // 保存
         ThreadUtil.execute(() -> {
             this.save(sysLogLogin);

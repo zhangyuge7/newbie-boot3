@@ -32,7 +32,7 @@ public class SysDictDataController {
         String label = sysDictData.getLabel();
         String status = sysDictData.getStatus();
         Page<SysDictData> pageData = sysDictDataService.lambdaQuery()
-                .eq(Objects.nonNull(typeId), SysDictData::getTypeId, typeId)
+                .eq(StringUtils.hasLength(typeId), SysDictData::getTypeId, typeId)
                 .like(StringUtils.hasLength(label), SysDictData::getLabel, label)
                 .eq(StringUtils.hasLength(status), SysDictData::getStatus, status)
                 .orderByAsc(SysDictData::getSort)
