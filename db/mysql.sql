@@ -4,13 +4,14 @@
  Source Server         : alimysql
  Source Server Type    : MySQL
  Source Server Version : 80200 (8.2.0)
+ Source Host           : 47.94.76.140:3306
  Source Schema         : newbie3
 
  Target Server Type    : MySQL
  Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 28/05/2024 20:18:16
+ Date: 12/06/2024 15:54:25
 */
 
 SET NAMES utf8mb4;
@@ -141,6 +142,17 @@ CREATE TABLE `sys_log_login`  (
 -- ----------------------------
 -- Records of sys_log_login
 -- ----------------------------
+INSERT INTO `sys_log_login` VALUES ('1799047607571861506', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 233, '2024-06-07 19:55:49', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES ('1800797986244509697', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 378, '2024-06-12 15:51:12', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES ('1800798033023582210', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 697, '2024-06-12 15:51:23', '1', 'test');
+INSERT INTO `sys_log_login` VALUES ('1800798049922433025', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 159, '2024-06-12 15:51:27', '0', 'test');
+INSERT INTO `sys_log_login` VALUES ('1800798062492762113', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 593, '2024-06-12 15:51:30', '1', 'admin');
+INSERT INTO `sys_log_login` VALUES ('1800798100874838018', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 155, '2024-06-12 15:51:39', '0', 'admin');
+INSERT INTO `sys_log_login` VALUES ('1800798118503497729', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 662, '2024-06-12 15:51:43', '1', 'test');
+INSERT INTO `sys_log_login` VALUES ('1800798153874063361', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 167, '2024-06-12 15:51:52', '0', 'test');
+INSERT INTO `sys_log_login` VALUES ('1800798174837194753', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 664, '2024-06-12 15:51:57', '1', 'test');
+INSERT INTO `sys_log_login` VALUES ('1800798288435724290', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 180, '2024-06-12 15:52:24', '0', 'test');
+INSERT INTO `sys_log_login` VALUES ('1800798316952797185', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 610, '2024-06-12 15:52:31', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for sys_log_operate
@@ -205,6 +217,7 @@ INSERT INTO `sys_menu` VALUES ('1795424113898455041', '操作日志', '179541903
 INSERT INTO `sys_menu` VALUES ('1795426597572345858', '删除', '1795424113898455041', 10, '1', NULL, NULL, NULL, NULL, 'admin', '2024-05-28 20:07:12', 'admin', '2024-05-28 20:07:12', NULL, '0', NULL, 'sys.log.operate.del', NULL, NULL, NULL, NULL, NULL, NULL, '1795419039163936769,1795424113898455041,1795426597572345858', 3);
 INSERT INTO `sys_menu` VALUES ('1795426808940101633', '登录日志', '1795419039163936769', 30, '1', '/monitor/loginlog', 'SysLogLogin', 'monitor/logLogin/index', NULL, 'admin', '2024-05-28 20:08:03', 'admin', '2024-05-28 20:08:43', '0', '1', '0', 'sys.log.login', 'MaterialSymbolsDataInfoAlertRounded', '0', NULL, '0', NULL, '0', '1795419039163936769,1795426808940101633', 2);
 INSERT INTO `sys_menu` VALUES ('1795427077400723458', '删除', '1795426808940101633', 10, '1', NULL, NULL, NULL, NULL, 'admin', '2024-05-28 20:09:07', 'admin', '2024-05-28 20:09:07', NULL, '0', NULL, 'sys.log.login.del', NULL, NULL, NULL, NULL, NULL, NULL, '1795419039163936769,1795426808940101633,1795427077400723458', 3);
+INSERT INTO `sys_menu` VALUES ('1796439829787398145', '服务监控', '1795419039163936769', 50, '1', '/monitor/server', 'SysServerMonitor', 'monitor/serverMonitor/index', '', 'admin', '2024-05-31 15:13:26', 'admin', '2024-06-04 16:01:59', '0', '1', '0', 'sys.monitor.server', 'CarbonCloudMonitoring', '0', '', '0', '', '0', '1795419039163936769,1796439829787398145', 2);
 INSERT INTO `sys_menu` VALUES ('2008', '系统管理', '0', 2, '1', '/system', 'System', '', NULL, 'admin', '2023-02-26 01:31:55', 'admin', '2023-11-28 20:58:16', '0', '1', '0', 'sys', 'TdesignSystemSetting', '0', '', '0', NULL, '0', '2008', 1);
 INSERT INTO `sys_menu` VALUES ('2009', '用户管理', '2008', 1, '1', '/system/user', 'SysUser', 'system/user/index', NULL, 'admin', '2023-02-26 01:49:34', 'admin', '2024-04-23 19:04:05', '0', '1', '0', 'sys.user', 'MaterialSymbolsManageAccountsOutlineRounded', '0', '', '0', NULL, '0', '2008,2009', 2);
 INSERT INTO `sys_menu` VALUES ('2010', '角色管理', '2008', 2, '1', '/system/role', 'SysRole', 'system/role/index', NULL, 'admin', '2023-02-26 02:31:10', 'admin', '2024-05-02 14:45:13', '0', '1', '0', 'sys.role', 'CarbonUserRole', '0', '', '0', '', '0', '2008,2010', 2);
@@ -284,21 +297,13 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('1112', '173', '2042', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1113', '173', '3059', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1114', '173', '3060', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1115', '173', '3038', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1116', '173', '3039', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1117', '173', '2010', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1118', '173', '2013', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1119', '173', '2071', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1120', '173', '3009', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1121', '173', '3010', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1122', '173', '2072', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1123', '173', '2069', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1124', '173', '3015', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1125', '173', '2008', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO `sys_role_menu` VALUES ('1126', '173', '2009', 'admin', '2024-04-30 17:05:39', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('1800797975540645889', '173', '2042', 'admin', '2024-06-12 15:51:09', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('1800797975540645890', '173', '2072', 'admin', '2024-06-12 15:51:09', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('1800797975540645891', '173', '3068', 'admin', '2024-06-12 15:51:09', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('1800797975540645892', '173', '2069', 'admin', '2024-06-12 15:51:09', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('1800797975540645893', '173', '3059', 'admin', '2024-06-12 15:51:09', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('1800797975540645894', '173', '3060', 'admin', '2024-06-12 15:51:09', NULL, NULL);
+INSERT INTO `sys_role_menu` VALUES ('1800797975540645895', '173', '3015', 'admin', '2024-06-12 15:51:09', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -328,7 +333,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('52', '272', 'test1', '$2a$10$gVF8Cmb5f4TKcbBuiLsnJOz3K2vNFJj5dUWYs2iyMulNn65Ka3BlC', '测试用户1', NULL, '', '32132132131', '3213213213211', '1', '1', '', 3, 'admin', '2024-04-18 15:51:03', 'admin', '2024-05-28 16:52:23');
+INSERT INTO `sys_user` VALUES ('1800797782850125825', '271', 'test', '$2a$10$42kN49QOhD/jk71/kXcOYuIwrC.eU.pdGt5UtMHzeI6kguevvejE2', '测试用户', NULL, '', '18566666666', '', '1', '1', '密码：123456', 1, 'admin', '2024-06-12 15:50:23', 'admin', '2024-06-12 15:50:45');
 INSERT INTO `sys_user` VALUES ('57', NULL, 'admin', '$2a$10$Jc9ytizwSRL/nVR6.NGDfOpTgAl0Kwh8BhPhM7/1BmbKLtnsjgOFa', '系统管理员', 'public/2024/05/24/hbg0276.jpg', NULL, '18800000000', '32132@qq.com', '1', '1', NULL, 0, NULL, '2024-05-24 09:15:38', 'admin', '2024-05-24 17:47:42');
 
 -- ----------------------------
@@ -349,6 +354,6 @@ CREATE TABLE `sys_user_role`  (
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
-INSERT INTO `sys_user_role` VALUES ('236', '52', '173', 'admin', '2024-05-10 17:06:28', NULL, NULL);
+INSERT INTO `sys_user_role` VALUES ('1800798087998324738', '1800797782850125825', '173', 'admin', '2024-06-12 15:51:36', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

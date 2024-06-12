@@ -4,6 +4,7 @@
  Source Server         : alipgsql
  Source Server Type    : PostgreSQL
  Source Server Version : 160003 (160003)
+ Source Host           : 47.94.76.140:5432
  Source Catalog        : user_JNcKh5
  Source Schema         : public
 
@@ -11,7 +12,7 @@
  Target Server Version : 160003 (160003)
  File Encoding         : 65001
 
- Date: 28/05/2024 20:19:30
+ Date: 12/06/2024 15:57:01
 */
 
 
@@ -194,6 +195,8 @@ COMMENT ON TABLE "public"."sys_log_login" IS '系统登录日志';
 -- ----------------------------
 -- Records of sys_log_login
 -- ----------------------------
+INSERT INTO "public"."sys_log_login" VALUES ('1798313708390580226', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1202, '2024-06-05 19:19:33.79', '1', 'admin');
+INSERT INTO "public"."sys_log_login" VALUES ('1800794954752507906', '1', '192.168.31.158', 'username', NULL, 'Windows 10 or Windows Server 2016(10.0)', 'Chrome(125.0.0.0)', 1039, '2024-06-12 15:39:09.023', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for sys_log_operate
@@ -331,6 +334,7 @@ INSERT INTO "public"."sys_menu" VALUES ('1795424113898455041', '操作日志', '
 INSERT INTO "public"."sys_menu" VALUES ('1795426597572345858', '删除', '1795424113898455041', 10, '1', NULL, NULL, NULL, NULL, 'admin', '2024-05-28 20:07:12', 'admin', '2024-05-28 20:07:12', NULL, '0', NULL, 'sys.log.operate.del', NULL, NULL, NULL, NULL, NULL, NULL, '1795419039163936769,1795424113898455041,1795426597572345858', 3);
 INSERT INTO "public"."sys_menu" VALUES ('1795426808940101633', '登录日志', '1795419039163936769', 30, '1', '/monitor/loginlog', 'SysLogLogin', 'monitor/logLogin/index', NULL, 'admin', '2024-05-28 20:08:03', 'admin', '2024-05-28 20:08:43', '0', '1', '0', 'sys.log.login', 'MaterialSymbolsDataInfoAlertRounded', '0', NULL, '0', NULL, '0', '1795419039163936769,1795426808940101633', 2);
 INSERT INTO "public"."sys_menu" VALUES ('1795427077400723458', '删除', '1795426808940101633', 10, '1', NULL, NULL, NULL, NULL, 'admin', '2024-05-28 20:09:07', 'admin', '2024-05-28 20:09:07', NULL, '0', NULL, 'sys.log.login.del', NULL, NULL, NULL, NULL, NULL, NULL, '1795419039163936769,1795426808940101633,1795427077400723458', 3);
+INSERT INTO "public"."sys_menu" VALUES ('1796439829787398145', '服务监控', '1795419039163936769', 50, '1', '/monitor/server', 'SysServerMonitor', 'monitor/serverMonitor/index', '', 'admin', '2024-05-31 15:13:26', 'admin', '2024-06-04 16:01:58.989', '0', '1', '0', 'sys.monitor.server', 'CarbonCloudMonitoring', '0', '', '0', '', '0', '1795419039163936769,1796439829787398145', 2);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -394,21 +398,13 @@ COMMENT ON TABLE "public"."sys_role_menu" IS '角色菜单关系表';
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO "public"."sys_role_menu" VALUES ('1112', '173', '2042', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1113', '173', '3059', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1114', '173', '3060', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1115', '173', '3038', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1116', '173', '3039', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1117', '173', '2010', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1118', '173', '2013', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1119', '173', '2071', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1120', '173', '3009', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1121', '173', '3010', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1122', '173', '2072', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1123', '173', '2069', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1124', '173', '3015', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1125', '173', '2008', 'admin', '2024-04-30 17:05:39', NULL, NULL);
-INSERT INTO "public"."sys_role_menu" VALUES ('1126', '173', '2009', 'admin', '2024-04-30 17:05:39', NULL, NULL);
+INSERT INTO "public"."sys_role_menu" VALUES ('1800798998938226690', '173', '2042', 'admin', '2024-06-12 15:55:13.231', NULL, NULL);
+INSERT INTO "public"."sys_role_menu" VALUES ('1800798998938226691', '173', '2072', 'admin', '2024-06-12 15:55:13.231', NULL, NULL);
+INSERT INTO "public"."sys_role_menu" VALUES ('1800798998938226692', '173', '3068', 'admin', '2024-06-12 15:55:13.231', NULL, NULL);
+INSERT INTO "public"."sys_role_menu" VALUES ('1800798998938226693', '173', '2069', 'admin', '2024-06-12 15:55:13.231', NULL, NULL);
+INSERT INTO "public"."sys_role_menu" VALUES ('1800798998975975425', '173', '3059', 'admin', '2024-06-12 15:55:13.241', NULL, NULL);
+INSERT INTO "public"."sys_role_menu" VALUES ('1800798998975975426', '173', '3060', 'admin', '2024-06-12 15:55:13.242', NULL, NULL);
+INSERT INTO "public"."sys_role_menu" VALUES ('1800798998988558338', '173', '3015', 'admin', '2024-06-12 15:55:13.243', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -456,8 +452,8 @@ COMMENT ON TABLE "public"."sys_user" IS '系统用户';
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO "public"."sys_user" VALUES ('52', '272', 'test1', '$2a$10$gVF8Cmb5f4TKcbBuiLsnJOz3K2vNFJj5dUWYs2iyMulNn65Ka3BlC', '测试用户1', NULL, '', '32132132131', '3213213213211', '1', '1', '', 3, 'admin', '2024-04-18 15:51:03', 'admin', '2024-05-28 16:52:23');
 INSERT INTO "public"."sys_user" VALUES ('57', NULL, 'admin', '$2a$10$Jc9ytizwSRL/nVR6.NGDfOpTgAl0Kwh8BhPhM7/1BmbKLtnsjgOFa', '系统管理员', 'public/2024/05/24/hbg0276.jpg', NULL, '18800000000', '32132@qq.com', '1', '1', NULL, 0, NULL, '2024-05-24 09:15:38', 'admin', '2024-05-24 17:47:42');
+INSERT INTO "public"."sys_user" VALUES ('1800799163996672001', '271', 'test', '$2a$10$.y5fzz0PCqygP3kx/MEiguH0.H6a4zXxSnVAoZBLZfG7GJMfv0G6C', '测试用户', NULL, '', '18566666666', '', '1', '1', '密码：123456', 1, 'admin', '2024-06-12 15:55:52.584', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -485,7 +481,7 @@ COMMENT ON TABLE "public"."sys_user_role" IS '用户和角色关系表';
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
-INSERT INTO "public"."sys_user_role" VALUES ('236', '52', '173', 'admin', '2024-05-10 17:06:28', NULL, NULL);
+INSERT INTO "public"."sys_user_role" VALUES ('1800799181268815874', '1800799163996672001', '173', 'admin', '2024-06-12 15:55:56.708', NULL, NULL);
 
 -- ----------------------------
 -- Primary Key structure for table sys_dept
