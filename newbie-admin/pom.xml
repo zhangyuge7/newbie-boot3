@@ -41,10 +41,6 @@
             <artifactId>newbie-weblog</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.newbie</groupId>
-            <artifactId>newbie-generator</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
         </dependency>
