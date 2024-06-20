@@ -11,7 +11,7 @@
         m.update_time,m.is_keep,m.type,
         m.is_hide,m.perm,m.icon,
         m.hide_children,m.iframe_link,m.is_outer,
-        m.transition,m.fixed_tab,m.ancestors,m.tier
+        m.transition,m.fixed_tab,m.ancestors,m.tier,m.route_redirect
     </sql>
     <sql id="Role_Column_List">
         r.id,r.role_name,r.role_code,

@@ -114,4 +114,9 @@ public class SysMenu extends BaseEntity {
      * 层级
      */
     private Integer tier;
+
+    /**
+     * 重定向
+     */
+    private String routeRedirect;
 }

@@ -21,6 +21,7 @@ public class Route {
     private String name; // 路由名称
     private String component; // 组件路径
     private RouteMeta meta; // 路由元信息
+    private String redirect; // 重定向
 
     @JsonIgnore
     private String id;

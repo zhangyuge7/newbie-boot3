@@ -187,6 +187,7 @@ public class SecurityServiceImpl implements SecurityService {
                                 .name(m.getRouteName())
                                 .component(m.getComponent())
                                 .meta(metaBuilder(m))
+                                .redirect(m.getRouteRedirect())
                                 .build()
                 ));
 
