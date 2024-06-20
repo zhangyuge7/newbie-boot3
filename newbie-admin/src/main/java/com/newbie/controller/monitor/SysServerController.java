@@ -1,22 +1,21 @@
 package com.newbie.controller.monitor;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import cn.hutool.system.SystemUtil;
-import cn.hutool.system.oshi.CpuInfo;
-import cn.hutool.system.oshi.OshiUtil;
+import cn.hutool.core.map.MapBuilder;
+import com.newbie.common.domain.DisksInfo;
+import com.newbie.common.domain.JvmInfo;
+import com.newbie.common.domain.NetworkInfo;
+import com.newbie.common.domain.OSRuntimeInfo;
 import com.newbie.common.util.R;
+import com.newbie.common.util.SystemInfoUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import oshi.hardware.GlobalMemory;
-import oshi.hardware.HWDiskStore;
 
-import java.lang.management.MemoryUsage;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,102 +33,101 @@ import java.util.Map;
 @Tag(name = "服务器信息监控")
 public class SysServerController {
 
+    @SneakyThrows
     @Operation(summary = "获取系统服务器信息")
     @SaCheckPermission("sys.monitor.server")
     @GetMapping
     public R<Map<String, Object>> getInfo() {
         Map<String, Object> resultMap = new HashMap<>();
+        // JVM信息
+        JvmInfo jvmInfo = SystemInfoUtil.getJvmInfo();
 
-        GlobalMemory memory = OshiUtil.getMemory();
-        CpuInfo cpuInfo = OshiUtil.getCpuInfo();
-        List<HWDiskStore> diskStores = OshiUtil.getDiskStores();
-        // 占用情况
-        resultMap.put("memoryRatio", this.getMemoryRatio(memory)); // 内存已用百分比
-        resultMap.put("cpuRatio", this.getCpuRatio(cpuInfo)); // cpu已用百分比
-        resultMap.put("diskRatio", this.getDiskRatio(diskStores)); // 磁盘已用百分比
-        resultMap.put("jvmMemoryRatio", this.getJvmMemoryRatio(SystemUtil.getMemoryMXBean().getHeapMemoryUsage())); // jvm内存已用百分比
+        long totalJvmMemory = jvmInfo.getTotal();
+        long freeJvmMemory = jvmInfo.getFree();
+        long usedJvmMemory = totalJvmMemory - freeJvmMemory;
+        double usageJvmMemory = usedJvmMemory * 1.0 / totalJvmMemory;
 
-        // 服务器信息
-        resultMap.put("osArch", SystemUtil.getOsInfo().getArch()); // 系统架构
-        resultMap.put("osName", SystemUtil.getOsInfo().getName()); // 系统名称
-        resultMap.put("hostAddr", SystemUtil.getHostInfo().getAddress()); // 主机地址
-        // jvm信息
-        resultMap.put("jvmName", SystemUtil.getJvmInfo().getName()); // jvm名称
-        resultMap.put("jvmVersion", SystemUtil.getJvmInfo().getVersion()); // jvm版本
+        resultMap.put("jvmInfo",
+                MapBuilder.create()
+                        .put("total", SystemInfoUtil.formatData(jvmInfo.getTotal())) // 当前JVM占用的内存总数
+                        .put("max", SystemInfoUtil.formatData(jvmInfo.getMax())) // JVM最大可用内存总数
+                        .put("free", SystemInfoUtil.formatData(jvmInfo.getFree())) // JVM空闲内存
+                        .put("used", SystemInfoUtil.formatData(usedJvmMemory)) // JVM已用内存
+                        .put("usage", SystemInfoUtil.formatRate(usageJvmMemory)) // JVM内存使用率
+                        .put("jdkVersion", jvmInfo.getVersion()) // JDK版本
+                        .put("jdkHome", jvmInfo.getHome()) // JDK路径
+                        .build()
+        );
+        // 系统信息
+        resultMap.put("osInfo", SystemInfoUtil.getSystemInfo());
+        // 运行时信息
+        OSRuntimeInfo osRuntimeInfo = SystemInfoUtil.getOSRuntimeInfo();
+        // 1.CPU信息
+        resultMap.put("cpuInfo",
+                MapBuilder.create()
+                        .put("cpuUsage", SystemInfoUtil.formatRate(osRuntimeInfo.getCpuUsage())) //cpu使用率
+                        .put("cpuMaxFreq", osRuntimeInfo.getCpuMaxFreq()) // cpu基准速度
+                        .put("cpuCurrentFreq", osRuntimeInfo.getCpuCurrentFreq()) // cpu速度
+                        .build()
+        );
+        // 2.内存信息
+        // (1系统内存
+        long total = osRuntimeInfo.getTotalMemory();
+        long used = osRuntimeInfo.getUsedMemory();
+        double usage = used * 1.0 / total;
+        resultMap.put("systemMemory",
+                MapBuilder.create()
+                        .put("total",SystemInfoUtil.formatData(total)) // 系统内存总量
+                        .put("used",SystemInfoUtil.formatData(used)) // 系统内存使用量
+                        .put("usage",SystemInfoUtil.formatRate(usage)) // 系统内存使用率
+                        .build()
+        );
+        // (2虚拟内存
+        resultMap.put("swapMemory",
+                MapBuilder.create()
+                        .put("total",SystemInfoUtil.formatData(osRuntimeInfo.getSwapTotalMemory())) // 可用虚拟总内存(swap)
+                        .put("used",SystemInfoUtil.formatData(osRuntimeInfo.getSwapUsedMemory())) // 虚拟内存使用量(swap)
+                        .build()
+        );
+        // 3.磁盘信息
+        List<Map<String,Object>> disksMapList = new ArrayList<>();
+        for (DisksInfo disksInfo : osRuntimeInfo.getDisksList()) {
+            disksMapList.add(
+                    MapBuilder.<String,Object>create()
+                            .put("dirName",disksInfo.getDirName()) // 挂载点
+                            .put("sysTypeName",disksInfo.getSysTypeName()) // 文件系统名称
+                            .put("typeName",disksInfo.getTypeName()) // 文件系统类型
+                            .put("total",SystemInfoUtil.formatData(disksInfo.getTotal())) // 磁盘总量
+                            .put("used",SystemInfoUtil.formatData(disksInfo.getUsed())) // 磁盘使用量
+                            .put("free",SystemInfoUtil.formatData(disksInfo.getFree())) // 磁盘剩余量
+                            .put("usage",SystemInfoUtil.formatRate(disksInfo.getUsage())) // 磁盘使用率
+                            .build()
+            );
+        }
+        resultMap.put("disksInfo",
+                MapBuilder.create()
+                        .put("diskReadRate",osRuntimeInfo.getDiskReadRate() + "Kb/s") // 磁盘读取速度(Kb/s)
+                        .put("diskWriteRate",osRuntimeInfo.getDiskWriteRate() + "Kb/s") // 磁盘写入速度(Kb/s)
+                        .put("disksList",disksMapList)
+                        .build()
+        );
 
-        // java信息
-        resultMap.put("javaVersion", SystemUtil.getJavaInfo().getVersion()); // java版本
-        resultMap.put("javaVendor", SystemUtil.getJavaInfo().getVendor()); // java供应商
-
+        // 4.网卡网络信息
+        List<Map<String,Object>> networkInfoMapList = new ArrayList<>();
+        for (NetworkInfo networkInfo : SystemInfoUtil.getNetworkInfo()) {
+            double send = networkInfo.getSend() / 1024.0;
+            double accept = networkInfo.getAccept() / 1024.0;
+            networkInfoMapList.add(
+                    MapBuilder.<String,Object>create()
+                            .put("ipv4Address",networkInfo.getIpv4Address()) // ipv4地址
+                            .put("macAddress",networkInfo.getMacAddress()) // mac地址
+                            .put("networkName",networkInfo.getNetworkName()) // 网卡名称
+                            .put("send",String.format("%.1f%s", send, "Kbps")) // 上传速度↑
+                            .put("accept",String.format("%.1f%s", accept, "Kbps")) // 下载速度↓
+                            .build()
+            );
+        }
+        resultMap.put("networkInfoList",networkInfoMapList);
         return R.ok(resultMap);
-    }
-
-    /**
-     * 获取jvm内存使用率
-     * @param heapMemoryUsage
-     * @return
-     */
-    private double getJvmMemoryRatio(MemoryUsage heapMemoryUsage) {
-        return BigDecimal.valueOf((double) heapMemoryUsage.getUsed() / heapMemoryUsage.getInit() * 100)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-    }
-
-    /**
-     * 获取内存使用率
-     *
-     * @param memory
-     * @return
-     */
-    private double getMemoryRatio(GlobalMemory memory) {
-        double memoryAvailableRatio = (double) memory.getAvailable() / memory.getTotal() * 100;
-        return BigDecimal.valueOf(100 - memoryAvailableRatio)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-    }
-
-    /**
-     * 获取cpu使用率
-     *
-     * @param cpuInfo
-     * @return
-     */
-    private double getCpuRatio(CpuInfo cpuInfo) {
-        return BigDecimal.valueOf(100 - cpuInfo.getFree())
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-    }
-
-    /**
-     * 获取磁盘使用率
-     *
-     * @param diskStores
-     * @return
-     */
-    private Object getDiskRatio(List<HWDiskStore> diskStores) {
-        long total = 0;
-        long writeBytes = 0;
-
-        for (HWDiskStore diskStore : diskStores) {
-            total += diskStore.getSize();
-            writeBytes += diskStore.getWriteBytes();
-        }
-        return BigDecimal.valueOf((double) writeBytes / total * 100)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-    }
-
-    private String getSize(long size) {
-        long GB = 1024 * 1024 * 1024;
-        long MB = 1024 * 1024;
-        long KB = 1024;
-        DecimalFormat df = new DecimalFormat("0.00");
-        String resultSize;
-        if (size / GB >= 1) {
-            resultSize = df.format(size / (float) GB) + "GB";
-        } else if (size / MB >= 1) {
-            resultSize = df.format(size / (float) MB) + "MB";
-        } else if (size / KB >= 1) {
-            resultSize = df.format(size / (float) KB) + "KB";
-        } else {
-            resultSize = size + "B";
-        }
-        return resultSize;
     }
 }
