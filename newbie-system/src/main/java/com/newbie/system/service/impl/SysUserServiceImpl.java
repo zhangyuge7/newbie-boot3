@@ -22,6 +22,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -101,6 +102,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         if (userId == null) throw new NewbieException("用户ID为空");
         if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码为空");
         if (!newPassword.equals(confirmNewPassword)) throw new NewbieException("两次输入密码不一致");
+
+        newPassword = new String(Base64.getDecoder().decode(newPassword));
 
         // 系统管理员密码只能由系统管理员修改
         if (this.isAdminById(userId) && !SecurityUtils.isAdmin()) {

@@ -13,8 +13,8 @@ import lombok.Data;
 @Data
 public class PasswordBody {
     private String userId; // 用户ID
-    private String oldPassword; // 原密码
-    private String newPassword; // 新密码
-    private String confirmPassword; // 确认密码
+    private String otext; // 原密码
+    private String ntext; // 新密码
+    private String ctext; // 确认密码
     private Boolean immediatelyKick; // 立即踢出，修改用户密码时，修改成功后是否立即踢下线
 }

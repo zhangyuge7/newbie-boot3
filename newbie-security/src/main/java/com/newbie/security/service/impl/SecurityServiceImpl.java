@@ -27,6 +27,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -49,17 +50,21 @@ public class SecurityServiceImpl implements SecurityService {
         // 校验参数
         this.verifyLoginBody(loginBody);
 
+        // 解码
+        loginBody.setUtext(new String(Base64.getDecoder().decode(loginBody.getUtext())));
+        loginBody.setPtext(new String(Base64.getDecoder().decode(loginBody.getPtext())));
+
         // 检验验证码
-        if(!captchaService.verify(loginBody.getCheckCodeKey(), loginBody.getCheckCode()))
+        if (!captchaService.verify(loginBody.getCheckCodeKey(), loginBody.getCheckCode()))
             throw new NewbieException("验证码不正确");
 
         // 根据username查询用户
-        SysUser sysUser = securityMapper.selectUserByUsername(loginBody.getUsername());
+        SysUser sysUser = securityMapper.selectUserByUsername(loginBody.getUtext());
 
         if (sysUser == null) throw new NewbieException("用户不存在");
 
         // 验证密码
-        if (!SecurityUtils.checkPassword(loginBody.getPassword(), sysUser.getPassword()))
+        if (!SecurityUtils.checkPassword(loginBody.getPtext(), sysUser.getPassword()))
             throw new NewbieException("密码错误");
 
         // 是否禁用
@@ -84,7 +89,7 @@ public class SecurityServiceImpl implements SecurityService {
         List<SysRole> roleList = securityMapper.selectRoleListByUserId(loginUser.getId());
         loginUser.setRoleList(roleList);
         // 根据部门ID获取部门信息
-        if(loginUser.getDeptId()!=null){
+        if (loginUser.getDeptId() != null) {
             SysDept sysDept = securityMapper.selectDeptByDeptId(loginUser.getDeptId());
             loginUser.setDept(sysDept);
         }
@@ -105,7 +110,7 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     private List<String> getPermissions(String userId) {
-        List<SysMenu> menuList = securityMapper.selectMenuListByUserId(userId,null);
+        List<SysMenu> menuList = securityMapper.selectMenuListByUserId(userId, null);
         return menuList.stream()
                 .map(SysMenu::getPerm)
                 .filter(StringUtils::hasLength)
@@ -130,7 +135,8 @@ public class SecurityServiceImpl implements SecurityService {
         SysUser sysUser = new SysUser();
         sysUser.setUsername(SecurityConstant.ADMIN_USER_NAME);
         sysUser.setNickName("系统管理员");
-        sysUser.setPassword(SecurityUtils.encodePassword(passwordBody.getNewPassword()));
+        String password = new String(Base64.getDecoder().decode(passwordBody.getNtext()));
+        sysUser.setPassword(SecurityUtils.encodePassword(password));
         if (securityMapper.insertAdminUser(sysUser) != 1) throw new NewbieException("初始化系统管理员失败");
     }
 
@@ -143,7 +149,7 @@ public class SecurityServiceImpl implements SecurityService {
             menuList = securityMapper.selectMenuAll();
         } else {
             // 根据用户id获取菜单
-            menuList = securityMapper.selectMenuListByUserId(loginUser.getId(),"1");
+            menuList = securityMapper.selectMenuListByUserId(loginUser.getId(), "1");
         }
         if (CollectionUtils.isEmpty(menuList)) {
             return new ArrayList<>();
@@ -154,19 +160,21 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     @Transactional
     public void updatePassword(PasswordBody passwordBody) {
-        if (!StringUtils.hasLength(passwordBody.getOldPassword())) throw new NewbieException("旧密码不能为空");
+        if (!StringUtils.hasLength(passwordBody.getOtext())) throw new NewbieException("旧密码不能为空");
         this.verifyPasswordBogy(passwordBody);
         long userId = StpUtil.getLoginIdAsLong();
         SysUser sysUser = securityMapper.selectUserByUserId(userId);
 
-        if (!SecurityUtils.checkPassword(passwordBody.getOldPassword(), sysUser.getPassword()))
+        String oText = new String(Base64.getDecoder().decode(passwordBody.getOtext()));
+        String nText = new String(Base64.getDecoder().decode(passwordBody.getNtext()));
+
+        if (!SecurityUtils.checkPassword(oText, sysUser.getPassword()))
             throw new NewbieException("旧密码不正确");
-        String newPassword = SecurityUtils.encodePassword(passwordBody.getNewPassword());
+        String newPassword = SecurityUtils.encodePassword(nText);
         sysUser.setPassword(newPassword);
         int i = securityMapper.updateUserPasswordByUserId(sysUser);
         if (i != 1) throw new NewbieException("修改密码失败");
     }
-
 
 
     /**
@@ -222,8 +230,8 @@ public class SecurityServiceImpl implements SecurityService {
      * @param passwordBody 密码参数
      */
     private void verifyPasswordBogy(PasswordBody passwordBody) {
-        String newPassword = passwordBody.getNewPassword();
-        String confirmPassword = passwordBody.getConfirmPassword();
+        String newPassword = passwordBody.getNtext();
+        String confirmPassword = passwordBody.getCtext();
         if (!StringUtils.hasLength(newPassword)) throw new NewbieException("新密码不能为空");
         if (!StringUtils.hasLength(confirmPassword)) throw new NewbieException("确认密码不能为空");
         if (!newPassword.equals(confirmPassword)) throw new NewbieException("两次密码不一致");
@@ -235,9 +243,7 @@ public class SecurityServiceImpl implements SecurityService {
      * @param loginBody 登录参数
      */
     private void verifyLoginBody(LoginBody loginBody) {
-        String username = loginBody.getUsername();
-        String password = loginBody.getPassword();
-        if (!StringUtils.hasLength(username)) throw new NewbieException("用户名不能为空");
-        if (!StringUtils.hasLength(password)) throw new NewbieException("密码不能为空");
+        if (!StringUtils.hasLength(loginBody.getUtext())) throw new NewbieException("用户名不能为空");
+        if (!StringUtils.hasLength(loginBody.getPtext())) throw new NewbieException("密码不能为空");
     }
 }

@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -73,11 +74,11 @@ public class SecurityController {
         try {
             SaTokenInfo tokenInfo = securityService.login(loginBody);
             // 保存登录日志
-            sysLogLoginService.saveLoginLog(loginBody.getUsername(),startTimeMillis,"1",LoginMethodConstant.USERNAME);
+            sysLogLoginService.saveLoginLog(loginBody.getUtext(),startTimeMillis,"1",LoginMethodConstant.USERNAME);
             return R.ok(tokenInfo);
         }catch (Exception e){
             // 保存登录日志
-            sysLogLoginService.saveLoginLog(loginBody.getUsername(),startTimeMillis,"1",LoginMethodConstant.USERNAME,e);
+            sysLogLoginService.saveLoginLog(loginBody.getPtext(),startTimeMillis,"1",LoginMethodConstant.USERNAME,e);
             throw e;
         }
     }
