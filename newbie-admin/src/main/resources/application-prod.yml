@@ -1,7 +1,7 @@
 # springdoc-openapi项目配置
 springdoc:
   api-docs:
-    enabled: true
+    enabled: false
 spring:
   # 数据源配置
   datasource:
@@ -10,16 +10,16 @@ spring:
     url: jdbc:mysql://localhost:3306/newbie3?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8&allowMultiQueries=true
     username: root
     password: root
-    #    ==============Pgsql==============
-    #    driver-class-name: org.postgresql.Driver
-    #    url: jdbc:postgresql://localhost:5432/user_JNcKh5
-    #    username: postgresql
-    #    password: postgresql
-    #    ==============Oracle==============
-    #    driverClassName: oracle.jdbc.driver.OracleDriver
-    #    url: jdbc:oracle:thin:@localhost:1521/orcl
-    #    username: newbie
-    #    password: newbie
+  #    ==============Pgsql==============
+  #    driver-class-name: org.postgresql.Driver
+  #    url: jdbc:postgresql://localhost:5432/user_JNcKh5
+  #    username: postgresql
+  #    password: postgresql
+  #    ==============Oracle==============
+  #    driverClassName: oracle.jdbc.driver.OracleDriver
+  #    url: jdbc:oracle:thin:@localhost:1521/orcl
+  #    username: newbie
+  #    password: newbie
   data:
     redis:
       host: localhost
@@ -46,7 +46,7 @@ newbie:
     scheme: default
     prefix: public
     # 本服务器文件保存磁盘地址
-    file-location: D:/project/self/temp/files
+    file-location: /var/www/files
     # minio
     minio:
       end-point: http://localhost:9000

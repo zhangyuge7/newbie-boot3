@@ -4,6 +4,8 @@ server:
     context-path: /
   shutdown: graceful
 spring:
+  profiles:
+    active: dev,apidoc
   main:
     # 相同的bean是否覆盖
     allow-bean-definition-overriding: true
@@ -19,8 +21,6 @@ spring:
     multipart:
       max-file-size: 200MB
       maxRequestSize: 200MB
-  profiles:
-    active: dev,datasource,apidoc
   web:
     resources:
       static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, file:${newbie.file.file-location}

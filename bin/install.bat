@@ -1,2 +1,0 @@
-cd ..
-mvn clean install

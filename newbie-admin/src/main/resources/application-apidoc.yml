@@ -1,7 +1,5 @@
 # springdoc-openapi项目配置
 springdoc:
-  api-docs:
-    enabled: true
   group-configs:
     - group: '文件服务'
 #      paths-to-match: '/file/**'
