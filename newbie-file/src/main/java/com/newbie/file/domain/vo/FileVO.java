@@ -18,4 +18,6 @@ import lombok.NoArgsConstructor;
 public class FileVO {
     private String originalName; // 文件原名称
     private String filePath; // 文件路径
+    private Long fileSize; // 文件大小
+    private String fileType; // 文件类型
 }

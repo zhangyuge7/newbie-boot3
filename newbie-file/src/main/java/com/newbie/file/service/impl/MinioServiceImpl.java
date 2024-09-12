@@ -105,8 +105,7 @@ public class MinioServiceImpl implements FileService {
                                 .object(newFileName)
                                 .stream(file.getInputStream(), file.getSize(), -1)
                                 .build());
-
-                fileVOList.add(new FileVO(originalFilename,response.object()));
+                fileVOList.add(new FileVO(originalFilename,response.object(),file.getSize(),file.getContentType()));
 
             }
             return fileVOList;

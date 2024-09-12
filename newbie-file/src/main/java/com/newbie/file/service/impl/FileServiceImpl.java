@@ -70,7 +70,7 @@ public class FileServiceImpl implements FileService {
                 String originalFilename = file.getOriginalFilename();
                 String newFileName = this.getNewFileName(originalFilename);
                 file.transferTo(new File(targetPath, newFileName));
-                fileVOList.add(new FileVO(originalFilename,fileDir + "/" + newFileName));
+                fileVOList.add(new FileVO(originalFilename,fileDir + "/" + newFileName,file.getSize(),file.getContentType()));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
