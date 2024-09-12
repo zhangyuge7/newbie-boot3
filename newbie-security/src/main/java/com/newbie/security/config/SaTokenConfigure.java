@@ -1,10 +1,12 @@
 package com.newbie.security.config;
 
+import cn.dev33.satoken.config.SaTokenConfig;
 import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.dev33.satoken.jwt.StpLogicJwtForSimple;
 import cn.dev33.satoken.stp.StpLogic;
 import cn.dev33.satoken.stp.StpUtil;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +27,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SaTokenConfigure implements WebMvcConfigurer {
     public static final String[] STATIC_LIST = {"/**/error", "/**/favicon.ico","/**/*.html","/**/*.css","/**/*.js"};
 
-    private String[] whiteList = {"/security/login", "/security/initAdmin", "/security/imageCaptcha", "/public/**", "/file/download"};
+//    白名单
+    private String[] whiteList = {
+            "/security/login",
+            "/security/initAdmin",
+            "/security/imageCaptcha",
+            "/public/**",
+            "/file/download"
+    };
 
     private static final String[] API_DOC = {"/v3/api-docs/**","/swagger-ui/**"};
 
@@ -48,5 +57,11 @@ public class SaTokenConfigure implements WebMvcConfigurer {
     @Bean
     public StpLogic getStpLogicJwt() {
         return new StpLogicJwtForSimple(); // Simple 简单模式
+    }
+
+    @Autowired
+    public void configSaToken(SaTokenConfig config) {
+//        jwt秘钥
+        config.setJwtSecretKey("bsdasdasifhueuiwyurfewbfjsdafjg");
     }
 }
