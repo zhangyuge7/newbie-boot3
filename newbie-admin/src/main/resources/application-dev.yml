@@ -35,18 +35,18 @@ spring:
 newbie:
   # 日志
   weblog:
-    enable: false
-    default-strategy: all_api
-    only-error: true
+    enable: true # 是否开启日志记录
+    default-strategy: all_api # 默认策略：all_api：记录所有接口，* default: 记录带有 WebLog 注解的接口的日志
+    only-error: true # 仅记录错误日志
   # 验证码配置
   captcha:
     timeout: 60 #超时（单位：秒）
   # 文件服务配置
   file:
-    scheme: default
-    prefix: public
+    scheme: default # * default：服务器本地磁盘文件存储，minio：使用minio
+    prefix: public # 文件访问前缀
     # 本服务器文件保存磁盘地址
-    file-location: D:/project/self/temp/files
+    file-location: D:/project/upload
     # minio
     minio:
       end-point: http://localhost:9000
@@ -56,8 +56,6 @@ newbie:
 sa-token:
   #  白名单
   white-list: /security/login, /security/initAdmin, /security/imageCaptcha, /public/**, /file/download
-  # jwt秘钥
-  jwt-secret-key: bsdasdasifhueuiwyurfewbfjsdafjg
   # token有效期半小时（单位：秒）
   timeout: 1800
   is-log: false
