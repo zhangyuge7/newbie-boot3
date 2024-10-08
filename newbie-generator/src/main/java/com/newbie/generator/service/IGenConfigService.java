@@ -1,7 +1,7 @@
-package ${package.service};
+package com.newbie.generator.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import ${package.entity}.${Entity}Entity;
+import com.newbie.generator.domain.GenConfigEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.io.Serializable;
@@ -10,46 +10,46 @@ import java.util.List;
 /**
 * Created by NewbieGenerator.
 *
-* @Author: ${gc.author}
-* @Email ${gc.email}
-* @Date: ${gc.date}
-* @Descriptions: ${comment!} 服务类
+* @Author: ZhangYuGe
+* @Email 398698424@qq.com
+* @Date: 2024-10-04
+* @Descriptions: 代码生成器配置 服务类
 */
-public interface I${Entity}Service extends IService<${Entity}Entity> {
+public interface IGenConfigService extends IService<GenConfigEntity> {
 
     /**
     * 分页查询数据列表
     * @param page 分页信息
     * @param entity 数据实体
-    * @return IPage<${Entity}Entity>
+    * @return IPage<GenConfigEntity>
     */
-    IPage<${Entity}Entity> getPage(IPage<${Entity}Entity> page, ${Entity}Entity entity);
+    IPage<GenConfigEntity> getPage(IPage<GenConfigEntity> page, GenConfigEntity entity);
 
     /**
     * 查询数据列表
     * @param entity 数据实体
-    * @return List<${Entity}Entity>
+    * @return List<GenConfigEntity>
     */
-    List<${Entity}Entity> getList(${Entity}Entity entity);
+    List<GenConfigEntity> getList(GenConfigEntity entity);
 
     /**
     * 根据主键查询数据详情
     * @param pkVal 主键值
-    * @return ${Entity}Entity
+    * @return GenConfigEntity
     */
-    ${Entity}Entity getByPkVal(Serializable pkVal);
+    GenConfigEntity getByPkVal(Serializable pkVal);
 
     /**
     * 新增数据
     * @param entity 数据实体
     */
-    void addData(${Entity}Entity entity);
+    void addData(GenConfigEntity entity);
 
     /**
     * 根据主键修改数据
     * @param entity 数据实体
     */
-    void updateByPkVal(${Entity}Entity entity);
+    void updateByPkVal(GenConfigEntity entity);
 
     /**
     * 根据主键删除数据

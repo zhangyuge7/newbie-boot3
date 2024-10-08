@@ -1,0 +1,24 @@
+{
+  "packageMapping":{
+    "Date": "java.util.Date",
+    "BigDecimal": "java.math.BigDecimal"
+  },
+  "typeMapping":{
+    "varchar":"String",
+    "int":"Integer",
+    "int2":"Integer",
+    "int4":"Integer",
+    "int8":"Long",
+    "timestamp":"Date",
+    "datetime":"Date",
+    "date":"Date",
+    "float4":"Float",
+    "float8":"Double",
+    "numeric":"BigDecimal",
+    "text":"String",
+    "bool":"Boolean",
+    "boolean":"Boolean",
+    "bpchar":"String",
+    "char": "String"
+  }
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbie.generator.mapper.MysqlGeneratorMapper">
+
+    <select id="selectTableByName" resultType="com.newbie.generator.domain.TableInfo">
+        SELECT
+        TABLE_NAME AS name,
+        TABLE_COMMENT AS comment
+        FROM
+        INFORMATION_SCHEMA.TABLES
+        WHERE
+        TABLE_SCHEMA = 'newbie3'
+        AND TABLE_NAME = #{tableName}
+    </select>
+
+    <select id="selectTableList" resultType="com.newbie.generator.domain.TableInfo">
+        SELECT
+        TABLE_NAME AS name,
+        TABLE_COMMENT AS comment
+        FROM
+        INFORMATION_SCHEMA.TABLES
+        WHERE
+        TABLE_SCHEMA = 'newbie3'
+        <if test="tableInfo.name != null and tableInfo.name != ''">
+            AND TABLE_NAME LIKE concat('%',#{tableInfo.name},'%')
+        </if>
+        <if test="tableInfo.comment != null and tableInfo.comment != ''">
+            AND TABLE_COMMENT LIKE concat('%',#{tableInfo.comment},'%')
+        </if>
+    </select>
+
+
+    <select id="selectColumnList" resultType="com.newbie.generator.domain.ColumnInfo">
+        SELECT
+        table_name,
+        column_name as name,
+        data_type as type,
+        CASE WHEN is_nullable='YES' THEN '1' ELSE '0' END AS nullable,
+        CASE WHEN column_key='PRI' THEN '1' ELSE '0' END AS pk,
+        column_comment as comment
+        FROM
+        INFORMATION_SCHEMA.COLUMNS
+        WHERE
+        TABLE_SCHEMA = 'newbie3'
+        AND TABLE_NAME =  #{tableName}
+    </select>
+
+</mapper>

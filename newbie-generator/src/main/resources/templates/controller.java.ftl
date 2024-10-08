@@ -1,113 +1,93 @@
-package ${package.Controller};
+package ${package.controller};
 
-<#if restControllerStyle>
-import org.springframework.web.bind.annotation.RestController;
-<#else>
-import org.springframework.stereotype.Controller;
-</#if>
-<#if superControllerClassPackage??>
-import ${superControllerClassPackage};
-</#if>
-<#if enableApiAuth>
-import cn.dev33.satoken.annotation.SaCheckPermission;
-</#if>
-<#if springdoc>
-import io.swagger.v3.oas.annotations.Operation;
-</#if>
-import org.springframework.web.bind.annotation.RequestMapping;
-import lombok.RequiredArgsConstructor;
-<#if springdoc>
-import io.swagger.v3.oas.annotations.tags.Tag;
-</#if>
-import ${package.Service}.${table.serviceName};
-import ${package.Entity}.${table.entityName};
-import com.newbie.common.util.R;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-
-import java.util.Arrays;
-
+import ${package.service}.I${Entity}Service;
+import ${package.entity}.${Entity}Entity;
+import com.newbie.common.util.R;
+import lombok.RequiredArgsConstructor;
+<#if gc.springDoc>
+import io.swagger.v3.oas.annotations.Operation;
+</#if>
+<#if gc.apiAuth>
+import cn.dev33.satoken.annotation.SaCheckPermission;
+</#if>
 import org.springframework.web.bind.annotation.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
- * Created by NewbieGenerator.
- *
- * @Author: ${author}
- * @Email ${email}
- * @Date: ${date}
- * @Descriptions: ${table.comment!} 前端控制器
- */
-<#if restControllerStyle>
+* Created by NewbieGenerator.
+*
+* @Author: ${gc.author}
+* @Email ${gc.email}
+* @Date: ${gc.date}
+* @Descriptions: ${comment!} Api 接口
+*/
 @RestController
-<#else>
-@Controller
-</#if>
-@RequestMapping("/${package.ModuleName}/${controllerMappingHyphen}")
+@RequestMapping("${apiPath.parent}")
 @RequiredArgsConstructor
-<#if springdoc>
-@Tag(name = "${table.comment!} 前端控制器")
+<#if gc.springDoc>
+@Tag(name = "${comment!}")
 </#if>
-<#if superControllerClass??>
-public class ${table.controllerName} extends ${superControllerClass} {
-<#else>
-public class ${table.controllerName} {
-</#if>
+public class ${Entity}Controller {
 
-    private final ${table.serviceName} ${controllerMappingHyphen}Service;
+    private final I${Entity}Service i${Entity}Service;
 
-<#if springdoc>
-    @Operation(summary ="查询分页数据")
+<#if gc.springDoc>
+    @Operation(summary ="分页查询数据列表")
 </#if>
-<#if enableApiAuth>
-    @SaCheckPermission("${package.ModuleName}.${controllerMappingHyphen}")
+<#if gc.apiAuth>
+    @SaCheckPermission("${gc.moduleName}.${entity}.list")
 </#if>
-    @GetMapping("/paging")
-    public R<IPage<${table.entityName}>> paging(Page<${table.entityName}> page, ${table.entityName} entity) {
-      Page<${table.entityName}> pageInfo = ${controllerMappingHyphen}Service
-               .lambdaQuery()
-                // TODO 这里添加查询过滤条件
-               .page(page);
-       return R.ok(pageInfo);
-   }
-
-<#if springdoc>
-    @Operation(summary ="新增")
-</#if>
-<#if enableApiAuth>
-    @SaCheckPermission("${package.ModuleName}.${controllerMappingHyphen}.add")
-</#if>
-    @PostMapping("/add")
-    public R<Object> add(@RequestBody ${table.entityName} entity) {
-        ${controllerMappingHyphen}Service.save(entity);
-        return R.ok().setMsg("添加成功");
+    @GetMapping("/page")
+    public R<IPage<${Entity}Entity>> page(Page<${Entity}Entity> page, ${Entity}Entity entity) {
+        return R.ok(i${Entity}Service.getPage(page,entity));
     }
 
-<#if springdoc>
-    @Operation(summary ="修改")
+<#if gc.springDoc>
+    @Operation(summary ="查询数据列表")
 </#if>
-<#if enableApiAuth>
-    @SaCheckPermission("${package.ModuleName}.${controllerMappingHyphen}.update")
+<#if gc.apiAuth>
+    @SaCheckPermission("${gc.moduleName}.${entity}.list")
 </#if>
-    @PostMapping("/update")
-    public R<Object> update(@RequestBody ${table.entityName} entity) {
-        if (entity.${pkValue.getMethod}() == null) {
-            return R.error("ID为空");
-        }
-        // 修改数据
-        ${controllerMappingHyphen}Service.updateById(entity);
-        return R.ok().setMsg("修改成功");
-     }
+    @GetMapping("/list")
+    public R<List<${Entity}Entity>> list(${Entity}Entity entity) {
+       return R.ok(i${Entity}Service.getList(entity));
+   }
 
-<#if springdoc>
-    @Operation(summary ="批量删除")
+<#if gc.springDoc>
+    @Operation(summary ="新增数据")
 </#if>
-<#if enableApiAuth>
-    @SaCheckPermission("${package.ModuleName}.${controllerMappingHyphen}.del")
+<#if gc.apiAuth>
+    @SaCheckPermission("${gc.moduleName}.${entity}.add")
 </#if>
-    @PostMapping("/deleteBatch")
-    public R<Object> deleteBatch(@RequestBody String[] ids) {
-        if (ids == null || ids.length == 0) return R.error("ID为空");
-        ${controllerMappingHyphen}Service.removeBatchByIds(Arrays.asList(ids));
-        return R.ok().setMsg("删除成功");
+    @PostMapping("/addData")
+    public R<Object> addData(@RequestBody ${Entity}Entity entity) {
+        i${Entity}Service.addData(entity);
+        return R.ok();
+    }
+
+<#if gc.springDoc>
+    @Operation(summary ="根据主键更新数据")
+</#if>
+<#if gc.apiAuth>
+    @SaCheckPermission("${gc.moduleName}.${entity}.update")
+</#if>
+    @PostMapping("/updateByPkVal")
+    public R<Object> updateByPkVal(@RequestBody ${Entity}Entity entity) {
+        i${Entity}Service.updateById(entity);
+        return R.ok();
+     }
+        <#if gc.springDoc>
+    @Operation(summary ="根据主键删除数据")
+        </#if>
+        <#if gc.apiAuth>
+    @SaCheckPermission("${gc.moduleName}.${entity}.delete")
+        </#if>
+    @PostMapping("/deleteByPkVal/{${pkey.name}}")
+    public R<Object> deleteByPkVal(@PathVariable Serializable ${pkey.name}) {
+        i${Entity}Service.deleteByPkVal(${pkey.name});
+        return R.ok();
     }
 }

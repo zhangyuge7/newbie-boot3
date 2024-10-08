@@ -40,6 +40,10 @@
             <groupId>com.newbie</groupId>
             <artifactId>newbie-weblog</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.newbie</groupId>
+            <artifactId>newbie-generator</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -21,10 +21,6 @@
             <groupId>com.newbie</groupId>
             <artifactId>newbie-common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-        </dependency>
         <!-- 模板引擎 -->
         <dependency>
             <groupId>org.freemarker</groupId>

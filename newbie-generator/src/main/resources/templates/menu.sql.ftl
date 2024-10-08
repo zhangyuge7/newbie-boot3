@@ -1,26 +1,26 @@
--- 需要自定义的值，搜索替换。菜单默认为顶级菜单，如果不是请自行添加或修改
--- 菜单ID                         menuId_123
--- 新增按钮ID                     addButId_123
--- 修改按钮ID                     updateButId_123
--- 删除按钮ID                     delButId_123
+-- 需要自定义的值：搜索 aaa 替换为父级菜单ID的值。
+-- 菜单ID        ${menuId}
+-- 新增按钮ID     ${addButId}
+-- 修改按钮ID     ${updateButId}
+-- 删除按钮ID     ${deleteButId}
 
 
 
 -- 页面菜单
 INSERT INTO sys_menu (id,title, parent_id, sort, status, route_path, route_name, component, remark, create_by, create_time, update_by, update_time, is_keep, type, is_hide, perm, icon, hide_children, iframe_link, is_outer, transition, fixed_tab, ancestors, tier)
-VALUES ('menuId_123','${table.comment}', '0', 1, '1', '/${package.ModuleName}/${controllerMappingHyphen}', '${upModuleName}${entity}Vue', '${package.ModuleName}/${controllerMappingHyphen}/index', NULL, 'NewbieGenerator', '${date}', NULL, NULL, '0', '1', '0', '${package.ModuleName}.${controllerMappingHyphen}', '', '0', '', '0', '', '0', '0,menuId_123', 1);
+VALUES ('${menuId}','${comment}', 'aaa', 1, '1', '/${gc.moduleName}/${entity}', '${gc.ModuleName}${entity}Vue', '${gc.moduleName}/${entity}/index', NULL, 'NewbieGenerator', '${gc.date}', NULL, NULL, '0', '1', '0', '${gc.moduleName}.${entity}.list', '', '0', '', '0', '', '0', 'aaa,${menuId}', 1);
 
 -- 新增按钮
 INSERT INTO sys_menu (id, title, parent_id, sort, status,  remark, create_by, create_time,  is_keep, type, is_hide, perm, icon, hide_children, iframe_link, is_outer, transition, fixed_tab, ancestors, tier)
-VALUES ('addButId_123', '新增', 'menuId_123', 1, '1',  '新增按钮', 'NewbieGenerator', '${date}',  '0', '0', '0', '${package.ModuleName}.${controllerMappingHyphen}.add', NULL, '0', NULL, '0', NULL, '0', '0,menuId_123,addButId_123', 2);
+VALUES ('${addButId}', '新增', '${menuId}', 1, '1',  '新增按钮', 'NewbieGenerator', '${gc.date}',  '0', '0', '0', '${gc.moduleName}.${entity}.add', NULL, '0', NULL, '0', NULL, '0', 'aaa,${menuId},${addButId}', 2);
 
 -- 修改按钮
 INSERT INTO sys_menu (id, title, parent_id, sort, status,  remark, create_by, create_time,  is_keep, type, is_hide, perm, icon, hide_children, iframe_link, is_outer, transition, fixed_tab, ancestors, tier)
-VALUES ('updateButId_123', '修改', 'menuId_123', 2, '1',  '修改按钮', 'NewbieGenerator', '${date}',  '0', '0', '0', '${package.ModuleName}.${controllerMappingHyphen}.update', NULL, '0', NULL, '0', NULL, '0', '0,menuId_123,updateButId_123', 2);
+VALUES ('${updateButId}', '修改', '${menuId}', 2, '1',  '修改按钮', 'NewbieGenerator', '${gc.date}',  '0', '0', '0', '${gc.moduleName}.${entity}.update', NULL, '0', NULL, '0', NULL, '0', 'aaa,${menuId},${updateButId}', 2);
 
 -- 删除按钮
 INSERT INTO sys_menu (id, title, parent_id, sort, status,  remark, create_by, create_time,  is_keep, type, is_hide, perm, icon, hide_children, iframe_link, is_outer, transition, fixed_tab, ancestors, tier)
-VALUES ('delButId_123', '删除', 'menuId_123', 3, '1',  '删除按钮', 'NewbieGenerator', '${date}',  '0', '0', '0', '${package.ModuleName}.${controllerMappingHyphen}.del', NULL, '0', NULL, '0', NULL, '0', '0,menuId_123,delButId_123', 2);
+VALUES ('${deleteButId}', '删除', '${menuId}', 3, '1',  '删除按钮', 'NewbieGenerator', '${gc.date}',  '0', '0', '0', '${gc.moduleName}.${entity}.delete', NULL, '0', NULL, '0', NULL, '0', 'aaa,${menuId},${deleteButId}', 2);
 
 
 

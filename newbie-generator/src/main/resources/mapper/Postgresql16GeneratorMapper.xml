@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newbie.generator.mapper.Postgresql16GeneratorMapper">
+
+    <select id="selectTableByName" resultType="com.newbie.generator.domain.TableInfo">
+        SELECT c.relname AS name, pgd.description AS comment
+        FROM pg_class c
+        JOIN  pg_namespace n ON n.oid = c.relnamespace
+         LEFT JOIN pg_description pgd ON (c.oid = pgd.objoid AND pgd.objsubid = 0)
+        WHERE c.relkind = 'r'
+          AND n.nspname = 'public'
+          AND c.relname = #{tableName}
+    </select>
+
+    <select id="selectTableList" resultType="com.newbie.generator.domain.TableInfo">
+        SELECT c.relname AS name, pgd.description AS comment
+        FROM pg_class c
+        JOIN pg_namespace n ON n.oid = c.relnamespace
+        LEFT JOIN pg_description pgd ON (c.oid = pgd.objoid AND pgd.objsubid = 0)
+        WHERE c.relkind = 'r'
+          AND n.nspname = 'public'
+        <if test="tableInfo.name != null and tableInfo.name != ''">
+            AND c.relname LIKE concat('%',#{tableInfo.name},'%')
+        </if>
+        <if test="tableInfo.comment != null and tableInfo.comment != ''">
+            AND pgd.description LIKE concat('%',#{tableInfo.comment},'%')
+        </if>
+    </select>
+
+    <sql id="pkColumnSql">
+        SELECT
+            c.table_name,
+            c.constraint_name,
+            a.column_name,
+            c.constraint_type
+        FROM
+            information_schema.table_constraints AS c
+                JOIN
+            information_schema.key_column_usage AS k
+            ON c.constraint_name = k.constraint_name
+                JOIN
+            information_schema.tables AS t
+            ON t.table_schema = c.table_schema
+                AND t.table_name = c.table_name
+                JOIN
+            information_schema.columns AS a
+            ON a.table_schema = k.table_schema
+                AND a.table_name = k.table_name
+                AND a.column_name = k.column_name
+        WHERE
+            c.constraint_type = 'PRIMARY KEY'
+          AND
+            c.table_schema = 'public'
+          AND
+            c.table_name = #{tableName}
+    </sql>
+    
+    <sql id="columnCommentSql">
+        SELECT col.attname     AS column_name,
+               pgd.description AS comment
+        FROM pg_attribute col
+                 LEFT JOIN
+             pg_description pgd ON (col.attrelid = pgd.objoid AND col.attnum = pgd.objsubid)
+        WHERE col.attrelid = 'public.${tableName}'::regclass  -- 替换为你的表名
+        AND
+            col.attnum > 0
+        AND
+            NOT col.attisdropped
+        ORDER BY
+            col.attnum
+    </sql>
+
+
+    <select id="selectColumnList" resultType="com.newbie.generator.domain.ColumnInfo">
+        SELECT
+            a.table_name,
+            a.column_name as name,
+            a.udt_name as type,
+            CASE WHEN a.is_nullable='YES' THEN '1' ELSE '0' END AS nullable,
+            CASE WHEN b.constraint_type='PRIMARY KEY' THEN '1' ELSE '0' END AS pk,
+            c.comment AS comment
+        FROM
+            information_schema.columns a
+        LEFT JOIN (
+            <include refid="pkColumnSql" />
+            ) b ON (b.column_name = a.column_name and b.table_name = a.table_name)
+        LEFT JOIN (
+            <include refid="columnCommentSql" />
+        ) c on c.column_name = a.column_name
+        WHERE
+            a.table_schema = 'public'
+          AND a.table_name =  #{tableName}
+    </select>
+
+</mapper>
