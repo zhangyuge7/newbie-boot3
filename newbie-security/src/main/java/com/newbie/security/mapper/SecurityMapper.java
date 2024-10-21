@@ -58,7 +58,7 @@ public interface SecurityMapper {
      * @param userId 用户ID
      * @return 用户
      */
-    SysUser selectUserByUserId(long userId);
+    SysUser selectUserByUserId(String userId);
 
     /**
      * 根据用户ID更新用户密码

@@ -162,7 +162,7 @@ public class SecurityServiceImpl implements SecurityService {
     public void updatePassword(PasswordBody passwordBody) {
         if (!StringUtils.hasLength(passwordBody.getOtext())) throw new NewbieException("旧密码不能为空");
         this.verifyPasswordBogy(passwordBody);
-        long userId = StpUtil.getLoginIdAsLong();
+        String userId = StpUtil.getLoginIdAsString();
         SysUser sysUser = securityMapper.selectUserByUserId(userId);
 
         String oText = new String(Base64.getDecoder().decode(passwordBody.getOtext()));
